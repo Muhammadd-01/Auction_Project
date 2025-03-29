@@ -5,7 +5,7 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// ✅ Enable Static Files (for CSS, JS, images)
+// ✅ Enable Static Files (Must be before UseRouting)
 app.UseStaticFiles();
 
 app.UseRouting();

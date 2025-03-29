@@ -9,12 +9,28 @@
   <ItemGroup>
     <Compile Remove="NewFolder1\**" />
     <Compile Remove="NewFolder2\**" />
+    <Compile Remove="wwwroot\css\**" />
+    <Compile Remove="wwwroot\images\**" />
+    <Compile Remove="wwwroot\js\**" />
+    <Compile Remove="wwwroot\scss\**" />
     <Content Remove="NewFolder1\**" />
     <Content Remove="NewFolder2\**" />
+    <Content Remove="wwwroot\css\**" />
+    <Content Remove="wwwroot\images\**" />
+    <Content Remove="wwwroot\js\**" />
+    <Content Remove="wwwroot\scss\**" />
     <EmbeddedResource Remove="NewFolder1\**" />
     <EmbeddedResource Remove="NewFolder2\**" />
+    <EmbeddedResource Remove="wwwroot\css\**" />
+    <EmbeddedResource Remove="wwwroot\images\**" />
+    <EmbeddedResource Remove="wwwroot\js\**" />
+    <EmbeddedResource Remove="wwwroot\scss\**" />
     <None Remove="NewFolder1\**" />
     <None Remove="NewFolder2\**" />
+    <None Remove="wwwroot\css\**" />
+    <None Remove="wwwroot\images\**" />
+    <None Remove="wwwroot\js\**" />
+    <None Remove="wwwroot\scss\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,9 +44,6 @@
 
   <ItemGroup>
     <Folder Include="Views\Shared\" />
-    <Folder Include="wwwroot\css\admin.css\" />
-    <Folder Include="wwwroot\js\" />
-    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>
