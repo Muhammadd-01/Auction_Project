@@ -1,18 +1,21 @@
-var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateBuilder(args);
 
-// Add MVC services
+// ✅ Add MVC support
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Enable routing for controllers
+// ✅ Enable Static Files (for CSS, JS, images)
+app.UseStaticFiles();
+
 app.UseRouting();
 
 app.UseEndpoints(endpoints =>
 {
+    // ✅ Default Route for Admin Panel
     endpoints.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
+        pattern: "{controller=Admin}/{action=Dashboard}/{id?}");
 });
 
 app.Run();
