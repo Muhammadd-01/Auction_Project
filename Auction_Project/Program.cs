@@ -15,7 +15,7 @@ app.UseEndpoints(endpoints =>
     // ✅ Default Route for Admin Panel
     endpoints.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Admin}/{action=Dashboard}/{id?}");
+        pattern: "{controller=Admin}/{action=Index}/{id?}");
 });
 
 app.Run();
