@@ -2,33 +2,42 @@
 	Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!-- bidding-history.html -->
+<!-- items.html -->
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
         <div class="col-sm-12 col-xl-6">
             <div class="bg-secondary rounded h-100 p-4">
-                <h6 class="mb-4">Bidding History</h6>
+                <h6 class="mb-4">Items Table</h6>
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Item Name</th>
-                            <th scope="col">Bidder</th>
-                            <th scope="col">Bid Amount</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <th scope="row">1</th>
                             <td>Smartphone</td>
-                            <td>John</td>
+                            <td>Electronics</td>
                             <td>$500</td>
+                            <td>
+                                <button class="btn btn-primary">Add</button>
+                                <button class="btn btn-danger">Remove</button>
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row">2</th>
                             <td>Laptop</td>
-                            <td>Mark</td>
+                            <td>Electronics</td>
                             <td>$1200</td>
+                            <td>
+                                <button class="btn btn-primary">Add</button>
+                                <button class="btn btn-danger">Remove</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

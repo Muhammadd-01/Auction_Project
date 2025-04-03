@@ -2,3 +2,43 @@
 	Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<!-- categories.html -->
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Categories Table</h6>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Category Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Electronics</td>
+                            <td>All electronic devices</td>
+                            <td>
+                                <button class="btn btn-primary">Add</button>
+                                <button class="btn btn-danger">Remove</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Furniture</td>
+                            <td>Home and office furniture</td>
+                            <td>
+                                <button class="btn btn-primary">Add</button>
+                                <button class="btn btn-danger">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
