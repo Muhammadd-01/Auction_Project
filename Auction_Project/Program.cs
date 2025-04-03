@@ -1,5 +1,12 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Auction_Project;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
 
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AuctionClass>(options => options.UseSqlServer(
+    builder.Configuration.GetConnectionString("Myconnection")));
 // ✅ Add MVC support
 builder.Services.AddControllersWithViews();
 
