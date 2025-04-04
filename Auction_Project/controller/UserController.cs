@@ -18,5 +18,13 @@ namespace Auction_Project.controller
         {
             return View();
         }
+        public IActionResult Login()
+        {
+            return View();
+        }
+        public IActionResult Register()
+        {
+            return View();
+        }
     }
 }
