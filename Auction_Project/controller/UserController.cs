@@ -21,7 +21,10 @@ namespace Auction_Project.controller
         {
             return View();
         }
-
+        public IActionResult Contact()
+        {
+            return View();
+        }
 
         public IActionResult Profile()
         {
