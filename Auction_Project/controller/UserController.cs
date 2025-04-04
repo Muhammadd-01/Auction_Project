@@ -13,6 +13,15 @@ namespace Auction_Project.controller
         {
             return View();
         }
+        public IActionResult Categories()
+        {
+            return View();
+        }
+        public IActionResult Items()
+        {
+            return View();
+        }
+
 
         public IActionResult Profile()
         {
