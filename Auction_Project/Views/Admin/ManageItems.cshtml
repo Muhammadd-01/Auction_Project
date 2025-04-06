@@ -1,44 +1,38 @@
 ﻿@{
-	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!-- Item Table -->
+<!-- Users Table -->
 <div class="container-fluid pt-4 px-4">
     <div class="bg-secondary rounded h-100 p-4">
-        <h6 class="mb-4">Items Management</h6>
-        <button class="btn btn-success mb-3">Add New Item</button>
+        <h6 class="mb-4">User Management</h6>
+        <a href="/Admin/AddUser" class="btn btn-success mb-3">Add New User</a>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Item Title</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Start Date</th>
-                    <th scope="col">End Date</th>
-                    <th scope="col">Min Bid</th>
-                    <th scope="col">Increment</th>
-                    <th scope="col">Category ID</th>
-                    <th scope="col">Actions</th>
+                    <th>#</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Vintage Clock</td>
-                    <td>Old wooden clock from 1940</td>
+                    <th>1</th>
+                    <td>John Doe</td>
+                    <td>john@example.com</td>
+                    <td>••••••••</td>
+                    <td>User</td>
                     <td>Active</td>
-                    <td>2025-04-01</td>
-                    <td>2025-04-10</td>
-                    <td>$100</td>
-                    <td>$10</td>
-                    <td>3</td>
                     <td>
-                        <button class="btn btn-warning btn-sm">Edit</button>
-                        <button class="btn btn-danger btn-sm">Delete</button>
+                        <a href="/Admin/EditUser/1" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="/Admin/DeleteUser/1" class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
-                <!-- Add more rows dynamically -->
+                <!-- More rows dynamically -->
             </tbody>
         </table>
     </div>

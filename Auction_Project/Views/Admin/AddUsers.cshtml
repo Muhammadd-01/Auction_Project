@@ -1,0 +1,32 @@
+﻿@{
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Add User Form -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary rounded h-100 p-4">
+        <h6 class="mb-4">Add New User</h6>
+        <form>
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-control" placeholder="Enter username">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" placeholder="Enter email">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" placeholder="Enter password">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Role</label>
+                <select class="form-select">
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Add User</button>
+        </form>
+    </div>
+</div>
