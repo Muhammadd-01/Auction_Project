@@ -2,37 +2,43 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!-- Users Table -->
+<!-- Item Table -->
 <div class="container-fluid pt-4 px-4">
     <div class="bg-secondary rounded h-100 p-4">
-        <h6 class="mb-4">User Management</h6>
-        <a href="/Admin/AddUser" class="btn btn-success mb-3">Add New User</a>
+        <h6 class="mb-4">Items Management</h6>
+        <a href="/Items/Add" class="btn btn-success mb-3">Add New Item</a>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Full Name</th>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>Role</th>
+                    <th>Title</th>
+                    <th>Description</th>
                     <th>Status</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Min Bid</th>
+                    <th>Increment</th>
+                    <th>Category ID</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <th>1</th>
-                    <td>John Doe</td>
-                    <td>john@example.com</td>
-                    <td>••••••••</td>
-                    <td>User</td>
+                    <td>1</td>
+                    <td>Antique Vase</td>
+                    <td>Beautiful handcrafted vase</td>
                     <td>Active</td>
+                    <td>2025-04-01</td>
+                    <td>2025-04-15</td>
+                    <td>$150</td>
+                    <td>$10</td>
+                    <td>2</td>
                     <td>
-                        <a href="/Admin/EditUser/1" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="/Admin/DeleteUser/1" class="btn btn-danger btn-sm">Delete</a>
+                        <button class="btn btn-warning btn-sm">Edit</button>
+                        <button class="btn btn-danger btn-sm">Delete</button>
                     </td>
                 </tr>
-                <!-- More rows dynamically -->
+                <!-- Repeat rows dynamically -->
             </tbody>
         </table>
     </div>

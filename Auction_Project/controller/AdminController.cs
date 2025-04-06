@@ -21,12 +21,18 @@ namespace Auction_Project.Controllers
         {
             return View();
         }
-
+        public IActionResult AddItems()
+        {
+            return View();
+        }
         public IActionResult ManageCategories()
         {
             return View();
         }
-
+        public IActionResult AddCategories()
+        {
+            return View();
+        }
         public IActionResult ManageAuctions()
         {
             return View();
@@ -37,7 +43,7 @@ namespace Auction_Project.Controllers
             return View();
         }
 
-        public IActionResult Reports()
+        public IActionResult Ratings()
         {
             return View();
         }
@@ -47,7 +53,7 @@ namespace Auction_Project.Controllers
             return View();
         }
 
-        public IActionResult Settings()
+        public IActionResult Contacts()
         {
             return View();
         }
