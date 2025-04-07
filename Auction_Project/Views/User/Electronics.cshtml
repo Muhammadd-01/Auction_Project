@@ -1,3 +1,178 @@
 ﻿@{
 	Layout="~/Views/Shared/_UserLayout.cshtml";
-}
+
+    }
+
+    <!-- Electronics Banner -->
+    <section class="electronics-banner">
+        <div class="floating-electronics">
+            <div class="floating-item" style="left: 10%; animation-duration: 12s; animation-delay: 0s;"></div>
+            <div class="floating-item" style="left: 20%; animation-duration: 15s; animation-delay: 2s;"></div>
+            <div class="floating-item" style="left: 30%; animation-duration: 18s; animation-delay: 1s;"></div>
+            <div class="floating-item" style="left: 40%; animation-duration: 10s; animation-delay: 4s;"></div>
+            <div class="floating-item" style="left: 50%; animation-duration: 14s; animation-delay: 0s;"></div>
+            <div class="floating-item" style="left: 60%; animation-duration: 16s; animation-delay: 3s;"></div>
+            <div class="floating-item" style="left: 70%; animation-duration: 13s; animation-delay: 2s;"></div>
+            <div class="floating-item" style="left: 80%; animation-duration: 17s; animation-delay: 1s;"></div>
+            <div class="floating-item" style="left: 90%; animation-duration: 11s; animation-delay: 5s;"></div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center animate__animated animate__fadeIn">
+                    <h1 class="display-4 fw-bold mb-4">Electronics Auctions</h1>
+                    <p class="lead mb-4">Discover premium gadgets, rare tech collectibles, and cutting-edge electronics from around the world.</p>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <span class="me-3"><i class="bi bi-laptop me-2"></i> 350+ premium electronics</span>
+                        <span class="mx-3">•</span>
+                        <span><i class="bi bi-people-fill me-2"></i> 215 active bidders</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Bar Section -->
+    <section>
+        <div class="container">
+            <div class="search-container">
+                <form class="search-form">
+                    <input type="text" class="form-control search-input" placeholder="Search for electronics, brands, or categories..." id="searchInput">
+                    <button type="button" class="search-button">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter and Sort Section -->
+    <section class="py-4">
+        <div class="container">
+            <div class="row">
+                <!-- Category Filters - Left Side -->
+                <div class="col-md-3">
+                    <div class="filter-container">
+                        <div class="section-title">
+                            <i class="bi bi-filter"></i> Filter by Category
+                        </div>
+                        <button class="filter-btn active" data-category="all">
+                            <i class="bi bi-collection me-2"></i>
+                            All Electronics <span class="item-count" id="allCount">0</span>
+                        </button>
+                        <button class="filter-btn" data-category="Computers">
+                            <i class="bi bi-laptop me-2"></i>
+                            Computers <span class="item-count" id="computersCount">0</span>
+                        </button>
+                        <button class="filter-btn" data-category="Smartphones">
+                            <i class="bi bi-phone me-2"></i>
+                            Smartphones <span class="item-count" id="smartphonesCount">0</span>
+                        </button>
+                        <button class="filter-btn" data-category="Cameras">
+                            <i class="bi bi-camera me-2"></i>
+                            Cameras <span class="item-count" id="camerasCount">0</span>
+                        </button>
+                        <button class="filter-btn" data-category="Audio">
+                            <i class="bi bi-headphones me-2"></i>
+                            Audio <span class="item-count" id="audioCount">0</span>
+                        </button>
+                        <button class="filter-btn" data-category="Gaming">
+                            <i class="bi bi-controller me-2"></i>
+                            Gaming <span class="item-count" id="gamingCount">0</span>
+                        </button>
+                    </div>
+
+                    <div class="filter-container mt-4">
+                        <div class="section-title">
+                            <i class="bi bi-tag"></i> Filter by Condition
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" value="New" id="conditionNew" checked>
+                            <label class="form-check-label" for="conditionNew">
+                                New
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" value="Like New" id="conditionLikeNew" checked>
+                            <label class="form-check-label" for="conditionLikeNew">
+                                Like New
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" value="Good" id="conditionGood" checked>
+                            <label class="form-check-label" for="conditionGood">
+                                Good
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Fair" id="conditionFair" checked>
+                            <label class="form-check-label" for="conditionFair">
+                                Fair
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-container mt-4">
+                        <div class="section-title">
+                            <i class="bi bi-currency-dollar"></i> Price Range
+                        </div>
+                        <div class="mb-3">
+                            <label for="minPrice" class="form-label small">Min Price ($)</label>
+                            <input type="number" class="form-control" id="minPrice" placeholder="0">
+                        </div>
+                        <div class="mb-3">
+                            <label for="maxPrice" class="form-label small">Max Price ($)</label>
+                            <input type="number" class="form-control" id="maxPrice" placeholder="10000">
+                        </div>
+                        <button class="btn btn-primary w-100" id="applyPriceFilter">Apply</button>
+                    </div>
+                </div>
+
+                <!-- Electronics Listings - Right Side with Sorting at Top -->
+                <div class="col-md-9">
+                    <div class="filter-container mb-4">
+                        <div class="section-title">
+                            <i class="bi bi-sort-down"></i> Sort By
+                        </div>
+                        <div class="sort-select-wrapper">
+                            <select class="form-select sort-select" id="sortSelect">
+                                <option value="default">All</option>
+                                <option value="ending-soon">Ending Soon</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="most-bids">Most Bids</option>
+                                <option value="newest">Newest Listings</option>
+                            </select>
+                            <i class="bi bi-chevron-down sort-select-icon"></i>
+                        </div>
+                    </div>
+
+                    <!-- Electronics Listings -->
+                    <div class="row" id="electronicsListingsContainer">
+                        <!-- Electronics will be dynamically generated here -->
+                    </div>
+
+                    <!-- No Results Message -->
+                    <div class="no-results" id="noResults" style="display: none;">
+                        <i class="bi bi-search"></i>
+                        <h3>No Electronics Found</h3>
+                        <p class="text-muted">Try adjusting your filters or search criteria</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Item Details Modal -->
+    <div class="modal fade" id="itemDetailsModal" tabindex="-1" aria-labelledby="itemDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content item-details-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="itemDetailsModalLabel">Item Details</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="itemDetailsContent">
+                    <!-- Modal content will be dynamically generated here -->
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,715 @@
+﻿@{
+	Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="mobile-menu">
+    <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+        <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200">Menu</h2>
+        <button id="close-mobile-menu" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+    <div class="p-4">
+        <div class="space-y-4">
+            <a href="#" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Home</a>
+
+            <!-- Mobile Categories Accordion -->
+            <div class="mobile-accordion">
+                <button class="w-full flex justify-between items-center px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
+                    <span>Categories</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div class="mobile-accordion-content hidden pl-4 mt-2 space-y-2">
+                    <a href="#" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Electronics</a>
+                    <a href="#" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Collectibles</a>
+                    <a href="#" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Antiques</a>
+                    <a href="#" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Jewelry</a>
+                    <a href="#" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Art</a>
+                    <a href="#" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Fashion</a>
+                    <a href="#" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Home & Garden</a>
+                </div>
+            </div>
+
+            <a href="#" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Featured Auctions</a>
+            <a href="#" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">How It Works</a>
+            <a href="#" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Notifications</a>
+            <a href="#" class="block px-4 py-2 bg-green-600 text-white hover:bg-green-700 rounded-md text-center">Sell an Item</a>
+
+            <div class="border-t border-gray-200 dark:border-gray-700 my-4"></div>
+
+            <!-- Mobile Auth Buttons -->
+            <div class="flex space-x-2">
+                <a href="#" class="flex-1 px-4 py-2 bg-red-800 text-white hover:bg-red-700 rounded-md text-center">Login</a>
+                <a href="#" class="flex-1 px-4 py-2 bg-white text-red-800 hover:bg-gray-100 rounded-md text-center">Register</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Search Overlay -->
+<div id="search-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-start justify-center pt-20">
+    <div class="bg-white dark:bg-gray-800 w-full max-w-2xl mx-4 rounded-lg shadow-lg overflow-hidden">
+        <div class="p-4 flex items-center border-b border-gray-200 dark:border-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input type="text" id="search-input" placeholder="Search for items, categories, or sellers..." class="flex-1 bg-transparent border-none focus:outline-none text-gray-800 dark:text-gray-200">
+            <button id="close-search" class="ml-2 p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="p-4">
+            <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Popular Searches</h3>
+            <div class="flex flex-wrap gap-2">
+                <a href="#" class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200">vintage cameras</a>
+                <a href="#" class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200">antique watches</a>
+                <a href="#" class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200">rare coins</a>
+                <a href="#" class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200">vinyl records</a>
+                <a href="#" class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200">collectible cards</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<main class="flex-grow container mx-auto px-4 py-8">
+    <!-- Breadcrumbs -->
+    <div class="flex items-center text-sm text-gray-600 dark:text-gray-400 mb-6">
+        <a href="index.html" class="hover:text-red-800 dark:hover:text-red-500">Home</a>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mx-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+        <a href="#" class="hover:text-red-800 dark:hover:text-red-500">Categories</a>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mx-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+        <a href="#" class="hover:text-red-800 dark:hover:text-red-500" id="item-category">Electronics</a>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mx-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+        <span class="text-gray-800 dark:text-gray-200" id="item-title">Vintage Leica Camera</span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Left Column - Images -->
+        <div class="lg:col-span-2">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+                <!-- Main Image Slider -->
+                <div class="swiper item-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="https://images.unsplash.com/photo-1495707902641-75cac588d2e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Vintage Leica Camera Main" class="w-full h-96 object-contain">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://images.unsplash.com/photo-1519638831568-d9897f54ed69?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Vintage Leica Camera Side" class="w-full h-96 object-contain">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Vintage Leica Camera Back" class="w-full h-96 object-contain">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Vintage Leica Camera With Case" class="w-full h-96 object-contain">
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+
+                <!-- Thumbnail Slider -->
+                <div class="swiper thumbnail-swiper p-2">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide cursor-pointer border-2 border-transparent hover:border-red-800 dark:hover:border-red-500 transition-colors duration-200 rounded overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1495707902641-75cac588d2e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Thumbnail 1" class="w-full h-20 object-cover">
+                        </div>
+                        <div class="swiper-slide cursor-pointer border-2 border-transparent hover:border-red-800 dark:hover:border-red-500 transition-colors duration-200 rounded overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1519638831568-d9897f54ed69?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Thumbnail 2" class="w-full h-20 object-cover">
+                        </div>
+                        <div class="swiper-slide cursor-pointer border-2 border-transparent hover:border-red-800 dark:hover:border-red-500 transition-colors duration-200 rounded overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Thumbnail 3" class="w-full h-20 object-cover">
+                        </div>
+                        <div class="swiper-slide cursor-pointer border-2 border-transparent hover:border-red-800 dark:hover:border-red-500 transition-colors duration-200 rounded overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Thumbnail 4" class="w-full h-20 object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item Description -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-6">
+                <h2 class="text-xl font-bold mb-4">Description</h2>
+                <div class="prose dark:prose-invert max-w-none" id="item-description">
+                    <p>Rare Leica III model from 1936, excellent condition with original leather case and accessories. This vintage camera is a collector's item and represents a significant piece of photography history.</p>
+                    <p class="mt-4">Features:</p>
+                    <ul class="list-disc pl-5 mt-2 space-y-1">
+                        <li>Original Leica III body in excellent working condition</li>
+                        <li>Comes with 50mm f/3.5 Elmar lens</li>
+                        <li>Original leather case included</li>
+                        <li>Includes original manual and documentation</li>
+                        <li>Serial number confirms 1936 manufacturing date</li>
+                        <li>All mechanical functions work properly</li>
+                        <li>Shutter speeds are accurate</li>
+                    </ul>
+                    <p class="mt-4">This camera has been professionally serviced and is in fully operational condition. A fantastic addition to any vintage camera collection or for photography enthusiasts who appreciate the craftsmanship of classic cameras.</p>
+                </div>
+            </div>
+
+            <!-- Seller Information -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-6">
+                <h2 class="text-xl font-bold mb-4">Seller Information</h2>
+                <div class="flex items-center">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Seller" class="w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <h3 class="font-semibold">Michael Thompson</h3>
+                        <div class="flex items-center mt-1">
+                            <div class="flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                            </div>
+                            <span class="text-sm text-gray-600 dark:text-gray-400 ml-2">5.0 (128 reviews)</span>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Member since: January 2020</p>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <a href="#" class="text-red-800 dark:text-red-500 text-sm hover:underline">See seller's other items</a>
+                </div>
+            </div>
+
+            <!-- Shipping and Returns -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-6">
+                <h2 class="text-xl font-bold mb-4">Shipping and Returns</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <h3 class="font-semibold mb-2">Shipping</h3>
+                        <ul class="space-y-1 text-sm">
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 mt-0.5 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                                </svg>
+                                <span>Standard shipping: 3-5 business days</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 mt-0.5 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                                <span>Express shipping: 1-2 business days</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 mt-0.5 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span>International shipping: 5-10 business days</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold mb-2">Returns</h3>
+                        <ul class="space-y-1 text-sm">
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 mt-0.5 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                </svg>
+                                <span>Returns accepted within 14 days</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 mt-0.5 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                                <span>Buyer pays return shipping</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 mt-0.5 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span>Item must be in original condition</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW SECTION: Product Specifications -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-6">
+                <h2 class="text-xl font-bold mb-4">Product Specifications</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="font-semibold mb-3">Camera Details</h3>
+                        <table class="w-full">
+                            <tbody>
+                                <tr class="border-b border-gray-200 dark:border-gray-700">
+                                    <td class="py-2 text-sm text-gray-600 dark:text-gray-400">Brand</td>
+                                    <td class="py-2 text-sm font-medium">Leica</td>
+                                </tr>
+                                <tr class="border-b border-gray-200 dark:border-gray-700">
+                                    <td class="py-2 text-sm text-gray-600 dark:text-gray-400">Model</td>
+                                    <td class="py-2 text-sm font-medium">Leica III</td>
+                                </tr>
+                                <tr class="border-b border-gray-200 dark:border-gray-700">
+                                    <td class="py-2 text-sm text-gray-600 dark:text-gray-400">Year</td>
+                                    <td class="py-2 text-sm font-medium">1936</td>
+                                </tr>
+                                <tr class="border-b border-gray-200 dark:border-gray-700">
+                                    <td class="py-2 text-sm text-gray-600 dark:text-gray-400">Serial Number</td>
+                                    <td class="py-2 text-sm font-medium">259841</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 text-sm text-gray-600 dark:text-gray-400">Country of Origin</td>
+                                    <td class="py-2 text-sm font-medium">Germany</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold mb-3">Technical Specifications</h3>
+                        <table class="w-full">
+                            <tbody>
+                                <tr class="border-b border-gray-200 dark:border-gray-700">
+                                    <td class="py-2 text-sm text-gray-600 dark:text-gray-400">Lens</td>
+                                    <td class="py-2 text-sm font-medium">50mm f/3.5 Elmar</td>
+                                </tr>
+                                <tr class="border-b border-gray-200 dark:border-gray-700">
+                                    <td class="py-2 text-sm text-gray-600 dark:text-gray-400">Shutter Type</td>
+                                    <td class="py-2 text-sm font-medium">Focal plane</td>
+                                </tr>
+                                <tr class="border-b border-gray-200 dark:border-gray-700">
+                                    <td class="py-2 text-sm text-gray-600 dark:text-gray-400">Shutter Speeds</td>
+                                    <td class="py-2 text-sm font-medium">1/1000 - 1 sec, Bulb</td>
+                                </tr>
+                                <tr class="border-b border-gray-200 dark:border-gray-700">
+                                    <td class="py-2 text-sm text-gray-600 dark:text-gray-400">Film Format</td>
+                                    <td class="py-2 text-sm font-medium">35mm</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 text-sm text-gray-600 dark:text-gray-400">Weight</td>
+                                    <td class="py-2 text-sm font-medium">545g (with lens)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW SECTION: Customer Reviews -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold">Customer Reviews</h2>
+                    <a href="#" class="text-red-800 dark:text-red-500 hover:underline">See all reviews</a>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-start md:items-center mb-6 pb-6 border-b border-gray-200 dark:border-gray-700">
+                    <div class="flex flex-col items-center mr-8 mb-4 md:mb-0">
+                        <div class="text-5xl font-bold text-gray-800 dark:text-gray-200">4.9</div>
+                        <div class="flex mt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+                        <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">Based on 128 reviews</div>
+                    </div>
+
+                    <div class="flex-1">
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <div class="w-24 text-sm text-gray-600 dark:text-gray-400">5 stars</div>
+                                <div class="flex-1 h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                                    <div class="h-2 bg-yellow-500 rounded-full" style="width: 92%"></div>
+                                </div>
+                                <div class="w-12 text-right text-sm text-gray-600 dark:text-gray-400">92%</div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-24 text-sm text-gray-600 dark:text-gray-400">4 stars</div>
+                                <div class="flex-1 h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                                    <div class="h-2 bg-yellow-500 rounded-full" style="width: 6%"></div>
+                                </div>
+                                <div class="w-12 text-right text-sm text-gray-600 dark:text-gray-400">6%</div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-24 text-sm text-gray-600 dark:text-gray-400">3 stars</div>
+                                <div class="flex-1 h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                                    <div class="h-2 bg-yellow-500 rounded-full" style="width: 2%"></div>
+                                </div>
+                                <div class="w-12 text-right text-sm text-gray-600 dark:text-gray-400">2%</div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-24 text-sm text-gray-600 dark:text-gray-400">2 stars</div>
+                                <div class="flex-1 h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                                    <div class="h-2 bg-yellow-500 rounded-full" style="width: 0%"></div>
+                                </div>
+                                <div class="w-12 text-right text-sm text-gray-600 dark:text-gray-400">0%</div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-24 text-sm text-gray-600 dark:text-gray-400">1 star</div>
+                                <div class="flex-1 h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                                    <div class="h-2 bg-yellow-500 rounded-full" style="width: 0%"></div>
+                                </div>
+                                <div class="w-12 text-right text-sm text-gray-600 dark:text-gray-400">0%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Individual Reviews -->
+                <div class="space-y-6">
+                    <!-- Review 1 -->
+                    <div class="review-card p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <div class="flex justify-between mb-2">
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Reviewer" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <h4 class="font-medium">Sarah Johnson</h4>
+                                    <div class="flex items-center mt-1">
+                                        <div class="flex">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">2 weeks ago</span>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300">Absolutely stunning piece of history! The camera arrived in perfect condition, exactly as described. The seller was very knowledgeable and provided detailed information about its history. It's now the centerpiece of my vintage camera collection.</p>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="review-card p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <div class="flex justify-between mb-2">
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Reviewer" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <h4 class="font-medium">Robert Chen</h4>
+                                    <div class="flex items-center mt-1">
+                                        <div class="flex">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">1 month ago</span>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300">I've been looking for this specific model for years! The camera is in exceptional condition for its age. All mechanical parts work smoothly, and the lens is crystal clear. Fast shipping and excellent packaging. Highly recommend this seller!</p>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="review-card p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <div class="flex justify-between mb-2">
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/women/23.jpg" alt="Reviewer" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <h4 class="font-medium">Emily Parker</h4>
+                                    <div class="flex items-center mt-1">
+                                        <div class="flex">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-300 dark:text-gray-600" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">2 months ago</span>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300">Beautiful camera with great historical significance. The only reason I'm giving 4 stars instead of 5 is that the leather case has some minor wear that wasn't mentioned in the description. Otherwise, the camera itself is in excellent condition and works perfectly.</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <button class="px-4 py-2 bg-red-800 text-white rounded-md hover:bg-red-700 transition-colors duration-200">
+                        Load More Reviews
+                    </button>
+                </div>
+            </div>
+
+            <!-- NEW SECTION: Related Items -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-6">
+                <h2 class="text-xl font-bold mb-4">You May Also Like</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <a href="#" class="hover-scale block rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+                        <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Vintage Camera" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-medium text-gray-800 dark:text-gray-200">Vintage Rolleiflex TLR Camera</h3>
+                            <div class="flex justify-between items-center mt-2">
+                                <span class="text-red-800 dark:text-red-500 font-semibold">$895</span>
+                                <span class="text-xs text-gray-600 dark:text-gray-400">12 bids</span>
+                            </div>
+                            <div class="mt-2 text-xs text-gray-600 dark:text-gray-400">Ends in 3d 8h</div>
+                        </div>
+                    </a>
+                    <a href="#" class="hover-scale block rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+                        <img src="https://images.unsplash.com/photo-1512790182412-b19e6d62bc39?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Camera Lens" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-medium text-gray-800 dark:text-gray-200">Leica Summicron 50mm f/2 Lens</h3>
+                            <div class="flex justify-between items-center mt-2">
+                                <span class="text-red-800 dark:text-red-500 font-semibold">$1,450</span>
+                                <span class="text-xs text-gray-600 dark:text-gray-400">8 bids</span>
+                            </div>
+                            <div class="mt-2 text-xs text-gray-600 dark:text-gray-400">Ends in 1d 14h</div>
+                        </div>
+                    </a>
+                    <a href="#" class="hover-scale block rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+                        <img src="https://images.unsplash.com/photo-1542567455-cd733f23fbb1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Film Rolls" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-medium text-gray-800 dark:text-gray-200">Vintage Film Collection (1960s)</h3>
+                            <div class="flex justify-between items-center mt-2">
+                                <span class="text-red-800 dark:text-red-500 font-semibold">$320</span>
+                                <span class="text-xs text-gray-600 dark:text-gray-400">15 bids</span>
+                            </div>
+                            <div class="mt-2 text-xs text-gray-600 dark:text-gray-400">Ends in 5d 2h</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Auction Info -->
+        <div class="lg:col-span-1">
+            <div class="sticky top-24">
+                <!-- Auction Info Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-lg font-semibold">Current Bid:</span>
+                        <span class="text-2xl font-bold text-red-800 dark:text-red-500 bid-pulse" id="current-bid">$1,250</span>
+                    </div>
+
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                            <span class="text-sm text-gray-600 dark:text-gray-400" id="bid-count">15 bids</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">142 watching</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-medium">Time Left:</span>
+                            <span class="text-sm font-bold" id="time-left">2d 14h 35m 12s</span>
+                        </div>
+                        <div class="w-full bg-gray-300 dark:bg-gray-600 rounded-full h-2.5">
+                            <div class="bg-red-800 dark:bg-red-600 h-2.5 rounded-full" style="width: 65%"></div>
+                        </div>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="text-xs text-gray-600 dark:text-gray-400">Started: <span id="auction-start">Dec 20, 2023</span></span>
+                            <span class="text-xs text-gray-600 dark:text-gray-400">Ends: <span id="auction-end">Dec 31, 2023</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Bid Form -->
+                    <form id="bid-form" class="space-y-4">
+                        <div>
+                            <label for="bid-amount" class="block text-sm font-medium mb-1">Your Bid (USD)</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <span class="text-gray-600 dark:text-gray-400">$</span>
+                                </div>
+                                <input type="number" id="bid-amount" name="bidAmount" min="1300" step="50" value="1300" required class="w-full pl-8 pr-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-red-800 dark:focus:ring-red-500">
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Minimum bid: $1,300 (increment: $50)</p>
+                        </div>
+
+                        <button type="submit" class="w-full bg-red-800 text-white py-3 rounded-lg hover:bg-red-700 transition-colors duration-200 font-medium transform hover:scale-[1.02]">
+                            Place Bid
+                        </button>
+                    </form>
+
+                    <div class="mt-6 flex justify-between">
+                        <button type="button" id="watch-button" class="flex items-center text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-red-800 dark:hover:text-red-500 focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                            </svg>
+                            <span>Add to Watchlist</span>
+                        </button>
+                        <button type="button" id="share-button" class="flex items-center text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-red-800 dark:hover:text-red-500 focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                            </svg>
+                            <span>Share</span>
+                        </button>
+                    </div>
+
+                    <!-- Share Options (Hidden by default) -->
+                    <div id="share-options" class="mt-4 hidden">
+                        <div class="flex space-x-4 justify-center">
+                            <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8l-8 8m0-8l8 8m-8-4h8" />
+                                </svg>
+                                <span class="sr-only">Share on Facebook</span>
+                            </a>
+                            <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                </svg>
+                                <span class="sr-only">Share on Twitter</span>
+                            </a>
+                            <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                                <span class="sr-only">Share via Email</span>
+                            </a>
+                            <button id="copy-link" class="text-gray-600 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                                </svg>
+                                <span class="sr-only">Copy Link</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bidding History -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-6">
+                    <h2 class="text-lg font-bold mb-4">Bid History</h2>
+                    <ul class="space-y-3" id="bid-history">
+                        <!-- Bid items will be populated by JavaScript -->
+                    </ul>
+                    <button id="show-all-bids" class="text-red-800 dark:text-red-500 text-sm font-medium hover:underline mt-4">
+                        Show all bids
+                    </button>
+                </div>
+
+                <!-- Similar Items -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-6">
+                    <h2 class="text-lg font-bold mb-4">Similar Items</h2>
+                    <div class="space-y-4">
+                        <a href="#" class="flex items-center hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded-lg transition-colors duration-200">
+                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Similar Item" class="w-16 h-16 object-cover rounded-md mr-3">
+                            <div class="flex-1">
+                                <h3 class="text-sm font-medium">Vintage Nikon F Camera</h3>
+                                <div class="flex justify-between items-center mt-1">
+                                    <span class="text-sm text-red-800 dark:text-red-500 font-semibold">$980</span>
+                                    <span class="text-xs text-gray-600 dark:text-gray-400">3d 6h left</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="flex items-center hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded-lg transition-colors duration-200">
+                            <img src="https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Similar Item" class="w-16 h-16 object-cover rounded-md mr-3">
+                            <div class="flex-1">
+                                <h3 class="text-sm font-medium">Canon AE-1 Film Camera</h3>
+                                <div class="flex justify-between items-center mt-1">
+                                    <span class="text-sm text-red-800 dark:text-red-500 font-semibold">$750</span>
+                                    <span class="text-xs text-gray-600 dark:text-gray-400">5d 12h left</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="flex items-center hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded-lg transition-colors duration-200">
+                            <img src="https://images.unsplash.com/photo-1519638831568-d9897f54ed69?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Similar Item" class="w-16 h-16 object-cover rounded-md mr-3">
+                            <div class="flex-1">
+                                <h3 class="text-sm font-medium">Vintage Camera Lens Collection</h3>
+                                <div class="flex justify-between items-center mt-1">
+                                    <span class="text-sm text-red-800 dark:text-red-500 font-semibold">$1,450</span>
+                                    <span class="text-xs text-gray-600 dark:text-gray-400">2d 3h left</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- NEW SECTION: Seller Guarantee -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-6">
+                    <h2 class="text-lg font-bold mb-4">BidMaster Guarantee</h2>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                            <span class="text-sm">Authenticity Verified</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="text-sm">Secure Payment Processing</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                            <span class="text-sm">Buyer Protection</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

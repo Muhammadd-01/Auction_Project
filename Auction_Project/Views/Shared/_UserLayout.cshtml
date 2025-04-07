@@ -14,145 +14,27 @@
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-    @RenderSection("Styles", required: false)
+
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen flex flex-col transition-colors duration-200">
-<!-- Tailwind CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
 
-<!-- Navbar -->
-<nav class="bg-[#7A2E2E] shadow-md px-4 py-3 sticky top-0 z-50">
-    <div class="container mx-auto flex flex-wrap items-center justify-between">
 
-      <!-- Logo -->
-      <a href="#" class="text-white font-bold text-xl flex items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-        </svg>
-        BidMaster
-      </a>
+        @await Html.PartialAsync("_UserNavbar")
 
-      <!-- Mobile Toggle -->
-      <button data-collapse-toggle="navbar-menu" type="button" class="text-white md:hidden focus:outline-none" aria-controls="navbar-menu" aria-expanded="false">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-
-      <!-- Navbar Menu -->
-      <div class="hidden w-full md:flex md:items-center md:w-auto" id="navbar-menu">
-        <ul class="flex flex-col mt-4 md:flex-row md:space-x-6 md:mt-0 text-white font-medium">
-          <li><a href="./index.html" class="hover:text-yellow-300 transition-colors duration-200">Home</a></li>
-          <li><a href="./about.html" class="hover:text-yellow-300 transition-colors duration-200">About</a></li>
-          <li><a href="./notifications.html" class="hover:text-yellow-300 transition-colors duration-200">Notifications</a></li>
-          <li><a href="./bidding.html" class="hover:text-yellow-300 transition-colors duration-200">Bidding</a></li>
-          <li><a href="./contact.html" class="hover:text-yellow-300 transition-colors duration-200">Contact</a></li>
-
-        <!-- Category Dropdown -->
-        <li class="relative group">
-            <button type="button" class="hover:text-yellow-300 flex items-center gap-1 focus:outline-none transition-colors duration-200">
-              Category
-              <svg class="w-4 h-4 transform group-hover:rotate-180 transition duration-200" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0l-4.24-4.24a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-              </svg>
-            </button>
-
-            <!-- Dropdown Menu -->
-            <ul class="absolute left-0 mt-2 w-44 bg-[#7A2E2E] text-white shadow-lg rounded-md opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transform transition-all duration-200 origin-top z-50 invisible group-hover:visible">
-              <li>
-                <a href="./books.html" class="block px-4 py-2 hover:bg-[#5e2323] transition">Books</a>
-              </li>
-              <li>
-                <a href="./furnitures.html" class="block px-4 py-2 hover:bg-[#5e2323] transition">Furniture</a>
-              </li>
-              <li>
-                <a href="./electronics.html" class="block px-4 py-2 hover:bg-[#5e2323] transition">Electronics</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-
-        <!-- Search Bar -->
-        <form class="flex flex-col md:flex-row md:items-center gap-2 mt-4 md:mt-0 md:ml-6">
-          <input type="text" name="query" placeholder="Search items..." class="px-3 py-1 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500">
-          <button type="submit" class="bg-white text-[#7A2E2E] px-4 py-1 rounded-md hover:bg-gray-100 transition">Search</button>
-        </form>
-
-        <!-- Login/Register Buttons -->
-        <div class="flex items-center space-x-3 mt-4 md:mt-0 md:ml-6">
-          <a href="login.html" class="text-white border border-white px-3 py-1 rounded-md hover:bg-white hover:text-[#7A2E2E] transition-colors duration-200">Login</a>
-          <a href="register.html" class="bg-white text-[#7A2E2E] px-3 py-1 rounded-md hover:bg-gray-100 transition-colors duration-200">Register</a>
-        </div>
-      </div>
-    </div>
-  </nav>
 
     <div>
         @RenderBody()
     </div>
 
-
-    <!-- Footer -->
-    <footer class="bg-white dark:bg-gray-800 shadow-inner py-12">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between mb-8">
-                <div class="mb-8 md:mb-0 md:w-1/3">
-                    <h3 class="text-2xl font-bold text-red-800 dark:text-red-500 mb-4">BidMaster</h3>
-                    <p class="text-gray-600 dark:text-gray-400 max-w-md mb-6">Your trusted platform for online auctions. Find unique items or sell your valuables to the highest bidder.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-500 transition-colors duration-200">
-                            <i data-feather="facebook" class="h-6 w-6"></i>
-                            <span class="sr-only">Facebook</span>
-                        </a>
-                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-500 transition-colors duration-200">
-                            <i data-feather="twitter" class="h-6 w-6"></i>
-                            <span class="sr-only">Twitter</span>
-                        </a>
-                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-500 transition-colors duration-200">
-                            <i data-feather="instagram" class="h-6 w-6"></i>
-                            <span class="sr-only">Instagram</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-8 md:w-2/3">
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                        <ul class="space-y-2">
-                            <li><a href="index.html" class="text-gray-600 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-500 transition-colors duration-200">Home</a></li>
-                            <li><a href="category.html" class="text-gray-600 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-500 transition-colors duration-200">Categories</a></li>
-                            <li><a href="search-results.html" class="text-gray-600 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-500 transition-colors duration-200">Search</a></li>
-                            <li><a href="sell-item.html" class="text-gray-600 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-500 transition-colors duration-200">Sell an Item</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Account</h4>
-                        <ul class="space-y-2">
-                            <li><a href="login.html" class="text-gray-600 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-500 transition-colors duration-200">Login</a></li>
-                            <li><a href="register.html" class="text-gray-600 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-500 transition-colors duration-200">Register</a></li>
-                            <li><a href="profile.html" class="text-gray-600 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-500 transition-colors duration-200">Profile</a></li>
-                            <li><a href="my-bids.html" class="text-gray-600 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-500 transition-colors duration-200">My Bids</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Help</h4>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-500 transition-colors duration-200">FAQ</a></li>
-                            <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-500 transition-colors duration-200">Contact Us</a></li>
-                            <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-500 transition-colors duration-200">Terms of Service</a></li>
-                            <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-500 transition-colors duration-200">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-200 dark:border-gray-700 pt-8 mt-8 text-center text-gray-600 dark:text-gray-400">
-                <p class="mb-4">&copy; 2023 BidMaster. All rights reserved.</p>
-
-            </div>
-        </div>
-    </footer>
+    @await Html.PartialAsync("_UserFooter")
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
 </body>
 </html>

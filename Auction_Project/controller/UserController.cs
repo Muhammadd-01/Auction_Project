@@ -13,7 +13,11 @@ namespace Auction_Project.controller
         {
             return View();
         }
-        public IActionResult Furniture()
+        public IActionResult BidderPage()
+        {
+            return View();
+        }
+        public IActionResult Furnitures()
         {
             return View();
         }
