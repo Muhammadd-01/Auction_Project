@@ -13,11 +13,15 @@ namespace Auction_Project.controller
         {
             return View();
         }
-        public IActionResult Categories()
+        public IActionResult Furniture()
         {
             return View();
         }
-        public IActionResult Items()
+        public IActionResult Electronics()
+        {
+            return View();
+        }
+        public IActionResult Books()
         {
             return View();
         }
@@ -25,7 +29,14 @@ namespace Auction_Project.controller
         {
             return View();
         }
-
+        public IActionResult About()
+        {
+            return View();
+        }
+        public IActionResult Notifications()
+        {
+            return View();
+        }
         public IActionResult Profile()
         {
             return View();

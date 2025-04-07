@@ -1,0 +1,516 @@
+/* Custom styles for BidMaster */
+/* additional custom styles */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+/* Base styles */
+:root {
+    --color-primary: #991b1b; /* red-800 */
+    --color-primary-dark: #7f1d1d; /* red-900 */
+    --color-primary-light: #ef4444; /* red-500 */
+    --color-secondary: #1f2937; /* gray-800 */
+    --color-secondary-dark: #111827; /* gray-900 */
+    --color-secondary-light: #4b5563; /* gray-600 */
+  }
+  
+  /* Dark mode styles */
+  .dark {
+    --color-primary: #ef4444; /* red-500 */
+    --color-primary-dark: #dc2626; /* red-600 */
+    --color-primary-light: #f87171; /* red-400 */
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  .dark ::-webkit-scrollbar-track {
+    background: #374151;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 10px;
+  }
+  
+  .dark ::-webkit-scrollbar-thumb {
+    background: #4b5563;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #991b1b;
+  }
+  
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #ef4444;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* Apply animations */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+  
+  .animate-pulse {
+    animation: pulse 2s infinite;
+  }
+  
+  /* Custom button hover effect */
+  .hover-scale {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Custom card hover effect */
+  .card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  .dark .card-hover:hover {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Custom image hover effect */
+  .image-zoom {
+    overflow: hidden;
+  }
+  
+  .image-zoom img {
+    transition: transform 0.5s ease;
+  }
+  
+  .image-zoom:hover img {
+    transform: scale(1.1);
+  }
+  
+  /* Custom badge styles */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    border-radius: 9999px;
+    text-transform: uppercase;
+  }
+  
+  .badge-primary {
+    background-color: var(--color-primary);
+    color: white;
+  }
+  
+  .badge-secondary {
+    background-color: var(--color-secondary);
+    color: white;
+  }
+  
+  .badge-success {
+    background-color: #10b981;
+    color: white;
+  }
+  
+  .badge-warning {
+    background-color: #f59e0b;
+    color: white;
+  }
+  
+  .badge-danger {
+    background-color: #ef4444;
+    color: white;
+  }
+  
+  /* Custom input focus styles */
+  .input-focus {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .input-focus:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(153, 27, 27, 0.2);
+  }
+  
+  .dark .input-focus:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+  }
+  
+  /* Custom tooltip */
+  .tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltip .tooltip-text {
+    visibility: hidden;
+    width: 120px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+  }
+  
+  .tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* Custom loader */
+  .loader {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: var(--color-primary);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .dark .loader {
+    border-color: rgba(255, 255, 255, 0.1);
+    border-left-color: var(--color-primary);
+  }
+  
+  /* Custom switch */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 24px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: var(--color-primary);
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px var(--color-primary);
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(24px);
+  }
+  
+  /* Swiper custom styles */
+  .swiper-pagination-bullet-active {
+    background-color: var(--color-primary) !important;
+  }
+  
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: var(--color-primary) !important;
+  }
+  
+  /* Star rating */
+  .star-rating {
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .star-rating svg {
+    width: 16px;
+    height: 16px;
+    fill: #f59e0b;
+    stroke: #f59e0b;
+  }
+  
+  .star-rating svg.empty {
+    fill: none;
+  }
+  
+  /* Custom countdown timer */
+  .countdown {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .countdown-number {
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-weight: bold;
+    min-width: 32px;
+    text-align: center;
+  }
+  
+  .countdown-label {
+    font-size: 0.75rem;
+    margin-top: 4px;
+    color: #6b7280;
+  }
+  
+  .dark .countdown-label {
+    color: #9ca3af;
+  }
+  
+  /* Custom progress bar */
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .dark .progress-bar {
+    background-color: #374151;
+  }
+  
+  .progress-bar-fill {
+    height: 100%;
+    background-color: var(--color-primary);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+  }
+  
+  /* Custom notification badge */
+  .notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  /* Custom price tag */
+  .price-tag {
+    position: relative;
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: var(--color-primary);
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+  }
+  
+  .price-tag:after {
+    content: "";
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-left: 8px solid var(--color-primary);
+    border-bottom: 8px solid transparent;
+  }
+  
+  /* Custom ribbon */
+  .ribbon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 22px;
+    margin-right: -50px;
+    margin-top: 15px;
+    transform: rotate(45deg);
+    background-color: var(--color-primary);
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 22px;
+    z-index: 1;
+    overflow: hidden;
+  }
+  
+  /* Custom checkbox */
+  .custom-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .checkmark {
+    position: relative;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 4px;
+    margin-right: 8px;
+  }
+  
+  .dark .checkmark {
+    background-color: #374151;
+  }
+  
+  .custom-checkbox:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  .dark .custom-checkbox:hover input ~ .checkmark {
+    background-color: #4b5563;
+  }
+  
+  .custom-checkbox input:checked ~ .checkmark {
+    background-color: var(--color-primary);
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .custom-checkbox input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  .custom-checkbox .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  
+  
