@@ -74,8 +74,8 @@
                             <i class="fa fa-users me-2"></i>Users
                         </a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="add_user.html" class="dropdown-item">Add User</a>
-                            <a href="view_users.html" class="dropdown-item">View Users</a>
+                            <a href="@Url.Action("AddUsers", "Admin")" class="dropdown-item">Add User</a>
+                            <a href="@Url.Action("ManageUsers", "Admin")" class="dropdown-item">View Users</a>
                         </div>
                     </div>
 
@@ -85,8 +85,8 @@
                             <i class="fa fa-th-list me-2"></i>Categories
                         </a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="add_category.html" class="dropdown-item">Add Category</a>
-                            <a href="view_categories.html" class="dropdown-item">View Categories</a>
+                            <a href="@Url.Action("AddCategories", "Admin")" class="dropdown-item">Add Category</a>
+                            <a href="@Url.Action("ManageCategories", "Admin")" class="dropdown-item">View Categories</a>
                         </div>
                     </div>
 
@@ -96,22 +96,22 @@
                             <i class="fa fa-box me-2"></i>Items
                         </a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="add_item.html" class="dropdown-item">Add Item</a>
-                            <a href="view_items.html" class="dropdown-item">View Items</a>
+                            <a href="@Url.Action("AddItems", "Admin")" class="dropdown-item">Add Item</a>
+                            <a href="@Url.Action("ManageItems", "Admin")" class="dropdown-item">View Items</a>
                         </div>
                     </div>
 
                     <!-- View Only Sections -->
-                    <a href="view_bidding.html" class="nav-item nav-link">
+                    <a href="@Url.Action("BiddingHistory", "Admin")" class="nav-item nav-link">
                         <i class="fa fa-gavel me-2"></i>View Bids
                     </a>
-                    <a href="view_notifications.html" class="nav-item nav-link">
+                    <a href="@Url.Action("Contacts", "Admin")" class="nav-item nav-link">
                         <i class="fa fa-bell me-2"></i>View Notifications
                     </a>
-                    <a href="view_ratings.html" class="nav-item nav-link">
+                    <a href="@Url.Action("Ratings", "Admin")" class="nav-item nav-link">
                         <i class="fa fa-star me-2"></i>View Ratings
                     </a>
-                    <a href="view_contacts.html" class="nav-item nav-link">
+                    <a href="@Url.Action("Notifications", "Admin")" class="nav-item nav-link">
                         <i class="fa fa-envelope me-2"></i>View Contacts
                     </a>
                 </div>
