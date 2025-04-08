@@ -29,7 +29,20 @@ namespace Auction_Project.Controllers
         {
             return View();
         }
-        public IActionResult AddCategories()
+        public IActionResult Books()
+        {
+            return View();
+
+        }
+        public IActionResult Furnitures()
+        {
+            return View();
+        }
+        public IActionResult Electronics()
+        {
+            return View();
+        }
+        public IActionResult Page404()
         {
             return View();
         }
@@ -53,9 +66,6 @@ namespace Auction_Project.Controllers
             return View();
         }
 
-        public IActionResult Contacts()
-        {
-            return View();
-        }
+      
     }
 }

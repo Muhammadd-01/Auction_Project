@@ -2,27 +2,177 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!-- Notifications Table -->
-<div class="container-fluid pt-4 px-4">
-    <div class="bg-secondary rounded h-100 p-4">
-        <h6 class="mb-4">User Notifications</h6>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>User</th>
-                    <th>Message</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>1</th>
-                    <td>john_doe</td>
-                    <td>Your item has been approved</td>
-                    <td>2025-04-01</td>
-                </tr>
-            </tbody>
-        </table>
+      <div class="container-fluid">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>Notifications & Activity Log</h2>
+                    <div>
+                        <button type="button" class="btn btn-outline-primary me-2" id="markAllReadBtn">
+                            <i class="bi bi-check-all"></i> Mark All as Read
+                        </button>
+                        <button type="button" class="btn btn-outline-danger" id="clearAllBtn">
+                            <i class="bi bi-trash"></i> Clear All
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filter and Search -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                    <input type="text" class="form-control" id="notificationSearch" placeholder="Search notifications...">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select" id="typeFilter">
+                                    <option value="all">All Types</option>
+                                    <option value="user">User</option>
+                                    <option value="auction">Auction</option>
+                                    <option value="bid">Bid</option>
+                                    <option value="system">System</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select" id="statusFilter">
+                                    <option value="all">All Status</option>
+                                    <option value="unread">Unread</option>
+                                    <option value="read">Read</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-outline-secondary w-100" id="resetFilters">
+                                    <i class="bi bi-x-circle"></i> Reset
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notifications Tabs -->
+                <div class="card">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs" id="notificationTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-notifications" type="button" role="tab" aria-controls="all-notifications" aria-selected="true">
+                                    All
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="user-tab" data-bs-toggle="tab" data-bs-target="#user-notifications" type="button" role="tab" aria-controls="user-notifications" aria-selected="false">
+                                    User <span class="badge bg-secondary ms-1">0</span>
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="auction-tab" data-bs-toggle="tab" data-bs-target="#auction-notifications" type="button" role="tab" aria-controls="auction-notifications" aria-selected="false">
+                                    Auction <span class="badge bg-secondary ms-1">0</span>
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="bid-tab" data-bs-toggle="tab" data-bs-target="#bid-notifications" type="button" role="tab" aria-controls="bid-notifications" aria-selected="false">
+                                    Bid <span class="badge bg-secondary ms-1">0</span>
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="system-tab" data-bs-toggle="tab" data-bs-target="#system-notifications" type="button" role="tab" aria-controls="system-notifications" aria-selected="false">
+                                    System <span class="badge bg-secondary ms-1">0</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="notificationTabsContent">
+                            <!-- All Notifications Tab -->
+                            <div class="tab-pane fade show active" id="all-notifications" role="tabpanel" aria-labelledby="all-tab">
+                                <div class="list-group notification-list" id="allNotificationsList">
+                                    <!-- Will be populated by JavaScript -->
+                                    <div class="text-center py-5 text-muted">
+                                        <i class="bi bi-bell-slash display-4"></i>
+                                        <p class="mt-3">No notifications found</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- User Notifications Tab -->
+                            <div class="tab-pane fade" id="user-notifications" role="tabpanel" aria-labelledby="user-tab">
+                                <div class="list-group notification-list" id="userNotificationsList">
+                                    <!-- Will be populated by JavaScript -->
+                                </div>
+                            </div>
+
+                            <!-- Auction Notifications Tab -->
+                            <div class="tab-pane fade" id="auction-notifications" role="tabpanel" aria-labelledby="auction-tab">
+                                <div class="list-group notification-list" id="auctionNotificationsList">
+                                    <!-- Will be populated by JavaScript -->
+                                </div>
+                            </div>
+
+                            <!-- Bid Notifications Tab -->
+                            <div class="tab-pane fade" id="bid-notifications" role="tabpanel" aria-labelledby="bid-tab">
+                                <div class="list-group notification-list" id="bidNotificationsList">
+                                    <!-- Will be populated by JavaScript -->
+                                </div>
+                            </div>
+
+                            <!-- System Notifications Tab -->
+                            <div class="tab-pane fade" id="system-notifications" role="tabpanel" aria-labelledby="system-tab">
+                                <div class="list-group notification-list" id="systemNotificationsList">
+                                    <!-- Will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pagination -->
+                        <nav aria-label="Notifications pagination" class="mt-4">
+                            <ul class="pagination justify-content-center" id="notificationsPagination">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+
+    <!-- Notification Detail Modal -->
+    <div class="modal fade" id="notificationDetailModal" tabindex="-1" aria-labelledby="notificationDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notificationDetailModalLabel">Notification Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="notification-icon me-3">
+                            <i class="bi bi-bell-fill fs-1 text-primary"></i>
+                        </div>
+                        <div>
+                            <h5 id="modalNotificationTitle">Notification Title</h5>
+                            <p class="text-muted mb-0" id="modalNotificationTime">Jan 15, 2023 - 10:30 AM</p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <p id="modalNotificationContent">Notification content will appear here.</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span class="badge bg-primary" id="modalNotificationType">User</span>
+                        <span class="text-muted" id="modalNotificationStatus">Read</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="markAsReadBtn">Mark as Read</button>
+                </div>
+            </div>
+        </div>
+    </div>

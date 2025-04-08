@@ -2,31 +2,101 @@
 	Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!-- Add User Form -->
-<div class="container-fluid pt-4 px-4">
-    <div class="bg-secondary rounded h-100 p-4">
-        <h6 class="mb-4">Add New User</h6>
-        <form>
-            <div class="mb-3">
-                <label class="form-label">Username</label>
-                <input type="text" class="form-control" placeholder="Enter username">
+<div class="container-fluid">
+    <h2 class="mb-4">Add New User</h2>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">User Registration Form</h5>
+                </div>
+                <div class="card-body">
+                    <form id="signupForm" class="needs-validation" novalidate>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="fullName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="fullName" required>
+                                <div class="invalid-feedback">
+                                    Please provide a name.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid email.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" required>
+                                <div class="invalid-feedback">
+                                    Please provide a password.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirmPassword" required>
+                                <div class="invalid-feedback">
+                                    Passwords do not match.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label d-block">User Role</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="userRole" id="userRole" value="user" checked>
+                                <label class="form-check-label" for="userRole">User</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="userRole" id="adminRole" value="admin">
+                                <label class="form-check-label" for="adminRole">Admin</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="profilePicture" class="form-label">Profile Picture</label>
+                            <input class="form-control" type="file" id="profilePicture" accept="image/*">
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="button" class="btn btn-secondary me-md-2" onclick="window.location.href='users.html'">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Register User</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="mb-3">
-                <label class="form-label">Email</label>
-                <input type="email" class="form-control" placeholder="Enter email">
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Profile Preview</h5>
+                </div>
+                <div class="card-body text-center">
+                    <div class="profile-preview mb-3">
+                        <img id="profilePreview" src="https://via.placeholder.com/150" class="rounded-circle img-thumbnail" alt="Profile Preview">
+                    </div>
+                    <h5 id="previewName">User Name</h5>
+                    <p id="previewEmail" class="text-muted">user@example.com</p>
+                    <span id="previewRole" class="badge bg-primary">Buyer</span>
+                </div>
             </div>
-            <div class="mb-3">
-                <label class="form-label">Password</label>
-                <input type="password" class="form-control" placeholder="Enter password">
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h5 class="card-title">User Role Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="role-info" id="buyerInfo">
+                        <h6><i class="bi bi-cart-check"></i> Buyer</h6>
+                        <p>Buyers can bid on auctions, track their bids, and purchase items.</p>
+                    </div>
+                    <div class="role-info d-none" id="sellerInfo">
+                        <h6><i class="bi bi-tag"></i> Seller</h6>
+                        <p>Sellers can create auctions, manage their listings, and track bids.</p>
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-                <label class="form-label">Role</label>
-                <select class="form-select">
-                    <option value="admin">Admin</option>
-                    <option value="user">User</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Add User</button>
-        </form>
+        </div>
     </div>
 </div>
