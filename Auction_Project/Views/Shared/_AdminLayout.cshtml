@@ -21,7 +21,7 @@
 
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="index.html">
+                    <a href="@Url.Action("Dashboard","Admin")">
                         <i class="bi bi-speedometer2"></i> Dashboard
                     </a>
                 </li>
@@ -68,7 +68,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("ManageUsers","Admin")">
+                    <a href="@Url.Action("Page404","Admin")">
                         <i class="bi bi-exclamation-triangle"></i> 404 page
                     </a>
                 </li>
@@ -116,10 +116,10 @@
                                 <span>Admin</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                @* <li><a class="dropdown-item" href="#">Profile</a></li> *@
+                                @* <li><a class="dropdown-item" href="#">Settings</a></li> *@
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="login.html">Logout</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Index","User")">Logout</a></li>
                             </ul>
                         </div>
                     </div>
