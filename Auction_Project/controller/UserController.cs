@@ -8,12 +8,16 @@ namespace Auction_Project.controller
         {
             return View();
         }
+        public IActionResult Searchresult()
+        {
+            return View();
+        }
 
         public IActionResult Bidding()
         {
             return View();
         }
-        public IActionResult BidderPage()
+        public IActionResult Bidder()
         {
             return View();
         }
@@ -29,7 +33,7 @@ namespace Auction_Project.controller
         {
             return View();
         }
-        public IActionResult Contact()
+        public IActionResult Sell()
         {
             return View();
         }
