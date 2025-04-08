@@ -1,849 +1,1096 @@
 ﻿@{
-	Layout="~/Views/Shared/_UserLayout.cshtml";
+
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+
 }
-
-
-<!-- Main Content -->
-<main class="flex-grow container mx-auto px-4 py-8">
-    <!-- Hero Slider Section -->
-    <section class="mb-10">
-        <div class="swiper hero-swiper rounded-lg overflow-hidden shadow-lg h-[75vh]">
-            <div class="swiper-wrapper h-full">
-                <!-- Slide 1 -->
-                <div class="swiper-slide relative h-full">
-                    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Auction Banner" class="w-full h-full object-cover" />
-                    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-                    <div class="absolute inset-0 flex flex-col justify-center items-start px-6 md:px-12 z-20 text-white animate-fade-in-up">
-                        <h1 class="text-3xl md:text-5xl font-bold mb-4 slide-title">Find and Bid on Exclusive Items</h1>
-                        <p class="text-lg mb-6 max-w-2xl slide-description">Discover unique items and place your bids in real-time. BidMaster connects you with collectors and sellers from around the world.</p>
-                        <a href="category.html" class="inline-block bg-red-800 px-6 py-3 rounded-lg hover:bg-red-700 transition-all duration-300 font-medium hover:scale-105 slide-button">Browse Categories</a>
-                    </div>
+<!-- Hero Slider Section -->
+<section class="hero-slider">
+    <div class="swiper heroSwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1607082349566-187342175e2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                <div class="slide-content">
+                    <h1 class="display-4 fw-bold">Discover Unique Treasures</h1>
+                    <p class="lead">Bid on exclusive items you won't find anywhere else</p>
+                    <a href="@Url.Action("Register","User")" class="btn btn-primary btn-lg">Start Bidding</a>
                 </div>
-
-                <!-- Slide 2 -->
-                <div class="swiper-slide relative h-full">
-                    <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Selling Banner" class="w-full h-full object-cover" />
-                    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-                    <div class="absolute inset-0 flex flex-col justify-center items-start px-6 md:px-12 z-20 text-white animate-fade-in-up">
-                        <h1 class="text-3xl md:text-5xl font-bold mb-4 slide-title">Sell Your Valuable Items</h1>
-                        <p class="text-lg mb-6 max-w-2xl slide-description">Turn your collectibles into cash. Reach thousands of potential buyers through our trusted auction platform.</p>
-                        <a href="sell-item.html" class="inline-block bg-red-800 px-6 py-3 rounded-lg hover:bg-red-700 transition-all duration-300 font-medium hover:scale-105 slide-button">Start Selling</a>
-                    </div>
+            </div>
+            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1607435097405-db48f377bff6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');">
+                <div class="slide-content">
+                    <h1 class="display-4 fw-bold">Sell Your Collectibles</h1>
+                    <p class="lead">Turn your treasures into cash with our global marketplace</p>
+                    <a href="@Url.Action("Sell","User")" " class="btn btn-primary btn-lg">Start Selling</a>
                 </div>
+            </div>
+            <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1607434472257-d9f8e57a643d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80');">
+                <div class="slide-content">
+                    <h1 class="display-4 fw-bold">Live Auctions Daily</h1>
+                    <p class="lead">Join thousands of collectors in real-time bidding events</p>
+                    <a href="@Url.Action("Bidding", "User")" class="btn btn-primary btn-lg">View Live Auctions</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>
 
-                <!-- Slide 3 -->
-                <div class="swiper-slide relative h-full">
-                    <img src="https://images.unsplash.com/photo-1544441893-675973e31985?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Featured Auctions" class="w-full h-full object-cover" />
-                    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-                    <div class="absolute inset-0 flex flex-col justify-center items-start px-6 md:px-12 z-20 text-white animate-fade-in-up">
-                        <h1 class="text-3xl md:text-5xl font-bold mb-4 slide-title">Featured Auctions This Week</h1>
-                        <p class="text-lg mb-6 max-w-2xl slide-description">Don't miss out on our hottest items. Rare collectibles, vintage electronics, and unique art pieces are waiting for your bids.</p>
-                        <a href="#featured-auctions" class="inline-block bg-red-800 px-6 py-3 rounded-lg hover:bg-red-700 transition-all duration-300 font-medium hover:scale-105 slide-button">View Featured</a>
+<!-- Live Auctions Section (NEW) -->
+<section class="live-auctions py-5">
+    <div class="container">
+        <div class="section-header d-flex justify-content-between align-items-center mb-4">
+            <h2 class="section-title m-0" data-aos="fade-up">Live Auctions Now</h2>
+            <div class="live-indicator" data-aos="fade-up">
+                <span class="pulse-dot"></span> Live Now
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Live Auction 1 -->
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card live-auction-card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1551913902-c92207136625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Antique Clock">
+                        <div class="live-badge">
+                            <i class="fas fa-circle-play me-1"></i> LIVE
+                        </div>
+                        <div class="live-viewers">
+                            <i class="fas fa-eye me-1"></i> 42 watching
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Antique French Carriage Clock</h5>
+                        <p class="card-text">Rare 19th century brass carriage clock with original case.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="bid-info">
+                                <span class="current-bid" data-amount="3200">$3,200</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <div class="time-info">
+                                <span class="live-auction-timer" data-seconds="245">4:05</span>
+                                <small class="text-muted">Time Left</small>
+                            </div>
+                        </div>
+                        <div class="live-bid-actions">
+                            <button class="btn btn-outline-primary live-bid-btn">Place Bid</button>
+                            <a href="#" class="btn btn-primary">Watch Live</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Live Auction 2 -->
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="card live-auction-card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1584380931214-dbb5b72e7fd0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Vintage Camera">
+                        <div class="live-badge">
+                            <i class="fas fa-circle-play me-1"></i> LIVE
+                        </div>
+                        <div class="live-viewers">
+                            <i class="fas fa-eye me-1"></i> 78 watching
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Hasselblad 500C/M Camera</h5>
+                        <p class="card-text">Iconic medium format camera with Carl Zeiss lens, excellent condition.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="bid-info">
+                                <span class="current-bid" data-amount="4500">$4,500</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <div class="time-info">
+                                <span class="live-auction-timer" data-seconds="180">3:00</span>
+                                <small class="text-muted">Time Left</small>
+                            </div>
+                        </div>
+                        <div class="live-bid-actions">
+                            <button class="btn btn-outline-primary live-bid-btn">Place Bid</button>
+                            <a href="#" class="btn btn-primary">Watch Live</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Auction 3 -->
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="card live-auction-card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1584810359583-96fc3448beaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" class="card-img-top" alt="Vintage Record Player">
+                        <div class="live-badge">
+                            <i class="fas fa-circle-play me-1"></i> LIVE
+                        </div>
+                        <div class="live-viewers">
+                            <i class="fas fa-eye me-1"></i> 56 watching
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Marantz Model 2275 Receiver</h5>
+                        <p class="card-text">Vintage stereo receiver, fully restored and in working condition.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="bid-info">
+                                <span class="current-bid" data-amount="1800">$1,800</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <div class="time-info">
+                                <span class="live-auction-timer" data-seconds="320">5:20</span>
+                                <small class="text-muted">Time Left</small>
+                            </div>
+                        </div>
+                        <div class="live-bid-actions">
+                            <button class="btn btn-outline-primary live-bid-btn">Place Bid</button>
+                            <a href="#" class="btn btn-primary">Watch Live</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-3" data-aos="fade-up">
+            <a href="#" class="btn btn-outline-primary btn-lg">View All Live Auctions</a>
+        </div>
+    </div>
+</section>
+
+<!-- Search Results -->
+<div class="container mt-4 d-none" id="searchResults">
+    <h2>Search Results</h2>
+    <div class="row" id="searchResultsContainer">
+        <!-- Search results will be displayed here -->
+    </div>
+</div>
+
+<!-- Featured Items -->
+<section id="featured" class="py-5">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Featured Items</h2>
+        <div class="row">
+            <!-- Item 1 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-category="electronics" data-name="vintage camera" data-aos="fade-up" data-aos-delay="100">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80" class="card-img-top" alt="Vintage Camera">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-31T23:59:59">2d 5h 30m</span>
+                        </div>
+                        <span class="featured-badge">Featured</span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Vintage Leica Camera</h5>
+                        <p class="card-text">A rare 1954 Leica M3 camera in excellent condition with original leather case.</p>
+                        <div class="item-rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span class="rating-count">(24)</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$1,250</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items", "User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-category="books" data-name="first edition novel" data-aos="fade-up" data-aos-delay="200">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" class="card-img-top" alt="First Edition Novel">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-25T10:00:00">1d 2h 15m</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">First Edition Hemingway</h5>
+                        <p class="card-text">A first edition of "The Old Man and the Sea" signed by Ernest Hemingway.</p>
+                        <div class="item-rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span class="rating-count">(18)</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$3,500</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items", "User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-category="furniture" data-name="antique desk" data-aos="fade-up" data-aos-delay="300">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1611486212557-88be5ff6f941?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" class="card-img-top" alt="Antique Desk">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-28T15:30:00">3d 8h 45m</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Victorian Writing Desk</h5>
+                        <p class="card-text">Beautiful Victorian oak writing desk from 1875 with original brass hardware.</p>
+                        <div class="item-rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                            <span class="rating-count">(12)</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$2,800</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items", "User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-category="jewelry" data-name="luxury watch" data-aos="fade-up" data-aos-delay="400">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1980&q=80" class="card-img-top" alt="Luxury Watch">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-24T18:00:00">12h 45m</span>
+                        </div>
+                        <span class="featured-badge">Featured</span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Rolex Submariner 1968</h5>
+                        <p class="card-text">Vintage Rolex Submariner with original box and papers, excellent condition.</p>
+                        <div class="item-rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-count">(32)</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$8,750</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items", "User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Hot Auctions Slider -->
+<section class="hot-auctions py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Hot Auctions</h2>
+        <div class="swiper hotAuctionsSwiper" data-aos="fade-up" data-aos-delay="100">
+            <div class="swiper-wrapper">
+                <!-- Hot Auction 1 -->
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1980&q=80" class="card-img-top" alt="Luxury Watch">
+                            <div class="time-left">
+                                <i class="fas fa-clock me-1"></i>
+                                <span class="countdown" data-time="2023-12-24T18:00:00">12h 45m</span>
+                            </div>
+                            <div class="bid-count">
+                                <i class="fas fa-gavel me-1"></i>
+                                <span>24 bids</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Rolex Submariner 1968</h5>
+                            <p class="card-text">Vintage Rolex Submariner with original box and papers.</p>
+                            <div class="item-rating mb-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="rating-count">(32)</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="bid-info">
+                                    <span class="current-bid">$8,750</span>
+                                    <small class="text-muted">Current Bid</small>
+                                </div>
+                                <a href="@Url.Action("Items", "User")" class="btn btn-primary">Bid Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hot Auction 2 -->
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1579783483458-83d02161294e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1997&q=80" class="card-img-top" alt="Oil Painting">
+                            <div class="time-left">
+                                <i class="fas fa-clock me-1"></i>
+                                <span class="countdown" data-time="2023-12-23T20:15:00">6h 30m</span>
+                            </div>
+                            <div class="bid-count">
+                                <i class="fas fa-gavel me-1"></i>
+                                <span>18 bids</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">19th Century Oil Painting</h5>
+                            <p class="card-text">Landscape oil painting by renowned artist Thomas Cole.</p>
+                            <div class="item-rating mb-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span class="rating-count">(15)</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="bid-info">
+                                    <span class="current-bid">$5,200</span>
+                                    <small class="text-muted">Current Bid</small>
+                                </div>
+                                <a href="@Url.Action("Items", "User")" class="btn btn-primary">Bid Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hot Auction 3 -->
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1618761714954-0b8cd0026356?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Rare Coin">
+                            <div class="time-left">
+                                <i class="fas fa-clock me-1"></i>
+                                <span class="countdown" data-time="2023-12-23T22:00:00">8h 15m</span>
+                            </div>
+                            <div class="bid-count">
+                                <i class="fas fa-gavel me-1"></i>
+                                <span>32 bids</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">1794 Silver Dollar</h5>
+                            <p class="card-text">Extremely rare 1794 Flowing Hair Silver Dollar in VF condition.</p>
+                            <div class="item-rating mb-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="rating-count">(28)</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="bid-info">
+                                    <span class="current-bid">$125,000</span>
+                                    <small class="text-muted">Current Bid</small>
+                                </div>
+                                <a href="@Url.Action("Items", "User")" class="btn btn-primary">Bid Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hot Auction 4 -->
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Vintage Guitar">
+                            <div class="time-left">
+                                <i class="fas fa-clock me-1"></i>
+                                <span class="countdown" data-time="2023-12-24T09:30:00">19h 45m</span>
+                            </div>
+                            <div class="bid-count">
+                                <i class="fas fa-gavel me-1"></i>
+                                <span>15 bids</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">1959 Gibson Les Paul</h5>
+                            <p class="card-text">Rare 1959 Gibson Les Paul Standard with sunburst finish.</p>
+                            <div class="item-rating mb-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="rating-count">(21)</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="bid-info">
+                                    <span class="current-bid">$175,500</span>
+                                    <small class="text-muted">Current Bid</small>
+                                </div>
+                                <a href="@Url.Action("Items", "User")" class="btn btn-primary">Bid Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hot Auction 5 -->
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Antique Vase">
+                            <div class="time-left">
+                                <i class="fas fa-clock me-1"></i>
+                                <span class="countdown" data-time="2023-12-24T14:00:00">1d 0h 15m</span>
+                            </div>
+                            <div class="bid-count">
+                                <i class="fas fa-gavel me-1"></i>
+                                <span>9 bids</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Ming Dynasty Vase</h5>
+                            <p class="card-text">Authentic Ming Dynasty blue and white porcelain vase, 15th century.</p>
+                            <div class="item-rating mb-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span class="rating-count">(11)</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="bid-info">
+                                    <span class="current-bid">$45,000</span>
+                                    <small class="text-muted">Current Bid</small>
+                                </div>
+                                <a href="@Url.Action("Items", "User")" class="btn btn-primary">Bid Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="swiper-pagination"></div>
-            <div class="swiper-button-next text-white"></div>
-            <div class="swiper-button-prev text-white"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
-    </section>
+    </div>
+</section>
 
-
-
-    <!-- Categories Section with Enhanced Hover Effects -->
-    <section class="mb-16" data-aos="fade-up" data-aos-duration="1000">
-        <div class="text-center mb-10">
-            <h2 class="text-3xl font-bold mb-2">Popular Categories</h2>
-            <p class="text-gray-600 dark:text-gray-400">Explore our most popular auction categories</p>
+<!-- Ending Soon Auctions (NEW) -->
+<section class="ending-soon py-5">
+    <div class="container">
+        <div class="section-header d-flex justify-content-between align-items-center mb-4">
+            <h2 class="section-title m-0" data-aos="fade-up">Ending Soon</h2>
+            <a href="#" class="btn btn-outline-primary" data-aos="fade-up">View All</a>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <!-- Electronics -->
-            <a href="./electronics.html" class="group relative overflow-hidden rounded-xl shadow-lg">
-                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-70 z-10"></div>
-                <img src="https://images.unsplash.com/photo-1526406915894-7bcd65f60845?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80" alt="Electronics" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                <div class="absolute bottom-0 left-0 right-0 p-6 z-20 transform transition-transform duration-300 group-hover:translate-y-[-10px]">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-white mb-1">Electronics</h3>
-                            <p class="text-gray-300 text-sm">42 items available</p>
-                        </div>
-                        <div class="bg-red-800 rounded-full p-2 opacity-0 transform translate-x-10 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </a>
 
-            <!-- Books -->
-            <a href="./books.html" class="group relative overflow-hidden rounded-xl shadow-lg">
-                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-70 z-10"></div>
-                <img src="https://images.unsplash.com/photo-1526243741027-444d633d7365?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80" alt="Books" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                <div class="absolute bottom-0 left-0 right-0 p-6 z-20 transform transition-transform duration-300 group-hover:translate-y-[-10px]">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-white mb-1">Books</h3>
-                            <p class="text-gray-300 text-sm">35 items available</p>
-                        </div>
-                        <div class="bg-red-800 rounded-full p-2 opacity-0 transform translate-x-10 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Furniture -->
-            <a href="./furnitures.html" class="group relative overflow-hidden rounded-xl shadow-lg">
-                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-70 z-10"></div>
-                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80" alt="Furniture" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                <div class="absolute bottom-0 left-0 right-0 p-6 z-20 transform transition-transform duration-300 group-hover:translate-y-[-10px]">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-white mb-1">Furniture</h3>
-                            <p class="text-gray-300 text-sm">27 items available</p>
-                        </div>
-                        <div class="bg-red-800 rounded-full p-2 opacity-0 transform translate-x-10 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Art & Collectibles - NEW -->
-            <a href="./art.html" class="group relative overflow-hidden rounded-xl shadow-lg">
-                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-70 z-10"></div>
-                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80" alt="Art & Collectibles" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                <div class="absolute bottom-0 left-0 right-0 p-6 z-20 transform transition-transform duration-300 group-hover:translate-y-[-10px]">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h3 class="text-xl font-bold text-white mb-1">Art & Collectibles</h3>
-                            <p class="text-gray-300 text-sm">53 items available</p>
-                        </div>
-                        <div class="bg-red-800 rounded-full p-2 opacity-0 transform translate-x-10 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <!-- Featured Auctions -->
-    <section id="featured-auctions" class="mb-16" data-aos="fade-up" data-aos-duration="1000">
-        <div class="flex justify-between items-center mb-6">
-            <div>
-                <h2 class="text-3xl font-bold">Featured Auctions</h2>
-                <p class="text-gray-600 dark:text-gray-400 mt-1">Bid on our most exciting items</p>
-            </div>
-            <a href="search-results.html" class="text-red-800 dark:text-red-500 hover:underline group flex items-center">
-                View All
-                <i data-feather="chevron-right" class="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform duration-200"></i>
-            </a>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Auction Item 1 -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] group">
-                <div class="relative overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80" alt="Vintage Camera" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute top-0 right-0 bg-red-800 text-white px-3 py-1 text-sm font-bold">
-                        Hot Deal
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent text-white">
-                        <span class="text-sm font-medium">Ends in: <span class="countdown-timer" data-end="2023-12-31T15:00:00">2d 14h</span></span>
-                    </div>
-                </div>
-                <div class="p-4">
-                    <div class="flex items-start justify-between">
-                        <h3 class="text-lg font-semibold mb-2 group-hover:text-red-800 dark:group-hover:text-red-500 transition-colors duration-200">Vintage Leica Camera</h3>
-                        <span class="bg-gray-200 dark:bg-gray-700 text-xs text-gray-800 dark:text-gray-300 px-2 py-1 rounded-full">Electronics</span>
-                    </div>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">Rare Leica III model from 1936, excellent condition with original leather case and accessories.</p>
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="text-gray-600 dark:text-gray-400">Current Bid:</span>
-                        <span class="font-bold text-red-800 dark:text-red-500">$1,250</span>
-                    </div>
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                            <i data-feather="users" class="h-4 w-4 mr-1"></i> 15 bids
-                        </span>
-                        <span class="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                            <i data-feather="eye" class="h-4 w-4 mr-1"></i> 142 views
-                        </span>
-                    </div>
-                    <a href="item-details.html?id=1" class="block w-full bg-red-800 text-white text-center py-2 rounded-md hover:bg-red-700 transition-colors duration-200 transform hover:translate-y-1">Place Bid</a>
-                </div>
-            </div>
-
-            <!-- Auction Item 2 -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] group">
-                <div class="relative overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80" alt="Antique Watch" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute top-0 right-0 bg-red-800 text-white px-3 py-1 text-sm font-bold">
-                        Ending Soon
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent text-white">
-                        <span class="text-sm font-medium">Ends in: <span class="countdown-timer" data-end="2023-12-25T10:30:00">1d 8h</span></span>
-                    </div>
-                </div>
-                <div class="p-4">
-                    <div class="flex items-start justify-between">
-                        <h3 class="text-lg font-semibold mb-2 group-hover:text-red-800 dark:group-hover:text-red-500 transition-colors duration-200">Antique Pocket Watch</h3>
-                        <span class="bg-gray-200 dark:bg-gray-700 text-xs text-gray-800 dark:text-gray-300 px-2 py-1 rounded-full">Collectibles</span>
-                    </div>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">19th century gold pocket watch with intricate engravings and original chain. Working condition.</p>
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="text-gray-600 dark:text-gray-400">Current Bid:</span>
-                        <span class="font-bold text-red-800 dark:text-red-500">$850</span>
-                    </div>
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                            <i data-feather="users" class="h-4 w-4 mr-1"></i> 9 bids
-                        </span>
-                        <span class="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                            <i data-feather="eye" class="h-4 w-4 mr-1"></i> 87 views
-                        </span>
-                    </div>
-                    <a href="item-details.html?id=2" class="block w-full bg-red-800 text-white text-center py-2 rounded-md hover:bg-red-700 transition-colors duration-200 transform hover:translate-y-1">Place Bid</a>
-                </div>
-            </div>
-
-            <!-- Auction Item 3 -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] group">
-                <div class="relative overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1619983081563-430f63602796?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80" alt="Signed Vinyl" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute top-0 right-0 bg-gray-800 text-white px-3 py-1 text-sm font-bold">
-                        Featured
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent text-white">
-                        <span class="text-sm font-medium">Ends in: <span class="countdown-timer" data-end="2024-01-04T22:00:00">3d 22h</span></span>
-                    </div>
-                </div>
-                <div class="p-4">
-                    <div class="flex items-start justify-between">
-                        <h3 class="text-lg font-semibold mb-2 group-hover:text-red-800 dark:group-hover:text-red-500 transition-colors duration-200">Signed Vinyl Record</h3>
-                        <span class="bg-gray-200 dark:bg-gray-700 text-xs text-gray-800 dark:text-gray-300 px-2 py-1 rounded-full">Collectibles</span>
-                    </div>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">Rare limited edition vinyl signed by the entire band. Never played, mint condition.</p>
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="text-gray-600 dark:text-gray-400">Current Bid:</span>
-                        <span class="font-bold text-red-800 dark:text-red-500">$320</span>
-                    </div>
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                            <i data-feather="users" class="h-4 w-4 mr-1"></i> 7 bids
-                        </span>
-                        <span class="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                            <i data-feather="eye" class="h-4 w-4 mr-1"></i> 103 views
-                        </span>
-                    </div>
-                    <a href="item-details.html?id=3" class="block w-full bg-red-800 text-white text-center py-2 rounded-md hover:bg-red-700 transition-colors duration-200 transform hover:translate-y-1">Place Bid</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- NEW: Recently Sold Items with Hover Cards -->
-    <section class="mb-16" data-aos="fade-up" data-aos-duration="1000">
-        <div class="flex justify-between items-center mb-6">
-            <div>
-                <h2 class="text-3xl font-bold">Recently Sold</h2>
-                <p class="text-gray-600 dark:text-gray-400 mt-1">See what others are buying</p>
-            </div>
-            <a href="sold-items.html" class="text-red-800 dark:text-red-500 hover:underline group flex items-center">
-                View All
-                <i data-feather="chevron-right" class="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform duration-200"></i>
-            </a>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <!-- Sold Item 1 -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden group cursor-pointer">
-                <div class="relative overflow-hidden h-40">
-                    <img src="https://images.unsplash.com/photo-1551645120-d70bfe84c826?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Vintage Typewriter" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition-all duration-300"></div>
-                    <div class="absolute top-2 right-2 bg-green-600 text-white text-xs px-2 py-1 rounded-full">Sold</div>
-                </div>
-                <div class="p-3">
-                    <h3 class="text-sm font-medium mb-1 group-hover:text-red-800 dark:group-hover:text-red-500 transition-colors duration-200">Vintage Typewriter</h3>
-                    <div class="flex justify-between items-center text-xs">
-                        <span class="text-gray-600 dark:text-gray-400">Final Price:</span>
-                        <span class="font-bold text-green-600">$420</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sold Item 2 -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden group cursor-pointer">
-                <div class="relative overflow-hidden h-40">
-                    <img src="https://images.unsplash.com/photo-1577083288073-40892c0860a4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Antique Vase" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition-all duration-300"></div>
-                    <div class="absolute top-2 right-2 bg-green-600 text-white text-xs px-2 py-1 rounded-full">Sold</div>
-                </div>
-                <div class="p-3">
-                    <h3 class="text-sm font-medium mb-1 group-hover:text-red-800 dark:group-hover:text-red-500 transition-colors duration-200">Antique Porcelain Vase</h3>
-                    <div class="flex justify-between items-center text-xs">
-                        <span class="text-gray-600 dark:text-gray-400">Final Price:</span>
-                        <span class="font-bold text-green-600">$680</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sold Item 3 -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden group cursor-pointer">
-                <div class="relative overflow-hidden h-40">
-                    <img src="https://images.unsplash.com/photo-1595909315417-2edd382a56dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Vintage Book" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition-all duration-300"></div>
-                    <div class="absolute top-2 right-2 bg-green-600 text-white text-xs px-2 py-1 rounded-full">Sold</div>
-                </div>
-                <div class="p-3">
-                    <h3 class="text-sm font-medium mb-1 group-hover:text-red-800 dark:group-hover:text-red-500 transition-colors duration-200">First Edition Book</h3>
-                    <div class="flex justify-between items-center text-xs">
-                        <span class="text-gray-600 dark:text-gray-400">Final Price:</span>
-                        <span class="font-bold text-green-600">$950</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sold Item 4 -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden group cursor-pointer">
-                <div class="relative overflow-hidden h-40">
-                    <img src="https://images.unsplash.com/photo-1584905066893-7d5c142ba4e1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Vintage Record Player" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition-all duration-300"></div>
-                    <div class="absolute top-2 right-2 bg-green-600 text-white text-xs px-2 py-1 rounded-full">Sold</div>
-                </div>
-                <div class="p-3">
-                    <h3 class="text-sm font-medium mb-1 group-hover:text-red-800 dark:group-hover:text-red-500 transition-colors duration-200">Vintage Record Player</h3>
-                    <div class="flex justify-between items-center text-xs">
-                        <span class="text-gray-600 dark:text-gray-400">Final Price:</span>
-                        <span class="font-bold text-green-600">$540</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- NEW: Featured Collections with Hover Cards -->
-    <section class="mb-16" data-aos="fade-up" data-aos-duration="1000">
-        <div class="text-center mb-10">
-            <h2 class="text-3xl font-bold mb-2">Featured Collections</h2>
-            <p class="text-gray-600 dark:text-gray-400">Curated selections from our top sellers</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Collection 1 -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300">
-                <div class="relative h-64 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1572375992501-4b0892d50c69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80" alt="Vintage Cameras" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6">
-                        <h3 class="text-2xl font-bold text-white mb-2">Vintage Cameras</h3>
-                        <p class="text-gray-200 mb-4">A collection of rare film cameras from the golden age of photography</p>
-                        <div class="flex -space-x-3">
-                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="User" class="w-8 h-8 rounded-full border-2 border-white">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="User" class="w-8 h-8 rounded-full border-2 border-white">
-                            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="User" class="w-8 h-8 rounded-full border-2 border-white">
-                            <span class="flex items-center justify-center w-8 h-8 rounded-full border-2 border-white bg-red-800 text-white text-xs">+5</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-sm text-gray-600 dark:text-gray-400">12 items in collection</span>
-                        <span class="bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 text-xs px-2 py-1 rounded-full">Popular</span>
-                    </div>
-                    <a href="collection-details.html?id=1" class="block w-full bg-red-800 text-white text-center py-3 rounded-lg hover:bg-red-700 transition-colors duration-200 font-medium">View Collection</a>
-                </div>
-            </div>
-
-            <!-- Collection 2 -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300">
-                <div class="relative h-64 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1461360228754-6e81c478b882?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80" alt="Vintage Watches" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6">
-                        <h3 class="text-2xl font-bold text-white mb-2">Luxury Timepieces</h3>
-                        <p class="text-gray-200 mb-4">Exquisite watches from renowned watchmakers around the world</p>
-                        <div class="flex -space-x-3">
-                            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="User" class="w-8 h-8 rounded-full border-2 border-white">
-                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="User" class="w-8 h-8 rounded-full border-2 border-white">
-                            <span class="flex items-center justify-center w-8 h-8 rounded-full border-2 border-white bg-red-800 text-white text-xs">+3</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-sm text-gray-600 dark:text-gray-400">8 items in collection</span>
-                        <span class="bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 text-xs px-2 py-1 rounded-full">Featured</span>
-                    </div>
-                    <a href="collection-details.html?id=2" class="block w-full bg-red-800 text-white text-center py-3 rounded-lg hover:bg-red-700 transition-colors duration-200 font-medium">View Collection</a>
-                </div>
-            </div>
-
-            <!-- Collection 3 -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300">
-                <div class="relative h-64 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1558442074-3c19857bc1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80" alt="Rare Vinyl Records" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6">
-                        <h3 class="text-2xl font-bold text-white mb-2">Rare Vinyl Records</h3>
-                        <p class="text-gray-200 mb-4">Limited edition and first-press vinyl records from legendary artists</p>
-                        <div class="flex -space-x-3">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="User" class="w-8 h-8 rounded-full border-2 border-white">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="User" class="w-8 h-8 rounded-full border-2 border-white">
-                            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="User" class="w-8 h-8 rounded-full border-2 border-white">
-                            <span class="flex items-center justify-center w-8 h-8 rounded-full border-2 border-white bg-red-800 text-white text-xs">+7</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-sm text-gray-600 dark:text-gray-400">15 items in collection</span>
-                        <span class="bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 text-xs px-2 py-1 rounded-full">New</span>
-                    </div>
-                    <a href="collection-details.html?id=3" class="block w-full bg-red-800 text-white text-center py-3 rounded-lg hover:bg-red-700 transition-colors duration-200 font-medium">View Collection</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- About Us Section -->
-    <section id="about-us" class="mb-16" data-aos="fade-up" data-aos-duration="1000">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-            <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/2">
-                    <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="About BidMaster" class="w-full h-full object-cover">
-                </div>
-                <div class="md:w-1/2 p-8 md:p-12">
-                    <h2 class="text-3xl font-bold mb-6 text-red-800 dark:text-red-500">About BidMaster</h2>
-                    <p class="text-gray-700 dark:text-gray-300 mb-4">Founded in 2015, BidMaster has grown to become one of the most trusted online auction platforms in the world. Our mission is to connect collectors, enthusiasts, and sellers in a secure and transparent marketplace.</p>
-                    <p class="text-gray-700 dark:text-gray-300 mb-6">With over 500,000 registered users and millions of successful auctions, we've built a community that values authenticity, fair trading, and the thrill of finding unique treasures.</p>
-
-                    <div class="grid grid-cols-2 gap-6 mb-8">
-                        <div class="flex flex-col items-center text-center">
-                            <span class="text-3xl font-bold text-red-800 dark:text-red-500 mb-2">500K+</span>
-                            <span class="text-gray-600 dark:text-gray-400">Active Users</span>
-                        </div>
-                        <div class="flex flex-col items-center text-center">
-                            <span class="text-3xl font-bold text-red-800 dark:text-red-500 mb-2">2M+</span>
-                            <span class="text-gray-600 dark:text-gray-400">Successful Auctions</span>
-                        </div>
-                        <div class="flex flex-col items-center text-center">
-                            <span class="text-3xl font-bold text-red-800 dark:text-red-500 mb-2">150+</span>
-                            <span class="text-gray-600 dark:text-gray-400">Countries</span>
-                        </div>
-                        <div class="flex flex-col items-center text-center">
-                            <span class="text-3xl font-bold text-red-800 dark:text-red-500 mb-2">98%</span>
-                            <span class="text-gray-600 dark:text-gray-400">Satisfaction Rate</span>
-                        </div>
-                    </div>
-
-                    <a href="about.html" class="inline-block bg-red-800 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-all duration-300 font-medium">Learn More About Us</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Enhanced Customer Reviews Slider -->
-    <section class="my-16" data-aos="fade-up" data-aos-duration="1000">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg py-10 px-6 md:px-10">
-            <h2 class="text-3xl font-bold text-center mb-2">What Our Users Say</h2>
-            <p class="text-center text-gray-600 dark:text-gray-400 mb-10">Trusted by thousands of collectors and sellers worldwide</p>
-
-            <div class="swiper testimonial-swiper">
-                <div class="swiper-wrapper pb-10">
-                    <!-- Testimonial 1 -->
-                    <div class="swiper-slide">
-                        <div class="flex flex-col items-center text-center px-6 bg-gray-50 dark:bg-gray-700 rounded-lg p-6 h-full">
-                            <div class="w-20 h-20 rounded-full overflow-hidden mb-4 border-4 border-red-100 dark:border-gray-600">
-                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Sarah Johnson" class="w-full h-full object-cover">
+        <div class="swiper endingSoonSwiper" data-aos="fade-up">
+            <div class="swiper-wrapper">
+                <!-- Ending Soon Item 1 -->
+                <div class="swiper-slide">
+                    <div class="card ending-soon-card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Vintage Sunglasses">
+                            <div class="time-left urgent">
+                                <i class="fas fa-clock me-1"></i>
+                                <span class="countdown" data-time="2023-12-23T18:30:00">4h 15m</span>
                             </div>
-                            <div class="flex items-center mb-3">
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
+                            <div class="bid-count">
+                                <i class="fas fa-gavel me-1"></i>
+                                <span>19 bids</span>
                             </div>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">"I found a rare vintage camera that I'd been searching for years! The bidding process was exciting and the seller shipped it promptly. Highly recommend!"</p>
-                            <h4 class="font-semibold">Sarah Johnson</h4>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Photography Enthusiast</p>
                         </div>
-                    </div>
-
-                    <!-- Testimonial 2 -->
-                    <div class="swiper-slide">
-                        <div class="flex flex-col items-center text-center px-6 bg-gray-50 dark:bg-gray-700 rounded-lg p-6 h-full">
-                            <div class="w-20 h-20 rounded-full overflow-hidden mb-4 border-4 border-red-100 dark:border-gray-600">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Michael Thompson" class="w-full h-full object-cover">
+                        <div class="card-body">
+                            <h5 class="card-title">1960s Ray-Ban Wayfarer</h5>
+                            <p class="card-text">Original vintage Ray-Ban Wayfarer sunglasses with case.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="bid-info">
+                                    <span class="current-bid">$450</span>
+                                    <small class="text-muted">Current Bid</small>
+                                </div>
+                                <a href="@Url.Action("Items", "User")" class="btn btn-primary">Bid Now</a>
                             </div>
-                            <div class="flex items-center mb-3">
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">"I've sold several collectibles on BidMaster and always had a great experience. The platform is easy to use and I've reached buyers from around the world."</p>
-                            <h4 class="font-semibold">Michael Thompson</h4>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Antique Dealer</p>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 3 -->
-                    <div class="swiper-slide">
-                        <div class="flex flex-col items-center text-center px-6 bg-gray-50 dark:bg-gray-700 rounded-lg p-6 h-full">
-                            <div class="w-20 h-20 rounded-full overflow-hidden mb-4 border-4 border-red-100 dark:border-gray-600">
-                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Jennifer Lee" class="w-full h-full object-cover">
-                            </div>
-                            <div class="flex items-center mb-3">
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star-half" class="h-5 w-5 text-yellow-500"></i>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">"As a collector, I appreciate the security and authenticity checks BidMaster provides. The customer support is also excellent when I needed help with a transaction."</p>
-                            <h4 class="font-semibold">Jennifer Lee</h4>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Art Collector</p>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 4 -->
-                    <div class="swiper-slide">
-                        <div class="flex flex-col items-center text-center px-6 bg-gray-50 dark:bg-gray-700 rounded-lg p-6 h-full">
-                            <div class="w-20 h-20 rounded-full overflow-hidden mb-4 border-4 border-red-100 dark:border-gray-600">
-                                <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="David Wilson" class="w-full h-full object-cover">
-                            </div>
-                            <div class="flex items-center mb-3">
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">"BidMaster has transformed my collecting hobby into a passion. The thrill of winning an auction for a rare item is unmatched. The verification process gives me confidence in every purchase."</p>
-                            <h4 class="font-semibold">David Wilson</h4>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Coin Collector</p>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 5 -->
-                    <div class="swiper-slide">
-                        <div class="flex flex-col items-center text-center px-6 bg-gray-50 dark:bg-gray-700 rounded-lg p-6 h-full">
-                            <div class="w-20 h-20 rounded-full overflow-hidden mb-4 border-4 border-red-100 dark:border-gray-600">
-                                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Emily Rodriguez" class="w-full h-full object-cover">
-                            </div>
-                            <div class="flex items-center mb-3">
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                                <i data-feather="star" class="h-5 w-5 text-yellow-500 fill-current"></i>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">"I've been using BidMaster for over three years now, and it's become my go-to platform for finding vintage furniture. The seller verification and secure payment system make every transaction worry-free."</p>
-                            <h4 class="font-semibold">Emily Rodriguez</h4>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Interior Designer</p>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-next text-red-800 dark:text-red-500 hidden md:flex"></div>
-                <div class="swiper-button-prev text-red-800 dark:text-red-500 hidden md:flex"></div>
+
+                <!-- Ending Soon Item 2 -->
+                <div class="swiper-slide">
+                    <div class="card ending-soon-card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1611234408198-39d7e521e55b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Vintage Typewriter">
+                            <div class="time-left urgent">
+                                <i class="fas fa-clock me-1"></i>
+                                <span class="countdown" data-time="2023-12-23T19:45:00">5h 30m</span>
+                            </div>
+                            <div class="bid-count">
+                                <i class="fas fa-gavel me-1"></i>
+                                <span>12 bids</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">1950s Olivetti Typewriter</h5>
+                            <p class="card-text">Vintage Olivetti Lettera 22 typewriter in working condition.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="bid-info">
+                                    <span class="current-bid">$320</span>
+                                    <small class="text-muted">Current Bid</small>
+                                </div>
+                                <a href="@Url.Action("Items", "User")" class="btn btn-primary">Bid Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ending Soon Item 3 -->
+                <div class="swiper-slide">
+                    <div class="card ending-soon-card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1551913902-c92207136625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Antique Clock">
+                            <div class="time-left urgent">
+                                <i class="fas fa-clock me-1"></i>
+                                <span class="countdown" data-time="2023-12-23T20:15:00">6h 0m</span>
+                            </div>
+                            <div class="bid-count">
+                                <i class="fas fa-gavel me-1"></i>
+                                <span>24 bids</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Antique Mantel Clock</h5>
+                            <p class="card-text">19th century French mantel clock with bronze case.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="bid-info">
+                                    <span class="current-bid">$1,200</span>
+                                    <small class="text-muted">Current Bid</small>
+                                </div>
+                                <a href="@Url.Action("Items", "User")" class="btn btn-primary">Bid Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ending Soon Item 4 -->
+                <div class="swiper-slide">
+                    <div class="card ending-soon-card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1595909315417-2edd382a56dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Vintage Radio">
+                            <div class="time-left urgent">
+                                <i class="fas fa-clock me-1"></i>
+                                <span class="countdown" data-time="2023-12-23T21:00:00">6h 45m</span>
+                            </div>
+                            <div class="bid-count">
+                                <i class="fas fa-gavel me-1"></i>
+                                <span>8 bids</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">1940s Zenith Radio</h5>
+                            <p class="card-text">Vintage Zenith tube radio, restored and in working condition.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="bid-info">
+                                    <span class="current-bid">$380</span>
+                                    <small class="text-muted">Current Bid</small>
+                                </div>
+                                <a href="@Url.Action("Items", "User")" class="btn btn-primary">Bid Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Premium Auctions (NEW) -->
+<section class="premium-auctions py-5 bg-dark text-white">
+    <div class="container">
+        <h2 class="section-title text-white" data-aos="fade-up">Premium Auctions</h2>
+        <p class="section-subtitle text-center mb-5" data-aos="fade-up">Exceptional items with verified authenticity and provenance</p>
+
+        <div class="swiper premiumAuctionsSwiper" data-aos="fade-up">
+            <div class="swiper-wrapper">
+                <!-- Premium Auction 1 -->
+                <div class="swiper-slide">
+                    <div class="card premium-auction-card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1568213816046-0a1dfe780ebe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" class="card-img-top" alt="Luxury Watch">
+                            <div class="premium-badge">
+                                <i class="fas fa-gem me-1"></i> PREMIUM
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Patek Philippe Nautilus</h5>
+                            <p class="card-text">Rare Patek Philippe Nautilus Ref. 5711 with box and papers.</p>
+                            <div class="item-details mb-3">
+                                <div class="detail-item">
+                                    <i class="fas fa-certificate me-1"></i>
+                                    <span>Authenticity Verified</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-history me-1"></i>
+                                    <span>Full Provenance</span>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="bid-info">
+                                    <span class="current-bid">$85,000</span>
+                                    <small class="text-muted">Current Bid</small>
+                                </div>
+                                <a href="@Url.Action("Items", "User")" class="btn btn-primary">Bid Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Auction 2 -->
+                <div class="swiper-slide">
+                    <div class="card premium-auction-card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1579762593175-20226054cad0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" class="card-img-top" alt="Fine Art">
+                            <div class="premium-badge">
+                                <i class="fas fa-gem me-1"></i> PREMIUM
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Original Picasso Lithograph</h5>
+                            <p class="card-text">Hand-signed Pablo Picasso lithograph from the Vollard Suite.</p>
+                            <div class="item-details mb-3">
+                                <div class="detail-item">
+                                    <i class="fas fa-certificate me-1"></i>
+                                    <span>Authenticity Verified</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-history me-1"></i>
+                                    <span>Full Provenance</span>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="bid-info">
+                                    <span class="current-bid">$32,500</span>
+                                    <small class="text-muted">Current Bid</small>
+                                </div>
+                                <a href="@Url.Action("Items", "User")" class="btn btn-primary">Bid Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Auction 3 -->
+                <div class="swiper-slide">
+                    <div class="card premium-auction-card">
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1597343722400-76e6b1d4e58d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Rare Book">
+                            <div class="premium-badge">
+                                <i class="fas fa-gem me-1"></i> PREMIUM
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">First Edition Ulysses</h5>
+                            <p class="card-text">First edition of James Joyce's Ulysses, one of 100 signed copies.</p>
+                            <div class="item-details mb-3">
+                                <div class="detail-item">
+                                    <i class="fas fa-certificate me-1"></i>
+                                    <span>Authenticity Verified</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-history me-1"></i>
+                                    <span>Full Provenance</span>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="bid-info">
+                                    <span class="current-bid">$140,000</span>
+                                    <small class="text-muted">Current Bid</small>
+                                </div>
+                                <a href="@Url.Action("Items", "User")" class="btn btn-primary">Bid Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+        <div class="text-center mt-4" data-aos="fade-up">
+            <a href="#" class="btn btn-outline-light btn-lg">View All Premium Auctions</a>
+        </div>
+    </div>
+</section>
+
+<!-- Auction Categories (NEW) -->
+<section class="auction-categories py-5">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Auction Categories</h2>
+        <p class="section-subtitle text-center mb-5" data-aos="fade-up">Explore our specialized auction categories</p>
+
+        <div class="swiper auctionCategoriesSwiper" data-aos="fade-up">
+            <div class="swiper-wrapper">
+                <!-- Category 1 -->
+                <div class="swiper-slide">
+                    <div class="auction-category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <h3>Jewelry & Watches</h3>
+                        <p>Luxury timepieces, fine jewelry, and precious gems</p>
+                        <div class="category-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">1,245</span>
+                                <span class="stat-label">Active Auctions</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">$2.4M</span>
+                                <span class="stat-label">Monthly Volume</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary">Browse Category</a>
+                    </div>
+                </div>
+
+                <!-- Category 2 -->
+                <div class="swiper-slide">
+                    <div class="auction-category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3>Fine Art</h3>
+                        <p>Paintings, sculptures, prints, and contemporary art</p>
+                        <div class="category-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">875</span>
+                                <span class="stat-label">Active Auctions</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">$3.8M</span>
+                                <span class="stat-label">Monthly Volume</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary">Browse Category</a>
+                    </div>
+                </div>
+
+                <!-- Category 3 -->
+                <div class="swiper-slide">
+                    <div class="auction-category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-wine-glass-alt"></i>
+                        </div>
+                        <h3>Wine & Spirits</h3>
+                        <p>Fine wines, rare whiskies, and vintage spirits</p>
+                        <div class="category-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">620</span>
+                                <span class="stat-label">Active Auctions</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">$1.2M</span>
+                                <span class="stat-label">Monthly Volume</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary">Browse Category</a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="categories-section py-5">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Browse by Category</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2090&q=80" alt="Books" class="img-fluid rounded">
+                    <div class="category-overlay">
+                        <h3>Books</h3>
+                        <p>Rare editions, signed copies, and more</p>
+                        <a href="books.html" class="btn btn-light">Browse Books</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2158&q=80" alt="Furniture" class="img-fluid rounded">
+                    <div class="category-overlay">
+                        <h3>Furniture</h3>
+                        <p>Antique and modern furniture pieces</p>
+                        <a href="furniture.html" class="btn btn-light">Browse Furniture</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1526406915894-7bcd65f60845?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2124&q=80" alt="Electronics" class="img-fluid rounded">
+                    <div class="category-overlay">
+                        <h3>Electronics</h3>
+                        <p>Vintage and collectible electronics</p>
+                        <a href="electronics.html" class="btn btn-light">Browse Electronics</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
-
-    <!-- NEW: Bidding Tips Section with Hover Cards -->
-    <section class="mb-16" data-aos="fade-up" data-aos-duration="1000">
-        <div class="text-center mb-10">
-            <h2 class="text-3xl font-bold mb-2">Bidding Tips & Strategies</h2>
-            <p class="text-gray-600 dark:text-gray-400">Expert advice to help you win auctions</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Tip 1 -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] group">
-                <div class="bg-red-100 dark:bg-red-900/30 rounded-full p-4 w-16 h-16 flex items-center justify-center mb-6 group-hover:bg-red-200 dark:group-hover:bg-red-800/50 transition-colors duration-300">
-                    <i data-feather="clock" class="h-8 w-8 text-red-800 dark:text-red-500"></i>
+        <div class="row mt-4">
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2145&q=80" alt="Art" class="img-fluid rounded">
+                    <div class="category-overlay">
+                        <h3>Art</h3>
+                        <p>Paintings, sculptures, and fine art</p>
+                        <a href="#" class="btn btn-light">Browse Art</a>
+                    </div>
                 </div>
-                <h3 class="text-xl font-bold mb-3 group-hover:text-red-800 dark:group-hover:text-red-500 transition-colors duration-200">Time Your Bids</h3>
-                <p class="text-gray-600 dark:text-gray-400">Wait until the final moments of an auction to place your bid. This strategy, known as "sniping," prevents bidding wars and keeps the final price lower.</p>
-                <a href="bidding-tips.html" class="inline-flex items-center mt-4 text-red-800 dark:text-red-500 font-medium group-hover:underline">
-                    Learn more
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
+            </div>
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Jewelry" class="img-fluid rounded">
+                    <div class="category-overlay">
+                        <h3>Jewelry & Watches</h3>
+                        <p>Luxury timepieces and fine jewelry</p>
+                        <a href="#" class="btn btn-light">Browse Jewelry</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1472421855383-eb5861c53cb5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Collectibles" class="img-fluid rounded">
+                    <div class="category-overlay">
+                        <h3>Collectibles</h3>
+                        <p>Coins, stamps, and memorabilia</p>
+                        <a href="#" class="btn btn-light">Browse Collectibles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Collections Section (New) -->
+<section class="featured-collections py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Featured Collections</h2>
+        <div class="row">
+            <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="collection-card">
+                    <img src="https://images.unsplash.com/photo-1568219656418-15c329312bf1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Vintage Watches" class="img-fluid">
+                    <div class="collection-overlay">
+                        <h3>Luxury Timepieces</h3>
+                        <p>Rare and collectible watches from prestigious brands</p>
+                        <a href="#" class="btn btn-light">View Collection</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="collection-card">
+                    <img src="https://images.unsplash.com/photo-1551373884-8a0750074df7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Rare Coins" class="img-fluid">
+                    <div class="collection-overlay">
+                        <h3>Numismatic Treasures</h3>
+                        <p>Historic coins and currency from around the world</p>
+                        <a href="#" class="btn btn-light">View Collection</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section (New) -->
+<section class="stats-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-item">
+                    <div class="stat-number">25K+</div>
+                    <div class="stat-title">Active Auctions</div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-item">
+                    <div class="stat-number">500K+</div>
+                    <div class="stat-title">Registered Users</div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-item">
+                    <div class="stat-number">$150M+</div>
+                    <div class="stat-title">Items Sold</div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-title">Satisfied Customers</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section (New) -->
+<section class="how-it-works py-5">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">How It Works</h2>
+        <div class="row mt-5">
+            <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="step-card h-100">
+                    <div class="step-number">1</div>
+                    <h3>Register</h3>
+                    <p>Create your free account to start bidding or selling on AuctionHub.</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="step-card h-100">
+                    <div class="step-number">2</div>
+                    <h3>Browse & Bid</h3>
+                    <p>Find unique items and place bids on your favorite auctions.</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="step-card h-100">
+                    <div class="step-number">3</div>
+                    <h3>Win & Pay</h3>
+                    <p>When you win an auction, complete your purchase securely.</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="step-card h-100">
+                    <div class="step-number">4</div>
+                    <h3>Receive</h3>
+                    <p>Get your items delivered to your doorstep and leave feedback.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">What Our Users Say</h2>
+        <div class="swiper testimonialSwiper" data-aos="fade-up" data-aos-delay="100">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <i class="fas fa-quote-left"></i>
+                            <p>I've been collecting vintage cameras for years, and AuctionHub has helped me find pieces I never thought I'd own. The bidding process is transparent and secure.</p>
+                            <div class="testimonial-user">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                                <div>
+                                    <h5>Michael Thompson</h5>
+                                    <p>Camera Collector</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <i class="fas fa-quote-left"></i>
+                            <p>As a seller, I've had amazing success on AuctionHub. My antique furniture pieces have sold for much more than I expected, and the process was incredibly easy.</p>
+                            <div class="testimonial-user">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+                                <div>
+                                    <h5>Sarah Johnson</h5>
+                                    <p>Antique Dealer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <i class="fas fa-quote-left"></i>
+                            <p>I found a first edition of my favorite novel that I'd been searching for over a decade. The authentication process gave me confidence in my purchase.</p>
+                            <div class="testimonial-user">
+                                <img src="https://randomuser.me/api/portraits/men/62.jpg" alt="User">
+                                <div>
+                                    <h5>David Wilson</h5>
+                                    <p>Book Collector</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Sell CTA Section -->
+<section class="sell-cta py-5" data-aos="fade-up">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h2>Have Something to Sell?</h2>
+                <p class="lead">List your items for auction and reach thousands of potential buyers.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a href="@Url.Action("Sell","User")" " class="btn btn-primary btn-lg sell-btn">
+                    <i class="fas fa-tag me-2"></i>Sell an Item
                 </a>
             </div>
-
-            <!-- Tip 2 -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] group">
-                <div class="bg-red-100 dark:bg-red-900/30 rounded-full p-4 w-16 h-16 flex items-center justify-center mb-6 group-hover:bg-red-200 dark:group-hover:bg-red-800/50 transition-colors duration-300">
-                    <i data-feather="search" class="h-8 w-8 text-red-800 dark:text-red-500"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-3 group-hover:text-red-800 dark:group-hover:text-red-500 transition-colors duration-200">Research Thoroughly</h3>
-                <p class="text-gray-600 dark:text-gray-400">Before bidding, research the item's market value, condition, and authenticity. Knowledge is power in auctions and helps you avoid overpaying.</p>
-                <a href="bidding-tips.html" class="inline-flex items-center mt-4 text-red-800 dark:text-red-500 font-medium group-hover:underline">
-                    Learn more
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
-                </a>
-            </div>
-
-            <!-- Tip 3 -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] group">
-                <div class="bg-red-100 dark:bg-red-900/30 rounded-full p-4 w-16 h-16 flex items-center justify-center mb-6 group-hover:bg-red-200 dark:group-hover:bg-red-800/50 transition-colors duration-300">
-                    <i data-feather="dollar-sign" class="h-8 w-8 text-red-800 dark:text-red-500"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-3 group-hover:text-red-800 dark:group-hover:text-red-500 transition-colors duration-200">Set a Budget</h3>
-                <p class="text-gray-600 dark:text-gray-400">Decide on your maximum bid before the auction starts and stick to it. Emotional bidding often leads to overpaying and buyer's remorse.</p>
-                <a href="bidding-tips.html" class="inline-flex items-center mt-4 text-red-800 dark:text-red-500 font-medium group-hover:underline">
-                    Learn more
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
-                </a>
-            </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- How It Works -->
-    <section class="mb-16" data-aos="fade-up" data-aos-duration="1000">
-        <h2 class="text-3xl font-bold text-center mb-10">How BidMaster Works</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Step 1 -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md text-center relative hover:shadow-lg transition-shadow duration-300">
-                <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-red-800 text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold">1</div>
-                <div class="mt-4 mb-4">
-                    <i data-feather="search" class="h-12 w-12 mx-auto text-red-800 dark:text-red-500"></i>
-                </div>
-                <h3 class="text-xl font-semibold mb-3">Find Items</h3>
-                <p class="text-gray-600 dark:text-gray-400">Browse through thousands of unique items or use our search to find exactly what you're looking for.</p>
-            </div>
-            <!-- Step 2 -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md text-center relative hover:shadow-lg transition-shadow duration-300">
-                <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-red-800 text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold">2</div>
-                <div class="mt-4 mb-4">
-                    <i data-feather="tag" class="h-12 w-12 mx-auto text-red-800 dark:text-red-500"></i>
-                </div>
-                <h3 class="text-xl font-semibold mb-3">Place Your Bid</h3>
-                <p class="text-gray-600 dark:text-gray-400">Bid on items you love and keep track of auctions with real-time updates and notifications.</p>
-            </div>
-            <!-- Step 3 -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md text-center relative hover:shadow-lg transition-shadow duration-300">
-                <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-red-800 text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold">3</div>
-                <div class="mt-4 mb-4">
-                    <i data-feather="check-circle" class="h-12 w-12 mx-auto text-red-800 dark:text-red-500"></i>
-                </div>
-                <h3 class="text-xl font-semibold mb-3">Win & Receive</h3>
-                <p class="text-gray-600 dark:text-gray-400">If you win the auction, we'll handle the secure payment and the seller will ship your item directly to you.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Us Section -->
-    <section id="contact-us" class="mb-16" data-aos="fade-up" data-aos-duration="1000">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-            <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/2 p-8 md:p-12">
-                    <h2 class="text-3xl font-bold mb-6 text-red-800 dark:text-red-500">Get In Touch</h2>
-                    <p class="text-gray-700 dark:text-gray-300 mb-6">Have questions about bidding, selling, or need assistance with your account? Our support team is here to help you.</p>
-
-                    <form class="space-y-4">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Name</label>
-                                <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:text-white">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email Address</label>
-                                <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:text-white">
-                            </div>
-                        </div>
-                        <div>
-                            <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Subject</label>
-                            <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:text-white">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
-                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:text-white"></textarea>
-                        </div>
-                        <button type="submit" class="bg-red-800 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-all duration-300 font-medium">Send Message</button>
-                    </form>
-                </div>
-                <div class="md:w-1/2 bg-gray-100 dark:bg-gray-700 p-8 md:p-12">
-                    <h3 class="text-xl font-semibold mb-6">Contact Information</h3>
-
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mt-1">
-                                <i data-feather="map-pin" class="h-6 w-6 text-red-800 dark:text-red-500"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="text-lg font-medium">Our Location</h4>
-                                <p class="text-gray-600 dark:text-gray-400">123 Auction Street, Suite 456<br>New York, NY 10001</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mt-1">
-                                <i data-feather="phone" class="h-6 w-6 text-red-800 dark:text-red-500"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="text-lg font-medium">Phone</h4>
-                                <p class="text-gray-600 dark:text-gray-400">+1 (555) 123-4567</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mt-1">
-                                <i data-feather="mail" class="h-6 w-6 text-red-800 dark:text-red-500"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="text-lg font-medium">Email</h4>
-                                <p class="text-gray-600 dark:text-gray-400">support@bidmaster.com</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mt-1">
-                                <i data-feather="clock" class="h-6 w-6 text-red-800 dark:text-red-500"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="text-lg font-medium">Business Hours</h4>
-                                <p class="text-gray-600 dark:text-gray-400">Monday - Friday: 9am - 6pm<br>Saturday: 10am - 4pm<br>Sunday: Closed</p>
-                            </div>
-                        </div>
+<!-- Newsletter Section -->
+<section class="newsletter py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center" data-aos="fade-up">
+                <h2>Stay Updated</h2>
+                <p class="lead">Subscribe to our newsletter to receive updates on new auctions and special events.</p>
+                <form class="newsletter-form">
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Your email address" required>
+                        <button class="btn btn-primary" type="submit">Subscribe</button>
                     </div>
-
-                    <div class="mt-8">
-                        <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
-                        <div class="flex space-x-4">
-                            <a href="#" class="bg-red-800 text-white p-2 rounded-full hover:bg-red-700 transition-colors duration-200">
-                                <i data-feather="facebook" class="h-5 w-5"></i>
-                            </a>
-                            <a href="#" class="bg-red-800 text-white p-2 rounded-full hover:bg-red-700 transition-colors duration-200">
-                                <i data-feather="twitter" class="h-5 w-5"></i>
-                            </a>
-                            <a href="#" class="bg-red-800 text-white p-2 rounded-full hover:bg-red-700 transition-colors duration-200">
-                                <i data-feather="instagram" class="h-5 w-5"></i>
-                            </a>
-                            <a href="#" class="bg-red-800 text-white p-2 rounded-full hover:bg-red-700 transition-colors duration-200">
-                                <i data-feather="linkedin" class="h-5 w-5"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
-    </section>
-
-    <!-- Banner -->
-    <section class="mb-16" data-aos="fade-up" data-aos-duration="1000">
-        <div class="bg-gradient-to-r from-red-800 to-black rounded-lg overflow-hidden shadow-lg">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="p-6 md:p-10 md:w-2/3 text-white">
-                    <h2 class="text-2xl md:text-3xl font-bold mb-4">Ready to Start Selling?</h2>
-                    <p class="mb-6">Turn your collectibles into cash. Join thousands of sellers who've found buyers for their unique items.</p>
-                    <a href="sell-item.html" class="inline-block bg-white text-red-800 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200 transform hover:scale-105">Start Selling Now</a>
-                </div>
-                <div class="md:w-1/3">
-                    <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Selling Banner" class="h-full w-full object-cover">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Banner -->
-    <section class="mb-16" data-aos="fade-up" data-aos-duration="1000">
-        <div class="bg-red-50 dark:bg-gray-700 rounded-lg shadow-md p-8 md:p-10">
-            <div class="flex flex-col md:flex-row items-center justify-between">
-                <div class="mb-6 md:mb-0 md:mr-8">
-                    <h2 class="text-2xl font-bold text-red-800 dark:text-white mb-2">Stay Updated</h2>
-                    <p class="text-gray-700 dark:text-gray-300">Subscribe to our newsletter for exclusive auction alerts and collecting tips.</p>
-                </div>
-                <div class="w-full md:w-auto">
-                    <form class="flex flex-col sm:flex-row gap-3">
-                        <input type="email" placeholder="Your email address" class="px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-red-500 focus:border-red-500 dark:bg-gray-800 dark:text-white w-full">
-                        <button type="submit" class="bg-red-800 text-white px-6 py-3 rounded-md hover:bg-red-700 transition-colors duration-200 whitespace-nowrap">Subscribe</button>
-                    </form>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">We respect your privacy. Unsubscribe at any time.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
-
-
+    </div>
+</section>
 <script>
-    // Initialize Feather Icons and AOS animations
-    document.addEventListener('DOMContentLoaded', () => {
-        // Initialize AOS animations
-        AOS.init();
+            document.addEventListener('DOMContentLoaded', function() {
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
 
-        // Initialize Feather Icons
-        feather.replace();
-
-        // Mobile menu toggle
-        const mobileMenuButton = document.querySelector('[data-collapse-toggle="navbar-menu"]');
-        const mobileMenu = document.getElementById('navbar-menu');
-
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-
-        // Theme toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-
-        // Check for saved theme preference or use system preference
-        const savedTheme = localStorage.getItem('theme') ||
-            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-
-        // Apply the saved theme
-        if (savedTheme === 'dark') {
-            html.classList.add('dark');
-        } else {
-            html.classList.remove('dark');
-        }
-
-        // Toggle theme
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => {
-                html.classList.toggle('dark');
-                const currentTheme = html.classList.contains('dark') ? 'dark' : 'light';
-                localStorage.setItem('theme', currentTheme);
-                feather.replace(); // Re-initialize icons after theme change
-            });
-        }
-
-        // Profile menu toggle
-        const profileMenuButton = document.getElementById('profile-menu-button');
-        const profileDropdown = document.getElementById('profile-dropdown');
-
-        if (profileMenuButton && profileDropdown) {
-            profileMenuButton.addEventListener('click', () => {
-                profileDropdown.classList.toggle('hidden');
-            });
-
-            // Close the dropdown when clicking outside
-            document.addEventListener('click', (event) => {
-                if (!profileMenuButton.contains(event.target) && !profileDropdown.contains(event.target)) {
-                    profileDropdown.classList.add('hidden');
-                }
-            });
-        }
-
-        // Initialize Hero Swiper
-        const heroSwiper = new Swiper('.hero-swiper', {
+        // Hero Slider
+        const heroSwiper = new Swiper('.heroSwiper', {
             slidesPerView: 1,
             spaceBetween: 0,
             loop: true,
@@ -851,57 +1098,55 @@
                 delay: 5000,
                 disableOnInteraction: false,
             },
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            },
             pagination: {
-                el: '.swiper-pagination',
+                el: '.heroSwiper .swiper-pagination',
                 clickable: true,
             },
             navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
+                nextEl: '.heroSwiper .swiper-button-next',
+                prevEl: '.heroSwiper .swiper-button-prev',
             },
-            on: {
-                slideChangeTransitionStart: function() {
-                    // Hide elements
-                    document.querySelectorAll('.slide-title, .slide-description, .slide-button').forEach(el => {
-                        el.style.opacity = '0';
-                        el.style.transform = 'translateY(20px)';
-                    });
+        });
+
+        // Hot Auctions Slider
+        const hotAuctionsSwiper = new Swiper('.hotAuctionsSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.hotAuctionsSwiper .swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.hotAuctionsSwiper .swiper-button-next',
+                prevEl: '.hotAuctionsSwiper .swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
                 },
-                slideChangeTransitionEnd: function() {
-                    // Show elements with delay
-                    const activeSlide = document.querySelector('.swiper-slide-active');
-                    if (activeSlide) {
-                        const title = activeSlide.querySelector('.slide-title');
-                        const description = activeSlide.querySelector('.slide-description');
-                        const button = activeSlide.querySelector('.slide-button');
-
-                        if (title) {
-                            setTimeout(() => {
-                                title.style.opacity = '1';
-                                title.style.transform = 'translateY(0)';
-                            }, 100);
-                        }
-
-                        if (description) {
-                            setTimeout(() => {
-                                description.style.opacity = '1';
-                                description.style.transform = 'translateY(0)';
-                            }, 300);
-                        }
-
-                        if (button) {
-                            setTimeout(() => {
-                                button.style.opacity = '1';
-                                button.style.transform = 'translateY(0)';
-                            }, 500);
-                        }
-                    }
+                992: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+                1200: {
+                    slidesPerView: 4,
+                    spaceBetween: 30,
                 },
             },
         });
 
-        // Initialize Testimonial Swiper
-        const testimonialSwiper = new Swiper('.testimonial-swiper', {
+        // Testimonials Slider
+        const testimonialSwiper = new Swiper('.testimonialSwiper', {
             slidesPerView: 1,
             spaceBetween: 30,
             loop: true,
@@ -910,46 +1155,150 @@
                 disableOnInteraction: false,
             },
             pagination: {
-                el: '.swiper-pagination',
+                el: '.testimonialSwiper .swiper-pagination',
                 clickable: true,
             },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
             breakpoints: {
-                640: {
-                    slidesPerView: 1,
-                },
                 768: {
                     slidesPerView: 2,
+                    spaceBetween: 30,
                 },
-                1024: {
+                992: {
                     slidesPerView: 3,
+                    spaceBetween: 30,
                 },
             },
         });
 
-        // Update countdown timers
+        // New Auction Slider
+        const auctionCategoriesSwiper = new Swiper('.auctionCategoriesSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.auctionCategoriesSwiper .swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.auctionCategoriesSwiper .swiper-button-next',
+                prevEl: '.auctionCategoriesSwiper .swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                992: {
+                    slidesPerView: 3,
+                    spaceBetween: 20,
+                },
+            },
+        });
+
+        // Ending Soon Slider
+        const endingSoonSwiper = new Swiper('.endingSoonSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.endingSoonSwiper .swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.endingSoonSwiper .swiper-button-next',
+                prevEl: '.endingSoonSwiper .swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                992: {
+                    slidesPerView: 3,
+                    spaceBetween: 20,
+                },
+                1200: {
+                    slidesPerView: 4,
+                    spaceBetween: 20,
+                },
+            },
+        });
+
+        // Premium Auctions Slider
+        const premiumAuctionsSwiper = new Swiper('.premiumAuctionsSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 4500,
+                disableOnInteraction: false,
+            },
+            effect: 'coverflow',
+            coverflowEffect: {
+                rotate: 30,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: '.premiumAuctionsSwiper .swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.premiumAuctionsSwiper .swiper-button-next',
+                prevEl: '.premiumAuctionsSwiper .swiper-button-prev',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                1200: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+            },
+        });
+
+        // Countdown functionality
+        const countdownElements = document.querySelectorAll('.countdown');
+
         function updateCountdowns() {
-            document.querySelectorAll('.countdown-timer').forEach(timer => {
-                const endTime = new Date(timer.getAttribute('data-end')).getTime();
-                const now = new Date().getTime();
-                const diff = endTime - now;
+            const now = new Date().getTime();
 
-                if (diff <= 0) {
-                    timer.textContent = 'Ended';
-                    return;
-                }
+            countdownElements.forEach(element => {
+                const endTime = new Date(element.getAttribute('data-time')).getTime();
+                const timeLeft = endTime - now;
 
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
-                if (days > 0) {
-                    timer.textContent = `${days}d ${hours}h`;
+                if (timeLeft <= 0) {
+                    element.innerHTML = 'Auction Ended';
+                    element.classList.add('ended');
                 } else {
-                    timer.textContent = `${hours}h ${minutes}m`;
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+
+                    let countdownText = '';
+                    if (days > 0) {
+                        countdownText += `${days}d `;
+                    }
+                    countdownText += `${hours}h ${minutes}m`;
+
+                    element.innerHTML = countdownText;
+
+                    // Add urgent class if less than 12 hours left
+                    if (timeLeft < (1000 * 60 * 60 * 12)) {
+                        element.classList.add('urgent');
+                    }
                 }
             });
         }
@@ -959,5 +1308,173 @@
 
         // Update every minute
         setInterval(updateCountdowns, 60000);
+
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Live auction time updates
+        function updateLiveAuctionTimes() {
+            const liveAuctionTimers = document.querySelectorAll('.live-auction-timer');
+
+            liveAuctionTimers.forEach(timer => {
+                const currentSeconds = parseInt(timer.getAttribute('data-seconds')) || 0;
+                const newSeconds = currentSeconds - 1;
+
+                if (newSeconds <= 0) {
+                    timer.innerHTML = 'Just ended';
+                    timer.classList.add('ended');
+                } else {
+                    const minutes = Math.floor(newSeconds / 60);
+                    const seconds = newSeconds % 60;
+                    timer.innerHTML = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                    timer.setAttribute('data-seconds', newSeconds);
+
+                    // Add urgent class if less than 30 seconds
+                    if (newSeconds < 30) {
+                        timer.classList.add('urgent');
+                    }
+                }
+            });
+        }
+
+        // Update live auction timers every second
+        setInterval(updateLiveAuctionTimes, 1000);
+
+        // Bid animation for live auctions
+        const liveBidButtons = document.querySelectorAll('.live-bid-btn');
+
+        liveBidButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Get the current bid amount element
+                const bidAmountElement = this.closest('.live-auction-card').querySelector('.current-bid');
+                const currentBid = parseFloat(bidAmountElement.getAttribute('data-amount'));
+
+                // Calculate new bid (current + 10%)
+                const newBid = currentBid * 1.1;
+
+                // Update the display
+                bidAmountElement.setAttribute('data-amount', newBid.toFixed(2));
+                bidAmountElement.textContent = '$' + newBid.toLocaleString('en-US', {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
+                });
+
+                // Add animation class
+                bidAmountElement.classList.add('bid-updated');
+
+                // Remove animation class after animation completes
+                setTimeout(() => {
+                    bidAmountElement.classList.remove('bid-updated');
+                }, 1000);
+
+                // Show success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'bid-success-message';
+                successMessage.textContent = 'Bid placed successfully!';
+                this.closest('.live-auction-card').appendChild(successMessage);
+
+                // Remove success message after 2 seconds
+                setTimeout(() => {
+                    successMessage.remove();
+                }, 2000);
+            });
+        });
+
+        // Search functionality
+        const searchForm = document.querySelector('.search-form');
+        const searchInput = document.getElementById('globalSearch');
+        const searchResults = document.getElementById('searchResults');
+        const searchResultsContainer = document.getElementById('searchResultsContainer');
+        const itemCards = document.querySelectorAll('.item-card');
+
+        searchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const searchTerm = searchInput.value.toLowerCase().trim();
+
+            if (searchTerm.length < 2) {
+                searchResults.classList.add('d-none');
+                return;
+            }
+
+            // Clear previous results
+            searchResultsContainer.innerHTML = '';
+
+            // Filter items
+            let resultsFound = false;
+
+            itemCards.forEach(card => {
+                const itemName = card.getAttribute('data-name').toLowerCase();
+                const itemCategory = card.getAttribute('data-category').toLowerCase();
+
+                if (itemName.includes(searchTerm) || itemCategory.includes(searchTerm)) {
+                    resultsFound = true;
+
+                    // Clone the card and add to results
+                    const clone = card.cloneNode(true);
+                    clone.classList.remove('mb-4');
+                    clone.classList.add('col-md-4', 'mb-3');
+                    searchResultsContainer.appendChild(clone);
+                }
+            });
+
+            if (resultsFound) {
+                searchResults.classList.remove('d-none');
+            } else {
+                searchResultsContainer.innerHTML = '<div class="col-12"><p>No results found for "' + searchTerm + '"</p></div>';
+                searchResults.classList.remove('d-none');
+            }
+        });
+
+        // Newsletter subscription
+        const newsletterForm = document.querySelector('.newsletter-form');
+
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const emailInput = this.querySelector('input[type="email"]');
+                const email = emailInput.value.trim();
+
+                if (email) {
+                    // Here you would typically send the email to your server
+                    // For demo purposes, we'll just show a success message
+
+                    // Create success message
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'alert alert-success mt-3';
+                    successMessage.innerHTML = 'Thank you for subscribing! You\'ll receive our next newsletter soon.';
+
+                    // Add message after the form
+                    this.after(successMessage);
+
+                    // Reset form
+                    this.reset();
+
+                    // Remove message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.remove();
+                    }, 5000);
+                }
+            });
+        }
     });
 </script>

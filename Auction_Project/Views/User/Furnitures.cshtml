@@ -1,177 +1,289 @@
 ﻿@{
-	Layout = "~/Views/Shared/_UserLayout.cshtml";
+
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+
 }
 
-  <!-- Furniture Banner -->
-    <section class="furniture-banner">
-        <div class="floating-furniture">
-            <div class="floating-item" style="left: 10%; animation-duration: 12s; animation-delay: 0s;"></div>
-            <div class="floating-item" style="left: 20%; animation-duration: 15s; animation-delay: 2s;"></div>
-            <div class="floating-item" style="left: 30%; animation-duration: 18s; animation-delay: 1s;"></div>
-            <div class="floating-item" style="left: 40%; animation-duration: 10s; animation-delay: 4s;"></div>
-            <div class="floating-item" style="left: 50%; animation-duration: 14s; animation-delay: 0s;"></div>
-            <div class="floating-item" style="left: 60%; animation-duration: 16s; animation-delay: 3s;"></div>
-            <div class="floating-item" style="left: 70%; animation-duration: 13s; animation-delay: 2s;"></div>
-            <div class="floating-item" style="left: 80%; animation-duration: 17s; animation-delay: 1s;"></div>
-            <div class="floating-item" style="left: 90%; animation-duration: 11s; animation-delay: 5s;"></div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center animate__animated animate__fadeIn">
-                    <h1 class="display-4 fw-bold mb-4">Furniture Auctions</h1>
-                    <p class="lead mb-4">Discover premium furniture, rare antiques, and designer pieces from around the world.</p>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <span class="me-3"><i class="bi bi-chair me-2"></i> 350+ premium furniture pieces</span>
-                        <span class="mx-3">•</span>
-                        <span><i class="bi bi-people-fill me-2"></i> 215 active bidders</span>
-                    </div>
-                </div>
+<!-- Category Header -->
+<section class="category-header" style="background-image: url('images/categories/furniture-banner.jpg');">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h1 data-aos="fade-up">Furniture</h1>
+                <p class="lead" data-aos="fade-up" data-aos-delay="100">Discover antique, vintage, and designer furniture pieces from around the world.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Search Bar Section -->
-    <section>
-        <div class="container">
-            <div class="search-container">
-                <form class="search-form">
-                    <input type="text" class="form-control search-input" placeholder="Search for furniture, brands, or categories..." id="searchInput">
-                    <button type="button" class="search-button">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Filter and Sort Section -->
-    <section class="py-4">
-        <div class="container">
-            <div class="row">
-                <!-- Category Filters - Left Side -->
-                <div class="col-md-3">
-                    <div class="filter-container">
-                        <div class="section-title">
-                            <i class="bi bi-filter"></i> Filter by Category
-                        </div>
-                        <button class="filter-btn active" data-category="all">
-                            <i class="bi bi-collection me-2"></i>
-                            All Furniture <span class="item-count" id="allCount">0</span>
-                        </button>
-                        <button class="filter-btn" data-category="Sofas">
-                            <i class="bi bi-house me-2"></i>
-                            Sofas & Seating <span class="item-count" id="sofasCount">0</span>
-                        </button>
-                        <button class="filter-btn" data-category="Tables">
-                            <i class="bi bi-grid-3x3 me-2"></i>
-                            Tables <span class="item-count" id="tablesCount">0</span>
-                        </button>
-                        <button class="filter-btn" data-category="Bedroom">
-                            <i class="bi bi-lamp me-2"></i>
-                            Bedroom <span class="item-count" id="bedroomCount">0</span>
-                        </button>
-                        <button class="filter-btn" data-category="Storage">
-                            <i class="bi bi-archive me-2"></i>
-                            Storage <span class="item-count" id="storageCount">0</span>
-                        </button>
-                        <button class="filter-btn" data-category="Decor">
-                            <i class="bi bi-palette me-2"></i>
-                            Decor <span class="item-count" id="decorCount">0</span>
-                        </button>
-                    </div>
-
-                    <div class="filter-container mt-4">
-                        <div class="section-title">
-                            <i class="bi bi-tag"></i> Filter by Style
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="checkbox" value="Modern" id="styleModern" checked>
-                            <label class="form-check-label" for="styleModern">
-                                Modern
-                            </label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="checkbox" value="Antique" id="styleAntique" checked>
-                            <label class="form-check-label" for="styleAntique">
-                                Antique
-                            </label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="checkbox" value="Vintage" id="styleVintage" checked>
-                            <label class="form-check-label" for="styleVintage">
-                                Vintage
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="Designer" id="styleDesigner" checked>
-                            <label class="form-check-label" for="styleDesigner">
-                                Designer
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="filter-container mt-4">
-                        <div class="section-title">
-                            <i class="bi bi-currency-dollar"></i> Price Range
-                        </div>
-                        <div class="mb-3">
-                            <label for="minPrice" class="form-label small">Min Price ($)</label>
-                            <input type="number" class="form-control" id="minPrice" placeholder="0">
-                        </div>
-                        <div class="mb-3">
-                            <label for="maxPrice" class="form-label small">Max Price ($)</label>
-                            <input type="number" class="form-control" id="maxPrice" placeholder="10000">
-                        </div>
-                        <button class="btn btn-primary w-100" id="applyPriceFilter">Apply</button>
-                    </div>
-                </div>
-
-                <!-- Furniture Listings - Right Side with Sorting at Top -->
-                <div class="col-md-9">
-                    <div class="filter-container mb-4">
-                        <div class="section-title">
-                            <i class="bi bi-sort-down"></i> Sort By
-                        </div>
-                        <div class="sort-select-wrapper">
-                            <select class="form-select sort-select" id="sortSelect">
-                                <option value="default">All</option>
-                                <option value="ending-soon">Ending Soon</option>
-                                <option value="price-low">Price: Low to High</option>
-                                <option value="price-high">Price: High to Low</option>
-                                <option value="most-bids">Most Bids</option>
-                                <option value="newest">Newest Listings</option>
-                            </select>
-                            <i class="bi bi-chevron-down sort-select-icon"></i>
-                        </div>
-                    </div>
-
-                    <!-- Furniture Listings -->
-                    <div class="row" id="furnitureListingsContainer">
-                        <!-- Furniture will be dynamically generated here -->
-                    </div>
-
-                    <!-- No Results Message -->
-                    <div class="no-results" id="noResults" style="display: none;">
-                        <i class="bi bi-search"></i>
-                        <h3>No Furniture Found</h3>
-                        <p class="text-muted">Try adjusting your filters or search criteria</p>
-                    </div>
+<!-- Filter Section -->
+<section class="filter-section py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                <div class="form-floating">
+                    <select class="form-select" id="sortOptions">
+                        <option value="ending-soon">Ending Soon</option>
+                        <option value="newly-listed">Newly Listed</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="bids">Most Bids</option>
+                    </select>
+                    <label for="sortOptions">Sort By</label>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Item Details Modal -->
-    <div class="modal fade" id="itemDetailsModal" tabindex="-1" aria-labelledby="itemDetailsModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content item-details-modal">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="itemDetailsModalLabel">Item Details</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="col-md-3 mb-3">
+                <div class="form-floating">
+                    <select class="form-select" id="furnitureType">
+                        <option value="all">All Types</option>
+                        <option value="chairs">Chairs & Seating</option>
+                        <option value="tables">Tables & Desks</option>
+                        <option value="cabinets">Cabinets & Storage</option>
+                        <option value="bedroom">Bedroom Furniture</option>
+                        <option value="lighting">Lighting</option>
+                    </select>
+                    <label for="furnitureType">Furniture Type</label>
                 </div>
-                <div class="modal-body" id="itemDetailsContent">
-                    <!-- Modal content will be dynamically generated here -->
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="form-floating">
+                    <select class="form-select" id="era">
+                        <option value="all">All Eras</option>
+                        <option value="antique">Antique (100+ years)</option>
+                        <option value="vintage">Vintage (20-99 years)</option>
+                        <option value="mid-century">Mid-Century</option>
+                        <option value="contemporary">Contemporary</option>
+                    </select>
+                    <label for="era">Era</label>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="form-floating">
+                    <select class="form-select" id="priceRange">
+                        <option value="all">All Prices</option>
+                        <option value="0-500">Under $500</option>
+                        <option value="500-1000">$500 - $1,000</option>
+                        <option value="1000-5000">$1,000 - $5,000</option>
+                        <option value="5000-10000">$5,000 - $10,000</option>
+                        <option value="10000+">$10,000+</option>
+                    </select>
+                    <label for="priceRange">Price Range</label>
                 </div>
             </div>
         </div>
     </div>
+</section>
+
+<!-- Furniture Listings -->
+<section class="category-listings py-5">
+    <div class="container">
+        <div class="row" id="furnitureContainer">
+            <!-- Furniture Item 1 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-aos="fade-up">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="images/items/desk.jpg" class="card-img-top" alt="Victorian Writing Desk">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-28T15:30:00">3d 8h 45m</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Victorian Writing Desk</h5>
+                        <p class="card-text">Beautiful Victorian oak writing desk from 1875 with original brass hardware.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$2,800</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items","User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Furniture Item 2 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="images/items/chair.jpg" class="card-img-top" alt="Eames Lounge Chair">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-26T18:45:00">2d 11h 00m</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Eames Lounge Chair</h5>
+                        <p class="card-text">Original 1956 Eames lounge chair and ottoman by Herman Miller, rosewood and black leather.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$4,250</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items","User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Furniture Item 3 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="images/items/cabinet.jpg" class="card-img-top" alt="Chinese Antique Cabinet">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-29T14:00:00">5d 6h 15m</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Chinese Antique Cabinet</h5>
+                        <p class="card-text">19th century Chinese elm wood cabinet with hand-painted details and original hardware.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$3,800</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items","User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Furniture Item 4 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="images/items/chandelier.jpg" class="card-img-top" alt="Crystal Chandelier">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-27T09:30:00">3d 1h 45m</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Antique Crystal Chandelier</h5>
+                        <p class="card-text">French crystal and bronze chandelier, circa 1920, with 12 lights and original wiring.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$5,750</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items","User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Furniture Item 5 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-aos="fade-up">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="images/items/table.jpg" class="card-img-top" alt="Mid-Century Dining Table">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-25T20:00:00">1d 12h 15m</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Mid-Century Dining Table</h5>
+                        <p class="card-text">Danish teak dining table by Hans Wegner, 1960s, with two extension leaves.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$1,950</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items","User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Furniture Item 6 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="images/items/sofa.jpg" class="card-img-top" alt="Chesterfield Sofa">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-26T12:30:00">2d 4h 45m</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Vintage Chesterfield Sofa</h5>
+                        <p class="card-text">1930s English Chesterfield sofa in oxblood leather with button tufting and brass nailheads.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$3,200</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items","User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Furniture Item 7 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="images/items/mirror.jpg" class="card-img-top" alt="Gilded Mirror">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-30T16:45:00">6d 9h 00m</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">French Gilded Mirror</h5>
+                        <p class="card-text">19th century French Louis XVI style gilded mirror with ornate carvings and original glass.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$2,400</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items","User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Furniture Item 8 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="images/items/dresser.jpg" class="card-img-top" alt="Art Deco Dresser">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-28T11:15:00">4d 3h 30m</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Art Deco Dresser</h5>
+                        <p class="card-text">1930s Art Deco waterfall dresser with mirror, walnut veneer and bakelite handles.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$1,650</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items","User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</section>

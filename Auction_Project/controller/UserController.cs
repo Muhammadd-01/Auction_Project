@@ -12,6 +12,10 @@ namespace Auction_Project.controller
         {
             return View();
         }
+        public IActionResult Items()
+        {
+            return View();
+        }
 
         public IActionResult Bidding()
         {
@@ -21,7 +25,7 @@ namespace Auction_Project.controller
         {
             return View();
         }
-        public IActionResult Furnitures()
+        public IActionResult Furniture()
         {
             return View();
         }

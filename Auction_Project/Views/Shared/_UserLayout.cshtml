@@ -3,51 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"] - BidMaster</title>
+    <title>AuctionHub - Premium Online Auctions</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"> -->
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <!-- AOS Animation CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/User/css/global.css">
+    <link rel="stylesheet" href="~/User/css/index.css">
+    <link rel="stylesheet" href="~/User/css/categories.css">
+    @* <link rel="stylesheet" href="~/User/css/about.css"> *@
+    <link rel="stylesheet" href="~/User/css/current-bidding.css" />
+    @* <link rel="stylesheet" href="~/User/css/login.css"> *@
+    @* <link rel="stylesheet" href="~/User/css/notifications.css"> *@
+    @* <link rel="stylesheet" href="~/User/css/register.css"> *@
+    @* <link rel="stylesheet" href="~/User/css/item.css"> *@
+    @* <link rel="stylesheet" href="~/User/css/sell.css"> *@
+    @* <link rel="stylesheet" href="~/User/css/item.css"> *@
 
-    <!-- TailwindCSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-    <!-- Bootstrap (Optional: Keep only if absolutely necessary alongside Tailwind) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-    <!-- Animate.css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <!-- SwiperJS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="~/user/css/styles.css">
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 </head>
+<body>
+    <!-- Enhanced Professional Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Index", "User")">
+                <i class="fas fa-gavel me-2"></i>AuctionHub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="@Url.Action("Index", "User")">
+                            <i class="fas fa-home me-1"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="@Url.Action("About", "User")">
+                            <i class="fas fa-info-circle me-1"></i> About
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-th-large me-1"></i> Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="@Url.Action("Books", "User")"><i class="fas fa-book me-2"></i>Books</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Furniture", "User")"><i class="fas fa-couch me-2"></i>Furniture</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Electronics", "User")"><i class="fas fa-laptop me-2"></i>Electronics</a></li>
 
-
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen flex flex-col transition-colors duration-200">
-
-
-        @await Html.PartialAsync("_UserNavbar")
-
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Bidding", "User")">
+                            <i class="fas fa-gavel me-1"></i> Current Bidding
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Sell", "User")">
+                            <i class="fas fa-tag me-1"></i> Sell an Item
+                        </a>
+                    </li>
+                </ul>
+                <form class="d-flex me-3 search-form">
+                    <div class="input-group">
+                        <input class="form-control" type="search" id="globalSearch" placeholder="Search items...">
+                        <button class="btn" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                <div class="d-flex align-items-center nav-right">
+                    <a href="@Url.Action("notifications", "User")" class="nav-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge rounded-pill">3</span>
+                    </a>
+                    <a href="@Url.Action("Profile", "User")" class="nav-icon">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <div class="nav-buttons">
+                        <a href="@Url.Action("Login", "User")" class="btn btn-outline-primary btn-sm">Login</a>
+                        <a href="@Url.Action("Register", "User")" class="btn btn-primary btn-sm">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <div>
         @RenderBody()
     </div>
 
-    @await Html.PartialAsync("_UserFooter")
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Footer -->
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-3">
+                    <h5>AuctionHub</h5>
+                    <p>The premier online auction platform for unique and collectible items.</p>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-3">
+                    <h5>Categories</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="@Url.Action("Books", "User")">Books</a></li>
+                        <li><a href="@Url.Action("Furniture", "User")">Furniture</a></li>
+                        <li><a href="@Url.Action("Electronics", "User")">Electronics</a></li>
+
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-3">
+                    <h5>Account</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="@Url.Action("Login", "User")">Login</a></li>
+                        <li><a href="@Url.Action("Register", "User")">Register</a></li>
+                        <li><a href="@Url.Action("Profile", "User")">Profile</a></li>
+                        <li><a href="@Url.Action("notifications", "User")">Notifications</a></li>
+
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4 mb-3">
+                    <h5>Stay Connected</h5>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                    <p class="mt-2">Subscribe to our newsletter for updates</p>
+                    <form class="d-flex">
+                        <input type="email" class="form-control me-2" placeholder="Your email">
+                        <button class="btn btn-outline-light" type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2023 AuctionHub. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                        <li class="list-inline-item"><a href="#">Terms of Use</a></li>
+                        <li class="list-inline-item"><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <!-- AOS Animation JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="~/User/js/global.js"></script>
+    <script src="~/User/js/index.js"></script>
+    @* <script src="~/User/js/about.js"></script> *@
+    <script src="~/User/js/categories.js"></script>
+    <script src="~/User/js/current-bidding.js"></script>
+    <script src="~/User/js/item.js"></script>
+    <script src="~/User/js/sell.js"></script>
+    <script src="~/User/js/login.js"></script>
+    <script src="~/User/js/register.jsjs"></script>
+    <script src="~/User/js/notifications.js"></script>
+    <script src="~/User/js/profile.js"></script>
+
 
 </body>
 </html>

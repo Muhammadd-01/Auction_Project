@@ -1,129 +1,289 @@
 ﻿@{
-	Layout = "~/Views/Shared/_UserLayout.cshtml";
+
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+
 }
-
-
-
-    <!-- Book Banner -->
-    <section class="book-banner">
-        <div class="floating-books">
-            <div class="floating-book" style="left: 10%; animation-duration: 12s; animation-delay: 0s;"></div>
-            <div class="floating-book" style="left: 20%; animation-duration: 15s; animation-delay: 2s;"></div>
-            <div class="floating-book" style="left: 30%; animation-duration: 18s; animation-delay: 1s;"></div>
-            <div class="floating-book" style="left: 40%; animation-duration: 10s; animation-delay: 4s;"></div>
-            <div class="floating-book" style="left: 50%; animation-duration: 14s; animation-delay: 0s;"></div>
-            <div class="floating-book" style="left: 60%; animation-duration: 16s; animation-delay: 3s;"></div>
-            <div class="floating-book" style="left: 70%; animation-duration: 13s; animation-delay: 2s;"></div>
-            <div class="floating-book" style="left: 80%; animation-duration: 17s; animation-delay: 1s;"></div>
-            <div class="floating-book" style="left: 90%; animation-duration: 11s; animation-delay: 5s;"></div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center animate__animated animate__fadeIn">
-                    <h1 class="display-4 fw-bold mb-4">Rare Book Auctions</h1>
-                    <p class="lead mb-4">Discover first editions, signed copies, and literary treasures from around the world.</p>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <span class="me-3"><i class="bi bi-book me-2"></i> 250+ rare books</span>
-                        <span class="mx-3">•</span>
-                        <span><i class="bi bi-people-fill me-2"></i> 128 active bidders</span>
-                    </div>
-                </div>
+<!-- Category Header -->
+<section class="category-header" style="background-image: url('images/categories/books-banner.jpg');">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h1 data-aos="fade-up">Books</h1>
+                <p class="lead" data-aos="fade-up" data-aos-delay="100">Discover rare editions, href="@Url.Action("Items", "User")" prints, signed copies, and collectible books from around the world.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Search Bar Section -->
-    <section>
-        <div class="container">
-            <div class="search-container">
-                <form class="search-form">
-                    <input type="text" class="form-control search-input" placeholder="Search for books, authors, or categories..." id="searchInput">
-                    <button type="button" class="search-button">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Filter and Sort Section -->
-    <section class="py-4">
-        <div class="container">
-            <div class="row">
-                <!-- Category Filters - Left Side -->
-                <div class="col-md-3">
-                    <div class="filter-container">
-                        <div class="section-title">
-                            <i class="bi bi-filter"></i> Filter by Category
-                        </div>
-                        <button class="filter-btn active" data-category="all">
-                            <i class="bi bi-collection me-2"></i>
-                            All Books <span class="book-count" id="allCount">0</span>
-                        </button>
-                        <button class="filter-btn" data-category="Fiction">
-                            <i class="bi bi-book me-2"></i>
-                            Fiction <span class="book-count" id="fictionCount">0</span>
-                        </button>
-                        <button class="filter-btn" data-category="Non-Fiction">
-                            <i class="bi bi-journal-text me-2"></i>
-                            Non-Fiction <span class="book-count" id="nonFictionCount">0</span>
-                        </button>
-                        <button class="filter-btn" data-category="Business">
-                            <i class="bi bi-briefcase me-2"></i>
-                            Business <span class="book-count" id="businessCount">0</span>
-                        </button>
-                        <button class="filter-btn" data-category="Religious">
-                            <i class="bi bi-book-half me-2"></i>
-                            Religious <span class="book-count" id="religiousCount">0</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Book Listings - Right Side with Sorting at Top -->
-                <div class="col-md-9">
-                    <div class="filter-container mb-4">
-                        <div class="section-title">
-                            <i class="bi bi-sort-down"></i> Sort By
-                        </div>
-                        <div class="sort-select-wrapper">
-                            <select class="form-select sort-select" id="sortSelect">
-                                <option value="default">All</option>
-                                <option value="ending-soon">Ending Soon</option>
-                                <option value="price-low">Price: Low to High</option>
-                                <option value="price-high">Price: High to Low</option>
-                                <option value="most-bids">Most Bids</option>
-                            </select>
-                            <i class="bi bi-chevron-down sort-select-icon"></i>
-                        </div>
-                    </div>
-
-                    <!-- Book Listings -->
-                    <div class="row" id="bookListingsContainer">
-                        <!-- Books will be dynamically generated here -->
-                    </div>
-
-                    <!-- No Results Message -->
-                    <div class="no-results" id="noResults" style="display: none;">
-                        <i class="bi bi-search"></i>
-                        <h3>No Books Found</h3>
-                        <p class="text-muted">Try adjusting your filters or search criteria</p>
-                    </div>
+<!-- Filter Section -->
+<section class="filter-section py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                <div class="form-floating">
+                    <select class="form-select" id="sortOptions">
+                        <option value="ending-soon">Ending Soon</option>
+                        <option value="newly-listed">Newly Listed</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="bids">Most Bids</option>
+                    </select>
+                    <label for="sortOptions">Sort By</label>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Book Details Modal -->
-    <div class="modal fade" id="bookDetailsModal" tabindex="-1" aria-labelledby="bookDetailsModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content book-details-modal">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="bookDetailsModalLabel">Book Details</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="col-md-3 mb-3">
+                <div class="form-floating">
+                    <select class="form-select" id="bookType">
+                        <option value="all">All Types</option>
+                        <option value="fiction">Fiction</option>
+                        <option value="non-fiction">Non-Fiction</option>
+                        <option value="rare">Rare & Collectible</option>
+                        <option value="signed">Signed Copies</option>
+                        <option value="href=" @Url.Action("Items", "User")"-edition">href="@Url.Action("Items", "User")" Editions</option>
+                    </select>
+                    <label for="bookType">Book Type</label>
                 </div>
-                <div class="modal-body" id="bookDetailsContent">
-                    <!-- Modal content will be dynamically generated here -->
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="form-floating">
+                    <select class="form-select" id="condition">
+                        <option value="all">All Conditions</option>
+                        <option value="new">New</option>
+                        <option value="like-new">Like New</option>
+                        <option value="good">Good</option>
+                        <option value="fair">Fair</option>
+                        <option value="poor">Poor</option>
+                    </select>
+                    <label for="condition">Condition</label>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="form-floating">
+                    <select class="form-select" id="priceRange">
+                        <option value="all">All Prices</option>
+                        <option value="0-50">Under $50</option>
+                        <option value="50-100">$50 - $100</option>
+                        <option value="100-500">$100 - $500</option>
+                        <option value="500-1000">$500 - $1,000</option>
+                        <option value="1000+">$1,000+</option>
+                    </select>
+                    <label for="priceRange">Price Range</label>
                 </div>
             </div>
         </div>
     </div>
+</section>
+
+<!-- Books Listings -->
+<section class="category-listings py-5">
+    <div class="container">
+        <div class="row" id="booksContainer">
+            <!-- Book Item 1 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-aos="fade-up">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="images/items/book1.jpg" class="card-img-top" alt="href=" @Url.Action("Items", "User")" Edition Hemingway">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-25T10:00:00">1d 2h 15m</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">href="@Url.Action("Items", "User")" Edition Hemingway</h5>
+                        <p class="card-text">A href="@Url.Action("Items", "User")" edition of "The Old Man and the Sea" signed by Ernest Hemingway.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$3,500</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items","User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book Item 2 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="images/items/book2.jpg" class="card-img-top" alt="Harry Potter href=" @Url.Action("Items", "User")" Edition">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-27T15:30:00">3d 7h 45m</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Harry Potter href="@Url.Action("Items", "User")" Edition</h5>
+                        <p class="card-text">href="@Url.Action("Items", "User")" edition of "Harry Potter and the Philosopher's Stone" with rare printing error.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$12,750</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items","User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book Item 3 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="images/items/book3.jpg" class="card-img-top" alt="Signed Stephen King Novel">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-26T09:15:00">2d 1h 30m</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Signed Stephen King Novel</h5>
+                        <p class="card-text">Limited edition of "The Stand" signed by Stephen King with custom slipcase.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$850</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items","User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book Item 4 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="images/items/book4.jpg" class="card-img-top" alt="Rare Shakespeare Folio">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-30T18:00:00">6d 10h 15m</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Rare Shakespeare Collection</h5>
+                        <p class="card-text">19th century collection of Shakespeare's works with original illustrations.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$4,200</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items","User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book Item 5 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-aos="fade-up">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="images/items/book5.jpg" class="card-img-top" alt="Vintage Comic Book">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-24T12:00:00">12h 15m</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Vintage Comic Book</h5>
+                        <p class="card-text">Action Comics #1 (1938) reprint, professionally graded and sealed.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$950</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items","User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book Item 6 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="images/items/book6.jpg" class="card-img-top" alt="Antique Atlas">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-28T14:30:00">4d 6h 45m</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Antique World Atlas</h5>
+                        <p class="card-text">1875 Mitchell's New General Atlas with hand-colored maps.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$1,875</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items","User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book Item 7 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="images/items/book7.jpg" class="card-img-top" alt="Rare Cookbook">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-29T10:00:00">5d 2h 15m</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Vintage Cookbook Collection</h5>
+                        <p class="card-text">Set of 5 rare cookbooks from the 1920s with original dust jackets.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$425</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items","User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book Item 8 -->
+            <div class="col-md-4 col-lg-3 mb-4 item-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="images/items/book8.jpg" class="card-img-top" alt="Illuminated Manuscript">
+                        <div class="time-left">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown" data-time="2023-12-31T23:59:59">7d 16h 15m</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Illuminated Manuscript Page</h5>
+                        <p class="card-text">15th century illuminated manuscript page with gold leaf details.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid">$3,250</span>
+                                <small class="text-muted">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items","User")" class="btn btn-primary">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</section>
