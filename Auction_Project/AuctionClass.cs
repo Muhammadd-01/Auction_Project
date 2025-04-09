@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
+using Auction_Project.models;
 
 namespace Auction_Project
 {
@@ -10,5 +10,7 @@ namespace Auction_Project
         {
 
         }
+
+       public DbSet<Users> tbl_Users { get; set; }
     }
 }
