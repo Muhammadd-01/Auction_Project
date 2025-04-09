@@ -25,7 +25,7 @@ namespace Auction_Project.controller
         {
             return View();
         }
-        public IActionResult Furniture()
+        public IActionResult Furnitures()
         {
             return View();
         }
