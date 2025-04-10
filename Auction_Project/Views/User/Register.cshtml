@@ -73,24 +73,29 @@ Layout="~/Views/Shared/_UserLayout.cshtml";
                         </form>
 
                             <hr class="my-4">
+                        <div class="social-register">
+                            <p class="text-center mb-3">Or register with</p>
+                            <div class="d-flex justify-content-center">
+                                <!-- Facebook Registration Button -->
+                                <a href="https://www.facebook.com/login" class="btn btn-outline-primary me-2 social-btn" target="_blank">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
 
-                            <div class="social-register">
-                                <p class="text-center mb-3">Or register with</p>
-                                <div class="d-flex justify-content-center">
-                                    <button class="btn btn-outline-primary me-2 social-btn">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </button>
-                                    <button class="btn btn-outline-danger me-2 social-btn">
-                                        <i class="fab fa-google"></i>
-                                    </button>
-                                    <button class="btn btn-outline-dark social-btn">
-                                        <i class="fab fa-apple"></i>
-                                    </button>
-                                </div>
+                                <!-- Google Registration Button -->
+                                <a href="https://accounts.google.com/ServiceLogin" class="btn btn-outline-danger me-2 social-btn" target="_blank">
+                                    <i class="fab fa-google"></i>
+                                </a>
+
+                                <!-- Apple Registration Button -->
+                                <a href="https://appleid.apple.com/signin" class="btn btn-outline-dark social-btn" target="_blank">
+                                    <i class="fab fa-apple"></i>
+                                </a>
                             </div>
+                        </div>
+
 
                             <div class="text-center mt-4">
-                                <p>Already have an account? <a href="login.html" class="login-link">Login now</a></p>
+                                <p>Already have an account? <a href="@Url.Action("Login","User")" class="login-link">Login now</a></p>
                             </div>
                         </div>
                     </div>
