@@ -84,7 +84,7 @@ namespace Auction_Project.controller
                 if (user.email == "admin@gmail.com" && user.password == "12345678") // You can change this condition as needed
                 {
                     // Redirect to the Admin Dashboard
-                    return RedirectToAction("Dashboard", "Admin"); // This will redirect to the Admin Controller's Dashboard
+                    return RedirectToAction("Login", "Admin"); // This will redirect to the Admin Controller's Dashboard
                 }
                 else
                 {
