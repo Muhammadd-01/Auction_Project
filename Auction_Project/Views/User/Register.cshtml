@@ -12,73 +12,65 @@ Layout="~/Views/Shared/_UserLayout.cshtml";
                     <div class="card register-card">
                         <div class="card-body">
                             <h2 class="card-title text-center mb-4">Create an Account</h2>
-                            <form id="registerForm">
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="firstNameInput" placeholder="First Name" required>
-                                            <label for="firstNameInput">First Name</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="lastNameInput" placeholder="Last Name" required>
-                                            <label for="lastNameInput">Last Name</label>
-                                        </div>
+                        <form id="registerForm" method="post">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="" name="firstname" placeholder="First Name" required>
+                                        <label for="">First Name</label>
                                     </div>
                                 </div>
-
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="usernameInput" placeholder="Username" required>
-                                    <label for="usernameInput">Username</label>
-                                    <div class="invalid-feedback">
-                                        Username is already taken.
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="" name="lastname" placeholder="Last Name" required>
+                                        <label for="">Last Name</label>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" required>
-                                    <label for="emailInput">Email address</label>
-                                    <div class="invalid-feedback">
-                                        Please enter a valid email address.
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="" name="username" placeholder="Username" required>
+                                <label for="">Username</label>
+                                <div class="invalid-feedback">
+                                    Username is already taken.
+                                </div>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="" name="email" placeholder="name@example.com" required>
+                                <label for="">Email address</label>
+                                <div class="invalid-feedback">
+                                    Please enter a valid email address.
+                                </div>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="" name="password" placeholder="Password" required>
+                                <label for="">Password</label>
+                                <div class="password-strength mt-1">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
                                     </div>
+                                    <small class="text-muted">Password strength: <span id="passwordStrength">Weak</span></small>
                                 </div>
+                            </div>
 
-                                <div class="form-floating mb-3">
-                                    <input type="password" class="form-control" id="passwordInput" placeholder="Password" required>
-                                    <label for="passwordInput">Password</label>
-                                    <div class="password-strength mt-1">
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 0%"></div>
-                                        </div>
-                                        <small class="text-muted">Password strength: <span id="passwordStrength">Weak</span></small>
-                                    </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="" name="terms" required>
+                                <label class="form-check-label" for="">
+                                    I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                                </label>
+                                <div class="invalid-feedback">
+                                    You must agree to the terms to continue.
                                 </div>
+                            </div>
 
-                                @* <div class="form-floating mb-3"> *@
-                                @*     <input type="password" class="form-control" id="confirmPasswordInput" placeholder="Confirm Password" required> *@
-                                @*     <label for="confirmPasswordInput">Confirm Password</label> *@
-                                @*     <div class="invalid-feedback"> *@
-                                @*         Passwords do not match. *@
-                                @*     </div> *@
-                                @* </div> *@
-
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" id="termsCheck" required>
-                                    <label class="form-check-label" for="termsCheck">
-                                        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-                                    </label>
-                                    <div class="invalid-feedback">
-                                        You must agree to the terms to continue.
-                                    </div>
-                                </div>
-
-                                <div class="d-grid">
-                                    <button type="submit" class="btn btn-primary btn-lg register-btn">
-                                        <i class="fas fa-user-plus me-2"></i>Create Account
-                                    </button>
-                                </div>
-                            </form>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg register-btn">
+                                    <i class="fas fa-user-plus me-2"></i>Create Account
+                                </button>
+                            </div>
+                        </form>
 
                             <hr class="my-4">
 

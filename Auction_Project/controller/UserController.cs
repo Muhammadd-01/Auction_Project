@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
+using Auction_Project.models;
 namespace Auction_Project.controller
 {
     public class UserController : Controller
@@ -57,9 +57,33 @@ namespace Auction_Project.controller
         {
             return View();
         }
+        private readonly AuctionClass _context;
+
+        // Constructor
+        public UserController(AuctionClass context)
+        {
+            _context = context;
+        }
+
+        // GET: User/Register
         public IActionResult Register()
         {
             return View();
+        }
+
+        // POST: User/Register
+        [HttpPost]
+        public IActionResult Register(Users user)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.tbl_Users.Add(user);
+                _context.SaveChanges();
+
+                // Redirecting to Index view (in the User folder)
+                return RedirectToAction("Index", "User");
+            }
+            return View(user);  // If there are validation errors, return to the same Register page
         }
     }
 }
