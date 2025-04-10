@@ -12,7 +12,7 @@ namespace Auction_Project.models
         public string username { get; set; }
         public string email { get; set; }
         public string password { get; set; }
-        public bool terms{ get; set; }
+        //public bool terms{ get; set; }
 
 
     }
