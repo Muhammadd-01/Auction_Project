@@ -80,10 +80,19 @@ namespace Auction_Project.controller
                 _context.tbl_Users.Add(user);
                 _context.SaveChanges();
 
-                // Redirecting to Index view (in the User folder)
-                return RedirectToAction("Login", "User");
+                // Check if the newly registered user is "admin123"
+                if (user.email == "admin@gmail.com" && user.password == "12345678") // You can change this condition as needed
+                {
+                    // Redirect to the Admin Dashboard
+                    return RedirectToAction("Dashboard", "Admin"); // This will redirect to the Admin Controller's Dashboard
+                }
+                else
+                {
+                    // Redirect to the login page for normal users
+                    return RedirectToAction("Login", "User");
+                }
             }
             return View(user);  // If there are validation errors, return to the same Register page
         }
     }
-}
+    }
