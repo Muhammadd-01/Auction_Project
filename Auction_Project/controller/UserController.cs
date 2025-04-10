@@ -53,33 +53,42 @@ namespace Auction_Project.controller
         {
             return View();
         }
+
+        // GET: Login
         [HttpGet]
         public IActionResult Login()
         {
-            return View(); // return the login view
+            return View(new Users()); // Pass an empty Users model to the view
         }
-        [HttpPost]
-        public IActionResult Login(string email, string password)
-        {
-            // Find user in the database
-            var user = _context.tbl_Users.FirstOrDefault(u => u.email == email && u.password == password);
 
-            if (user != null)
+
+        // POST: Login
+        [HttpPost]
+        public IActionResult Login(Users model)
+        {
+            if (ModelState.IsValid)
             {
-                // Check if the user is the admin
-                if (user.email == "admin@gmail.com" && user.password == "admin123") // You can modify this logic
+                var user = _context.tbl_Users
+                    .FirstOrDefault(u => u.email == model.email && u.password == model.password); // Use lowercase `email` and `password`
+
+                if (user != null)
                 {
-                    // Redirect to Admin Dashboard
-                    return RedirectToAction("Dashboard", "Admin");
+                    // Check if the user is the admin
+                    if (user.email == "admin@gmail.com" && user.password == "admin123")
+                    {
+                        return RedirectToAction("Dashboard", "Admin"); // Redirect to Admin panel
+                    }
+
+                    // Regular user
+                    return RedirectToAction("Index", "User"); // Redirect to User's homepage
                 }
 
-                // Regular user (You can modify this as well if you want more specific checks)
-                return RedirectToAction("Index", "User"); // or User's homepage or profile
+                // If user is not found, show error message
+                ViewBag.LoginError = "Invalid email or password.";
             }
 
-            // If no matching user found, show error message
-            ViewBag.LoginError = "Invalid email or password.";
-            return View(); // Return the same login view with the error
+            // If the model is not valid or login failed, return the same view with the model data to preserve input
+            return View(model);
         }
 
 
