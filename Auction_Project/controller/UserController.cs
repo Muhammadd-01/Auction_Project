@@ -112,12 +112,17 @@ namespace Auction_Project.controller
         {
             if (ModelState.IsValid)
             {
+                // Add the user to the database
                 _context.tbl_Users.Add(user);
                 _context.SaveChanges();
 
-
+                // After successfully registering, redirect to the Login page
+                return RedirectToAction("Login", "User");
             }
-            return View(user);  // If there are validation errors, return to the same Register page
+
+            // If there are validation errors, return to the same Register page with the model data
+            return View(user);
         }
+
     }
-    }
+}
