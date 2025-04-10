@@ -81,7 +81,7 @@ namespace Auction_Project.controller
                 _context.SaveChanges();
 
                 // Redirecting to Index view (in the User folder)
-                return RedirectToAction("Index", "User");
+                return RedirectToAction("Login", "User");
             }
             return View(user);  // If there are validation errors, return to the same Register page
         }
