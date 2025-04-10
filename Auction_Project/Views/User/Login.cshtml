@@ -1,7 +1,5 @@
 ﻿@{
-
     Layout = "~/Views/Shared/_UserLayout.cshtml";
-
 }
 
 <!-- Login Section -->
@@ -12,10 +10,16 @@
                 <div class="card login-card">
                     <div class="card-body">
                         <h2 class="card-title text-center mb-4">Login to Your Account</h2>
-                        <form id="loginForm" method="post" action="/User/Login">
-                            <div class="alert alert-danger d-none" id="loginError">
-                                Invalid username or password. Please try again.
-                            </div>
+
+                        <!-- Login Form -->
+                        <form id="loginForm" method="post" asp-action="Login" asp-controller="User">
+                            <!-- Show login error if exists -->
+                            @if (ViewBag.LoginError != null)
+                            {
+                                <div class="alert alert-danger" id="loginError">
+                                    @ViewBag.LoginError
+                                </div>
+                            }
 
                             <div class="form-floating mb-3">
                                 <input type="email" class="form-control" id="emailInput" name="email" placeholder="name@example.com" required>
@@ -38,9 +42,9 @@
                             </div>
                         </form>
 
-
                         <hr class="my-4">
 
+                        <!-- Social Login (optional placeholders) -->
                         <div class="social-login">
                             <p class="text-center mb-3">Or login with</p>
                             <div class="d-flex justify-content-center">
@@ -57,7 +61,10 @@
                         </div>
 
                         <div class="text-center mt-4">
-                            <p>Don't have an account? <a href="@Url.Action("Register", "User")" class="register-link">Register now</a></p>
+                            <p>
+                                Don't have an account?
+                                <a href="@Url.Action("Register", "User")" class="register-link">Register now</a>
+                            </p>
                         </div>
                     </div>
                 </div>
