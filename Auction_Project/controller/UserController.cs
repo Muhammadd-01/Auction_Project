@@ -56,7 +56,7 @@ namespace Auction_Project.controller
 
         public IActionResult Login()
         {
-            return View();
+            return View(); // Pass an empty Users model to the view
         }
 
 
@@ -64,26 +64,28 @@ namespace Auction_Project.controller
         [HttpPost]
         public IActionResult Login(string email, string password)
         {
-            var user = _context.tbl_Users.FirstOrDefault(u => u.email == "admin@gmail.com" && u.password == "admin123");
+            // Check for Admin login first
+            if (email == "admin@gmail.com" && password == "admin123")
+            {
+                // You can also set admin session here if needed
+               HttpContext.Session.SetString("userSession", "admin");
+                return RedirectToAction("Dashboard", "Admin");
+            }
+
+            // Check for normal user in DB
+            var user = _context.tbl_Users.FirstOrDefault(u => u.email == email && u.password == password);
 
             if (user != null)
             {
-
-                HttpContext.Session.SetString("userSession",user.id.ToString());
-                // User is authenticated, perform necessary actions
-                return RedirectToAction("Dashboard", "Admin"); // Redirect to the Admin controller's Dashboard action
+               HttpContext.Session.SetString("userSession", user.id.ToString());
+                return RedirectToAction("Index", "User");
             }
-            //else if(user != null && user.password != password)
-            //{
-            //    return RedirectToAction("Login", "User");
-            //}
-            else
-            {
-                ViewBag.Message = "Invalid Credentials";
-                return View();
 
-            }
+            // Invalid credentials
+            ViewBag.Message = "Invalid Credentials";
+            return View();
         }
+
 
 
         private readonly AuctionClass _context;
