@@ -62,9 +62,16 @@ namespace Auction_Project.controller
 
         // POST: Login
         [HttpPost]
-        public IActionResult Login(Users model)
+        public IActionResult Login(string email, string password)
         {
-           
+            var user = _context.tbl_Users.FirstOrDefault(u => u.email == "admin" && u.password == "admin123");
+
+            if (user != null && user.password == password)
+            {
+                // User is authenticated, perform necessary actions
+                return RedirectToAction("Dashboard", "Admin"); // Redirect to the Admin controller's Dashboard action
+            }
+
             return View();
         }
 
