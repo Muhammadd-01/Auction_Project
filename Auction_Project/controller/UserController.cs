@@ -54,8 +54,6 @@ namespace Auction_Project.controller
             return View();
         }
 
-        // GET: Login
-        [HttpGet]
         public IActionResult Login()
         {
             return View(new Users()); // Pass an empty Users model to the view
@@ -66,29 +64,8 @@ namespace Auction_Project.controller
         [HttpPost]
         public IActionResult Login(Users model)
         {
-            if (ModelState.IsValid)
-            {
-                var user = _context.tbl_Users
-                    .FirstOrDefault(u => u.email == model.email && u.password == model.password); // Use lowercase `email` and `password`
-
-                if (user != null)
-                {
-                    // Check if the user is the admin
-                    if (user.email == "admin@gmail.com" && user.password == "admin123")
-                    {
-                        return RedirectToAction("Dashboard", "Admin"); // Redirect to Admin panel
-                    }
-
-                    // Regular user
-                    return RedirectToAction("Index", "User"); // Redirect to User's homepage
-                }
-
-                // If user is not found, show error message
-                ViewBag.LoginError = "Invalid email or password.";
-            }
-
-            // If the model is not valid or login failed, return the same view with the model data to preserve input
-            return View(model);
+           
+            return View();
         }
 
 

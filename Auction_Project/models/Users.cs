@@ -11,12 +11,9 @@ namespace Auction_Project.models
         public string lastname { get; set; }
         public string username { get; set; }
 
-        [Required]
-        [EmailAddress]
+
         public string email { get; set; }
 
-        [Required]
-        [DataType(DataType.Password)]
         public string password { get; set; }
         //public bool terms{ get; set; }
 
