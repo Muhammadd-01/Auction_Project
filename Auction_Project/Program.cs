@@ -11,6 +11,10 @@ builder.Services.AddDbContext<AuctionClass>(options =>
 // ✅ Add MVC support
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(5);
+});
 var app = builder.Build();
 
 // 🔹 Ensure database is created
@@ -31,5 +35,7 @@ app.UseEndpoints(endpoints =>
         name: "default",
         pattern: "{controller=Admin}/{action=Dashboard}/{id?}");
 });
+
+app.UseSession();
 
 app.Run();
