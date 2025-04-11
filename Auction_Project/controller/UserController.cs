@@ -93,34 +93,60 @@ namespace Auction_Project.controller
         {
             return View(); // Pass an empty Users model to the view
         }
-
-
-        // POST: Login
         [HttpPost]
         public IActionResult Login(string email, string password)
         {
-            // Check for Admin login first
+            // Admin login
             if (email == "admin@gmail.com" && password == "admin123")
             {
-                // Set admin session here if admin logs in
                 HttpContext.Session.SetString("userSession", "admin");
                 return RedirectToAction("Dashboard", "Admin");
             }
 
-            // Check for normal user in DB
+            // Normal user login
             var user = _context.tbl_Users.FirstOrDefault(u => u.email == email && u.password == password);
 
             if (user != null)
             {
-                // Set user session for a normal user
+                // Store user ID or Name in session
                 HttpContext.Session.SetString("userSession", user.id.ToString());
-                return RedirectToAction("Index", "User");
+                HttpContext.Session.SetString("userName", user.username); // optional
+
+                return RedirectToAction("Index", "User"); // or wherever your homepage is
             }
 
-            // Invalid credentials
-            ViewBag.Message = "Invalid Credentials";
+            ViewBag.Message = "Invalid credentials";
             return View();
         }
+
+
+
+        // POST: Login
+        //[HttpPost]
+        //public IActionResult Login(string email, string password)
+        //{
+        //    // Check for Admin login first
+        //    if (email == "admin@gmail.com" && password == "admin123")
+        //    {
+        //        // Set admin session here if admin logs in
+        //        HttpContext.Session.SetString("userSession", "admin");
+        //        return RedirectToAction("Dashboard", "Admin");
+        //    }
+
+        //    // Check for normal user in DB
+        //    var user = _context.tbl_Users.FirstOrDefault(u => u.email == email && u.password == password);
+
+        //    if (user != null)
+        //    {
+        //        // Set user session for a normal user
+        //        HttpContext.Session.SetString("userSession", user.id.ToString());
+        //        return RedirectToAction("Index", "User");
+        //    }
+
+        //    // Invalid credentials
+        //    ViewBag.Message = "Invalid Credentials";
+        //    return View();
+        //}
 
 
 

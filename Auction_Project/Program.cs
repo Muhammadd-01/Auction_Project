@@ -10,7 +10,8 @@ builder.Services.AddDbContext<AuctionClass>(options =>
 
 // ✅ MVC & Session
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSession();
 builder.Services.AddDistributedMemoryCache(); // 🔥 Required for session
 builder.Services.AddSession(options =>
 {
