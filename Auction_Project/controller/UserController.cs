@@ -51,8 +51,35 @@ namespace Auction_Project.controller
         }
         public IActionResult Profile()
         {
-            return View();
+            var userIdString = HttpContext.Session.GetString("userSession");
+
+            if (string.IsNullOrEmpty(userIdString))
+                return RedirectToAction("Login", "User"); // Not logged in
+
+            // Check if the session value is "admin"
+            if (userIdString == "admin")
+            {
+                // If it's "admin", just set a fake userId to avoid crashing
+                // Or redirect to admin dashboard, depending on your flow
+                return RedirectToAction("Dashboard", "Admin");
+            }
+
+            // Try parsing the userId as an integer
+            if (!int.TryParse(userIdString, out int userId))
+            {
+                // If parsing fails, redirect to login page
+                return RedirectToAction("Login", "User");
+            }
+
+            var user = _context.tbl_Users.FirstOrDefault(u => u.id == userId);
+
+            if (user == null)
+                return RedirectToAction("Login", "User"); // Safety check
+
+            return View(user); // Pass user data to the view
         }
+
+
 
         public IActionResult Login()
         {
