@@ -59,12 +59,11 @@ namespace Auction_Project.controller
             // Check if the session value is "admin"
             if (userIdString == "admin")
             {
-                // If it's "admin", just set a fake userId to avoid crashing
-                // Or redirect to admin dashboard, depending on your flow
+                // If it's "admin", just redirect to the admin dashboard
                 return RedirectToAction("Dashboard", "Admin");
             }
 
-            // Try parsing the userId as an integer
+            // Try parsing the userId as an integer for regular users
             if (!int.TryParse(userIdString, out int userId))
             {
                 // If parsing fails, redirect to login page
@@ -79,6 +78,15 @@ namespace Auction_Project.controller
             return View(user); // Pass user data to the view
         }
 
+        // Logout action to explicitly clear session for both admin and user
+        public IActionResult Logout()
+        {
+            // Clear session data
+            HttpContext.Session.Clear(); // Clear all session data
+
+            // Redirect to login page
+            return RedirectToAction("Login", "User");
+        }
 
 
         public IActionResult Login()
@@ -94,8 +102,8 @@ namespace Auction_Project.controller
             // Check for Admin login first
             if (email == "admin@gmail.com" && password == "admin123")
             {
-                // You can also set admin session here if needed
-               HttpContext.Session.SetString("userSession", "admin");
+                // Set admin session here if admin logs in
+                HttpContext.Session.SetString("userSession", "admin");
                 return RedirectToAction("Dashboard", "Admin");
             }
 
@@ -104,7 +112,8 @@ namespace Auction_Project.controller
 
             if (user != null)
             {
-               HttpContext.Session.SetString("userSession", user.id.ToString());
+                // Set user session for a normal user
+                HttpContext.Session.SetString("userSession", user.id.ToString());
                 return RedirectToAction("Index", "User");
             }
 

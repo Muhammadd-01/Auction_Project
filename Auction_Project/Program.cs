@@ -14,7 +14,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache(); // 🔥 Required for session
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(5); // Session timeout
+    options.IdleTimeout = TimeSpan.FromMinutes(60); // Session timeout
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
