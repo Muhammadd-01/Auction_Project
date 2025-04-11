@@ -5,7 +5,7 @@
 namespace Auction_Project.Migrations
 {
     /// <inheritdoc />
-    public partial class tbl_user : Migration
+    public partial class tbl_Users : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,6 +19,7 @@ namespace Auction_Project.Migrations
                     firstname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     lastname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     password = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>

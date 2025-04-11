@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Auction_Project.Migrations
 {
     [DbContext(typeof(AuctionClass))]
-    [Migration("20250410082424_RemoveTerms")]
-    partial class RemoveTerms
+    [Migration("20250411044530_tbl_Users")]
+    partial class tbl_Users
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
