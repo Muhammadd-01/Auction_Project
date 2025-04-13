@@ -41,5 +41,8 @@ namespace Auction_Project.models
        public int UserID { get; set; }
 
         public Users Users { get; set; }
+
+        public int CategoryID { get; set; }
+         public BookCategories BookCategories { get; set; }
     }
 }
