@@ -38,11 +38,11 @@ namespace Auction_Project.models
         public decimal? MinimumBid { get; set; }
 
         // Foreign key to User
-       public int UserID { get; set; }
+       //public int UserID { get; set; }
 
-        public Users Users { get; set; }
+       // public Users Users { get; set; }
 
-        public int CategoryID { get; set; }
-         public BookCategories BookCategories { get; set; }
+        //public int CategoryID { get; set; }
+        // public BookCategories BookCategories { get; set; }
     }
 }

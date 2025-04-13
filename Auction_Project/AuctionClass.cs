@@ -12,11 +12,17 @@ namespace Auction_Project
         }
 
        public DbSet<Users> tbl_Users { get; set; }
-        public DbSet<Books> tbl_Books { get; set; }
+        public DbSet<BookCategories> tbl_BookCategories { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Books>().HasOne(b=>b.Users).WithMany(u=>u.Books).HasForeignKey(b=>b.UserID);
-        }
+        //public DbSet<Books> tbl_Books { get; set; }
+
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Books>().HasOne(b=>b.Users).WithMany(u=>u.Books).HasForeignKey(b=>b.UserID);
+        //}
+
+
+
     }
 }
