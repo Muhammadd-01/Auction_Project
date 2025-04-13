@@ -15,6 +15,7 @@ namespace Auction_Project.models
         [MaxLength(100)]
         public string ItemTitle { get; set; }
 
+
         [MaxLength(4000)]
         public string ItemDescription { get; set; }
 
