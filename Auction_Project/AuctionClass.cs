@@ -13,6 +13,8 @@ namespace Auction_Project
 
        public DbSet<Users> tbl_Users { get; set; }
         public DbSet<BookCategories> tbl_BookCategories { get; set; }
+        public DbSet<ElectronicCategories> tbl_ElectronicCategories { get; set; }
+        public DbSet<FurnitureCategories> tbl_FurnitureCategories { get; set; }
 
         //public DbSet<Books> tbl_Books { get; set; }
 
