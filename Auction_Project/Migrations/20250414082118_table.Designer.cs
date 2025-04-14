@@ -4,6 +4,7 @@ using Auction_Project;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Auction_Project.Migrations
 {
     [DbContext(typeof(AuctionClass))]
-    partial class AuctionClassModelSnapshot : ModelSnapshot
+    [Migration("20250414082118_table")]
+    partial class table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,9 +127,14 @@ namespace Auction_Project.Migrations
                     b.Property<decimal?>("MinimumBid")
                         .HasColumnType("decimal(10,2)");
 
+                    b.Property<int?>("SellerId")
+                        .HasColumnType("int");
+
                     b.HasKey("ItemID");
 
                     b.HasIndex("CategoryID");
+
+                    b.HasIndex("SellerId");
 
                     b.ToTable("tbl_Books");
                 });
@@ -193,9 +201,14 @@ namespace Auction_Project.Migrations
                     b.Property<decimal?>("MinimumBid")
                         .HasColumnType("decimal(10,2)");
 
+                    b.Property<int?>("SellerId")
+                        .HasColumnType("int");
+
                     b.HasKey("ItemID");
 
                     b.HasIndex("CategoryID");
+
+                    b.HasIndex("SellerId");
 
                     b.ToTable("tbl_Electronics");
                 });
@@ -262,9 +275,14 @@ namespace Auction_Project.Migrations
                     b.Property<decimal?>("MinimumBid")
                         .HasColumnType("decimal(10,2)");
 
+                    b.Property<int?>("SellerId")
+                        .HasColumnType("int");
+
                     b.HasKey("ItemID");
 
                     b.HasIndex("CategoryID");
+
+                    b.HasIndex("SellerId");
 
                     b.ToTable("tbl_Furnitures");
                 });
@@ -283,6 +301,35 @@ namespace Auction_Project.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("tbl_Ratings");
+                });
+
+            modelBuilder.Entity("Auction_Project.models.Seller", b =>
+                {
+                    b.Property<int>("SellerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SellerId"));
+
+                    b.Property<string>("SellerEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SellerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Usersid")
+                        .HasColumnType("int");
+
+                    b.HasKey("SellerId");
+
+                    b.HasIndex("Usersid");
+
+                    b.ToTable("Seller");
                 });
 
             modelBuilder.Entity("Auction_Project.models.Users", b =>
@@ -326,6 +373,10 @@ namespace Auction_Project.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Auction_Project.models.Seller", null)
+                        .WithMany("Books")
+                        .HasForeignKey("SellerId");
+
                     b.Navigation("BookCategories");
                 });
 
@@ -336,6 +387,10 @@ namespace Auction_Project.Migrations
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Auction_Project.models.Seller", null)
+                        .WithMany("Electronics")
+                        .HasForeignKey("SellerId");
 
                     b.Navigation("ElectronicCategories");
                 });
@@ -348,7 +403,22 @@ namespace Auction_Project.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Auction_Project.models.Seller", null)
+                        .WithMany("Furnitures")
+                        .HasForeignKey("SellerId");
+
                     b.Navigation("FurnitureCategories");
+                });
+
+            modelBuilder.Entity("Auction_Project.models.Seller", b =>
+                {
+                    b.HasOne("Auction_Project.models.Users", "Users")
+                        .WithMany("Seller")
+                        .HasForeignKey("Usersid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Auction_Project.models.BookCategories", b =>
@@ -364,6 +434,20 @@ namespace Auction_Project.Migrations
             modelBuilder.Entity("Auction_Project.models.FurnitureCategories", b =>
                 {
                     b.Navigation("Furnitures");
+                });
+
+            modelBuilder.Entity("Auction_Project.models.Seller", b =>
+                {
+                    b.Navigation("Books");
+
+                    b.Navigation("Electronics");
+
+                    b.Navigation("Furnitures");
+                });
+
+            modelBuilder.Entity("Auction_Project.models.Users", b =>
+                {
+                    b.Navigation("Seller");
                 });
 #pragma warning restore 612, 618
         }
