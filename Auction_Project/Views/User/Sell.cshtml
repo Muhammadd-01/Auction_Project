@@ -4,98 +4,36 @@
 
 }
 <!-- Sell Item Section -->
-<section class="sell-section py-5">
+<section class="sell-section py-5 mt-5">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-10" data-aos="fade-up">
+            <div class="col-lg-6" data-aos="fade-up">
                 <div class="card sell-card">
                     <div class="card-body">
-                        <h2 class="card-title text-center mb-4">List Your Book for Auction</h2>
-                        <form id="bookForm" class="needs-validation" novalidate>
-                            <input type="hidden" id="bookId">
+                        <h2 class="card-title text-center mb-4">Seller Profile Form</h2>
+                        <form id="sellerForm">
 
-                            <!-- Item Details -->
-                            <h5 class="mb-3">Item Details</h5>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="bookTitle" placeholder="Book Title" required>
-                                <label for="bookTitle">Book Title</label>
-                                <div class="invalid-feedback">Please provide a title.</div>
+                                <input type="text" class="form-control" id="sellerUsername" placeholder="Username" required>
+                                <label for="sellerUsername">Username</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <select class="form-select" id="bookSubcategory" required>
-                                    <option value="">Select subcategory</option>
-                                    <option value="fiction">Fiction</option>
-                                    <option value="non-fiction">Non-fiction</option>
-                                    <option value="religion">Religion</option>
-                                    <option value="business">Business</option>
-                                </select>
-                                <label for="bookSubcategory">Subcategory</label>
-                                <div class="invalid-feedback">Please select a subcategory.</div>
+                                <input type="email" class="form-control" id="sellerEmail" placeholder="name@example.com" required>
+                                <label for="sellerEmail">Email Address</label>
                             </div>
 
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" id="bookDescription" placeholder="Book Description" style="height: 100px;" required></textarea>
-                                <label for="bookDescription">Book Description</label>
-                                <div class="invalid-feedback">Please provide a description.</div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="number" class="form-control" id="bookPrice" placeholder="Starting Price" min="0" step="0.01" required>
-                                        <label for="bookPrice">Starting Price ($)</label>
-                                        <div class="invalid-feedback">Please provide a valid price.</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mt-3 mt-md-0">
-                                    <div class="form-floating">
-                                        <select class="form-select" id="bookStatus" required>
-                                            <option value="active">Active</option>
-                                            <option value="inactive">Inactive</option>
-                                        </select>
-                                        <label for="bookStatus">Status</label>
-                                        <div class="invalid-feedback">Please select a status.</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="number" class="form-control" id="bidIncrement" placeholder="Bid Increment" min="0.01" step="0.01" value="1.00" required>
-                                        <label for="bidIncrement">Bid Increment ($)</label>
-                                        <div class="invalid-feedback">Please provide a valid bid increment.</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mt-3 mt-md-0">
-                                    <label for="auctionEndDate" class="form-label">Auction End Date</label>
-                                    <input type="datetime-local" class="form-control" id="auctionEndDate" required>
-                                    <div class="invalid-feedback">Please provide an end date.</div>
-                                </div>
-                            </div>
-
-                            <!-- Uploads -->
-                            <div class="row mb-4">
-                                <div class="col-md-6">
-                                    <label for="specificationDoc" class="form-label">Specification Document</label>
-                                    <input class="form-control" type="file" id="specificationDoc" accept=".doc,.docx,.txt,.pdf">
-                                    <small class="form-text text-muted">Optional: Upload detailed specs (PDF, DOC)</small>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="bookImage" class="form-label">Book Image</label>
-                                    <input class="form-control" type="file" id="bookImage" accept="image/*">
-                                    <small class="form-text text-muted">Optional: Upload an image</small>
-                                </div>
-                            </div>
-
-                            <div class="text-center mb-4">
-                                <img id="bookImagePreview" src="https://via.placeholder.com/200x250?text=Book+Cover" class="img-thumbnail" alt="Book Preview" style="max-height: 250px;">
+                            <div class="form-floating mb-4">
+                                <textarea class="form-control" id="sellerBio" placeholder="Write a short bio..." style="height: 120px" required></textarea>
+                                <label for="sellerBio">Bio</label>
                             </div>
 
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-primary btn-lg">Submit Auction</button>
+                                <button type="submit" class="btn btn-primary btn-lg submit-btn">
+                                    <i class="fas fa-paper-plane me-2"></i>Submit
+                                </button>
                             </div>
+
                         </form>
                     </div>
                 </div>
