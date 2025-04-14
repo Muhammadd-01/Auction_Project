@@ -16,6 +16,10 @@ namespace Auction_Project
         public DbSet<ElectronicCategories> tbl_ElectronicCategories { get; set; }
         public DbSet<FurnitureCategories> tbl_FurnitureCategories { get; set; }
 
+        public DbSet<Electronics> tbl_Electronics { get; set; }
+
+
+        public DbSet<Furnitures> tbl_Furnitures { get; set; }
         //public DbSet<Books> tbl_Books { get; set; }
 
 
