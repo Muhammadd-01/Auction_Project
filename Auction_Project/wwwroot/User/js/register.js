@@ -190,10 +190,10 @@ document.addEventListener("DOMContentLoaded", () => {
         registerForm.before(message)
 
         // Remove message after 3 seconds
-        setTimeout(() => {
-          message.remove()
-        }, 3000)
-      }, 1500)
+      //  setTimeout(() => {
+      //    message.remove()
+      //  }, 3000)
+      //}, 1500)
     })
   })
 

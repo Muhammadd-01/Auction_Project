@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Auction_Project;
+using Microsoft.AspNetCore.Mvc;
 using Auction_Project.models;
 namespace Auction_Project.controller
 {

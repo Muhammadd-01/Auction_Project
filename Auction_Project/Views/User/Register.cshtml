@@ -1,35 +1,35 @@
 ﻿@{
 
-Layout="~/Views/Shared/_UserLayout.cshtml";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
 
 }
 
-    <!-- Register Section -->
-    <section class="register-section py-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6" data-aos="fade-up">
-                    <div class="card register-card">
-                        <div class="card-body">
-                            <h2 class="card-title text-center mb-4">Create an Account</h2>
+<!-- Register Section -->
+<section class="register-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6" data-aos="fade-up">
+                <div class="card register-card">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Create an Account</h2>
                         <form id="registerForm" method="post">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="" name="firstname" placeholder="First Name" required>
+                                        <input type="text" class="form-control" name="firstname" placeholder="First Name" required>
                                         <label for="">First Name</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="" name="lastname" placeholder="Last Name" required>
+                                        <input type="text" class="form-control" name="lastname" placeholder="Last Name" required>
                                         <label for="">Last Name</label>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="" name="username" placeholder="Username" required>
+                                <input type="text" class="form-control" name="username" placeholder="Username" required>
                                 <label for="">Username</label>
                                 <div class="invalid-feedback">
                                     Username is already taken.
@@ -37,7 +37,7 @@ Layout="~/Views/Shared/_UserLayout.cshtml";
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="" name="email" placeholder="name@example.com" required>
+                                <input type="email" class="form-control" name="email" placeholder="name@example.com" required>
                                 <label for="">Email address</label>
                                 <div class="invalid-feedback">
                                     Please enter a valid email address.
@@ -45,24 +45,25 @@ Layout="~/Views/Shared/_UserLayout.cshtml";
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="" name="password" placeholder="Password" required>
+                                <input type="password" class="form-control" name="password" placeholder="Password" required>
                                 <label for="">Password</label>
                                 <div class="password-strength mt-1">
                                     <div class="progress">
                                         <div class="progress-bar" role="progressbar" style="width: 0%"></div>
                                     </div>
+                                    <small class="text-muted">Password strength: <span id="passwordStrength">Weak</span></small>
                                 </div>
                             </div>
 
-                            @* <div class="form-check mb-3"> *@
-                            @*     <input class="form-check-input" type="checkbox" id="" name="terms" required> *@
-                            @*     <label class="form-check-label" for=""> *@
-                            @*         I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a> *@
-                            @*     </label> *@
-                            @*     <div class="invalid-feedback"> *@
-                            @*         You must agree to the terms to continue. *@
-                            @*     </div> *@
-                            @* </div> *@
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" name="terms" required>
+                                <label class="form-check-label" for="">
+                                    I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                                </label>
+                                <div class="invalid-feedback">
+                                    You must agree to the terms to continue.
+                                </div>
+                            </div>
 
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary btn-lg register-btn">
@@ -71,7 +72,7 @@ Layout="~/Views/Shared/_UserLayout.cshtml";
                             </div>
                         </form>
 
-                            <hr class="my-4">
+                        <hr class="my-4">
                         <div class="social-register">
                             <p class="text-center mb-3">Or register with</p>
                             <div class="d-flex justify-content-center">
@@ -93,12 +94,12 @@ Layout="~/Views/Shared/_UserLayout.cshtml";
                         </div>
 
 
-                            <div class="text-center mt-4">
-                                <p>Already have an account? <a href="@Url.Action("Login","User")" class="login-link">Login now</a></p>
-                            </div>
+                        <div class="text-center mt-4">
+                            <p>Already have an account? <a href="@Url.Action("Login","User")" class="login-link">Login now</a></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
