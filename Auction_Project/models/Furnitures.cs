@@ -4,6 +4,7 @@ namespace Auction_Project.models
 {
     public class Furnitures
     {
+
         [Key]
         public int ItemID { get; set; }
 
@@ -36,6 +37,14 @@ namespace Auction_Project.models
 
         [Column(TypeName = "decimal(10,2)")]
         public decimal? MinimumBid { get; set; }
+
+        // Foreign key to User
+        public int SellerID { get; set; }
+        public Seller Seller { get; set; }
+
+        public int CategoryID { get; set; }
+        public FurnitureCategories FurnitureCategories { get; set; }
+
 
     }
 }

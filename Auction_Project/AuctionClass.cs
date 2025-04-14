@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Auction_Project.models;
+using System.Reflection.Emit;
 
 namespace Auction_Project
 {
@@ -12,9 +13,14 @@ namespace Auction_Project
         }
 
        public DbSet<Users> tbl_Users { get; set; }
-       public DbSet<Ratings> tbl_Ratings { get; set; }
+
+
+        public DbSet<Ratings> tbl_Ratings { get; set; }
        public DbSet<Seller> tbl_Seller { get; set; }
-       public DbSet<Auctions> tbl_Auctions { get; set; }
+
+
+
+        public DbSet<Auctions> tbl_Auctions { get; set; }
         public DbSet<BookCategories> tbl_BookCategories { get; set; }
         public DbSet<ElectronicCategories> tbl_ElectronicCategories { get; set; }
         public DbSet<FurnitureCategories> tbl_FurnitureCategories { get; set; }
@@ -28,8 +34,13 @@ namespace Auction_Project
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Books>().HasOne(b=>b.Users).WithMany(u=>u.Books).HasForeignKey(b=>b.UserID);
+            modelBuilder.Entity<Books>().HasOne(b=>b.Seller).WithMany(u=>u.Books).HasForeignKey(b=>b.SellerID);
             modelBuilder.Entity<Books>().HasOne(b=>b.BookCategories).WithMany(u=>u.Books).HasForeignKey(b=>b.CategoryID);
+            modelBuilder.Entity<Electronics>().HasOne(e => e.Seller).WithMany(s => s.Electronics).HasForeignKey(e => e.SellerID);
+            modelBuilder.Entity<Electronics>().HasOne(e => e.ElectronicCategories).WithMany(u => u.Electronics).HasForeignKey(e => e.CategoryID);
+            modelBuilder.Entity<Furnitures>().HasOne(f => f.Seller).WithMany(u => u.Furnitures).HasForeignKey(f => f.SellerID);
+            modelBuilder.Entity<Furnitures>().HasOne(f => f.FurnitureCategories).WithMany(u => u.Furnitures).HasForeignKey(b => b.CategoryID);
+            modelBuilder.Entity<Seller>().HasOne(s => s.Users).WithMany(u => u.Seller).HasForeignKey(s => s.UserId);
         }
 
 

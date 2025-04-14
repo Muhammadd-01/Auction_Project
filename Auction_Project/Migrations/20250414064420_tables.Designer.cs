@@ -4,6 +4,7 @@ using Auction_Project;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Auction_Project.Migrations
 {
     [DbContext(typeof(AuctionClass))]
-    partial class AuctionClassModelSnapshot : ModelSnapshot
+    [Migration("20250414064420_tables")]
+    partial class tables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -127,11 +130,16 @@ namespace Auction_Project.Migrations
                     b.Property<int>("SellerID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("Usersid")
+                        .HasColumnType("int");
+
                     b.HasKey("ItemID");
 
                     b.HasIndex("CategoryID");
 
                     b.HasIndex("SellerID");
+
+                    b.HasIndex("Usersid");
 
                     b.ToTable("tbl_Books");
                 });
@@ -147,9 +155,6 @@ namespace Auction_Project.Migrations
                     b.Property<string>("CategoryName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ElectronicsId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -177,9 +182,6 @@ namespace Auction_Project.Migrations
                         .IsRequired()
                         .HasColumnType("char(1)");
 
-                    b.Property<int>("CategoryID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -198,14 +200,7 @@ namespace Auction_Project.Migrations
                     b.Property<decimal?>("MinimumBid")
                         .HasColumnType("decimal(10,2)");
 
-                    b.Property<int>("SellerID")
-                        .HasColumnType("int");
-
                     b.HasKey("ItemID");
-
-                    b.HasIndex("CategoryID");
-
-                    b.HasIndex("SellerID");
 
                     b.ToTable("tbl_Electronics");
                 });
@@ -221,9 +216,6 @@ namespace Auction_Project.Migrations
                     b.Property<string>("CategoryName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("FurnituresId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -251,9 +243,6 @@ namespace Auction_Project.Migrations
                         .IsRequired()
                         .HasColumnType("char(1)");
 
-                    b.Property<int>("CategoryID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -272,14 +261,7 @@ namespace Auction_Project.Migrations
                     b.Property<decimal?>("MinimumBid")
                         .HasColumnType("decimal(10,2)");
 
-                    b.Property<int>("SellerID")
-                        .HasColumnType("int");
-
                     b.HasKey("ItemID");
-
-                    b.HasIndex("CategoryID");
-
-                    b.HasIndex("SellerID");
 
                     b.ToTable("tbl_Furnitures");
                 });
@@ -373,45 +355,11 @@ namespace Auction_Project.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Auction_Project.models.Users", null)
+                        .WithMany("Books")
+                        .HasForeignKey("Usersid");
+
                     b.Navigation("BookCategories");
-
-                    b.Navigation("Seller");
-                });
-
-            modelBuilder.Entity("Auction_Project.models.Electronics", b =>
-                {
-                    b.HasOne("Auction_Project.models.ElectronicCategories", "ElectronicCategories")
-                        .WithMany("Electronics")
-                        .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Auction_Project.models.Seller", "Seller")
-                        .WithMany("Electronics")
-                        .HasForeignKey("SellerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ElectronicCategories");
-
-                    b.Navigation("Seller");
-                });
-
-            modelBuilder.Entity("Auction_Project.models.Furnitures", b =>
-                {
-                    b.HasOne("Auction_Project.models.FurnitureCategories", "FurnitureCategories")
-                        .WithMany("Furnitures")
-                        .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Auction_Project.models.Seller", "Seller")
-                        .WithMany("Furnitures")
-                        .HasForeignKey("SellerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("FurnitureCategories");
 
                     b.Navigation("Seller");
                 });
@@ -432,27 +380,15 @@ namespace Auction_Project.Migrations
                     b.Navigation("Books");
                 });
 
-            modelBuilder.Entity("Auction_Project.models.ElectronicCategories", b =>
-                {
-                    b.Navigation("Electronics");
-                });
-
-            modelBuilder.Entity("Auction_Project.models.FurnitureCategories", b =>
-                {
-                    b.Navigation("Furnitures");
-                });
-
             modelBuilder.Entity("Auction_Project.models.Seller", b =>
                 {
                     b.Navigation("Books");
-
-                    b.Navigation("Electronics");
-
-                    b.Navigation("Furnitures");
                 });
 
             modelBuilder.Entity("Auction_Project.models.Users", b =>
                 {
+                    b.Navigation("Books");
+
                     b.Navigation("Seller");
                 });
 #pragma warning restore 612, 618
