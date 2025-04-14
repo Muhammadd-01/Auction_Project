@@ -23,13 +23,14 @@ namespace Auction_Project
 
 
         public DbSet<Furnitures> tbl_Furnitures { get; set; }
-        //public DbSet<Books> tbl_Books { get; set; }
+        public DbSet<Books> tbl_Books { get; set; }
 
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Books>().HasOne(b=>b.Users).WithMany(u=>u.Books).HasForeignKey(b=>b.UserID);
-        //}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Books>().HasOne(b=>b.Users).WithMany(u=>u.Books).HasForeignKey(b=>b.UserID);
+            modelBuilder.Entity<Books>().HasOne(b=>b.BookCategories).WithMany(u=>u.Books).HasForeignKey(b=>b.CategoryID);
+        }
 
 
 

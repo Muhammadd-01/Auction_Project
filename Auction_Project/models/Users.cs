@@ -17,7 +17,7 @@ namespace Auction_Project.models
         public string password { get; set; }
         //public bool terms{ get; set; }
 
-        //public List<Books> Books { get; set; }
+        public List<Books> Books { get; set; }
 
     }
 }
