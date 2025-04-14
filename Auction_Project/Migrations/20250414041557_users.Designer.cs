@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Auction_Project.Migrations
 {
     [DbContext(typeof(AuctionClass))]
-    [Migration("20250413191057_users")]
+    [Migration("20250414041557_users")]
     partial class users
     {
         /// <inheritdoc />
