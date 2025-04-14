@@ -39,6 +39,10 @@ namespace Auction_Project.Controllers
         {
             return View();
         }
+        public IActionResult Category()
+        {
+            return View();
+        }
 
         public IActionResult ManageItems()
         {

@@ -1,0 +1,256 @@
+/* Category Management Styles */
+
+/* Main container styling */
+.container {
+  max-width: 1200px;
+}
+
+/* Card styling */
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  border: none;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #eaeaea;
+  padding: 15px 20px;
+  border-radius: 10px 10px 0 0 !important;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* Category form card */
+.category-form-card {
+  position: sticky;
+  top: 20px;
+}
+
+/* Form styling */
+.form-label {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.form-control,
+.form-select {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Button styling */
+.btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #4361ee;
+  border-color: #4361ee;
+}
+
+.btn-primary:hover {
+  background-color: #3a56d4;
+  border-color: #3a56d4;
+}
+
+.btn-danger {
+  background-color: #ef476f;
+  border-color: #ef476f;
+}
+
+.btn-danger:hover {
+  background-color: #d63e62;
+  border-color: #d63e62;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #5a6268;
+}
+
+/* Table styling */
+.table {
+  margin-bottom: 0;
+}
+
+.table th {
+  font-weight: 600;
+  color: #495057;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+/* Action buttons in table */
+.action-buttons .btn {
+  padding: 5px 10px;
+  margin-right: 5px;
+}
+
+.action-buttons .btn:last-child {
+  margin-right: 0;
+}
+
+/* Status badge */
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-active {
+  background-color: #e6f7ed;
+  color: #0d8a3e;
+}
+
+.status-inactive {
+  background-color: #feeae9;
+  color: #d63e62;
+}
+
+/* Category tree styling */
+#categoryTree {
+  padding: 10px;
+}
+
+.category-tree-item {
+  margin-bottom: 10px;
+}
+
+.category-tree-parent {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.category-tree-parent i {
+  margin-right: 8px;
+  width: 20px;
+  text-align: center;
+}
+
+.category-tree-children {
+  padding-left: 30px;
+  margin-top: 5px;
+}
+
+.category-tree-child {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.category-tree-child i {
+  margin-right: 8px;
+  width: 20px;
+  text-align: center;
+}
+
+/* Empty state styling */
+#noCategoriesMessage {
+  padding: 30px;
+}
+
+#noCategoriesMessage img {
+  opacity: 0.5;
+}
+
+/* Modal styling */
+.modal-content {
+  border-radius: 10px;
+  border: none;
+}
+
+.modal-header {
+  border-bottom: 1px solid #eaeaea;
+  padding: 15px 20px;
+}
+
+.modal-footer {
+  border-top: 1px solid #eaeaea;
+  padding: 15px 20px;
+}
+
+.alert {
+  border-radius: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .category-form-card {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  .card-header .input-group {
+    margin-top: 10px;
+    max-width: 100% !important;
+    width: 100%;
+  }
+}
+
+/* Navbar and Footer color matching */
+.navbar,
+.footer {
+  background-color: #4361ee;
+}
+
+/* Smaller navbar */
+.navbar {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.navbar-brand {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem;
+}
+
+.navbar .form-control,
+.navbar .btn {
+  height: 36px;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Logo styling */
+.nav-logo,
+.footer-logo {
+  height: 30px;
+}
