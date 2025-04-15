@@ -8,7 +8,7 @@
             public int Id { get; set; }
 
             [Required]
-            public string Title { get; set; } // "Samsung Galaxy S21", "Old Painting", etc.
+            public string Title { get; set; } 
 
             public string Description { get; set; } // Item details
 
