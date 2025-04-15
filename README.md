@@ -42,4 +42,4 @@ This is an auction bidding website template built with **C#**, **ASP.NET Core**,
 
 1. Clone the repository to your local machine:
    ```bash
-   git clone https://github.com/Muhammadd-01/Auction_Project_.git
+   git clone https://github.com/Muhammadd-01/Auction_Project_git
