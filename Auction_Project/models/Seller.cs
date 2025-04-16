@@ -13,7 +13,7 @@ namespace Auction_Project.models
         public string SellerEmail { get; set; }
 
         [Required]
-        public string? SellerBio { get; set; }
+        public string SellerBio { get; set; }
         public int UserId { get; set; }
 
         public Users Users { get; set; }

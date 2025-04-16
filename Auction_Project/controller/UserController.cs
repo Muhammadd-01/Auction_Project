@@ -57,7 +57,6 @@ namespace Auction_Project.controller
             var login = HttpContext.Session.GetString("userSession");
 
             _seller.UserId = int.Parse(login);
-
             _context.tbl_Seller.Add(_seller);
             _context.SaveChanges();
             return RedirectToAction("Profile");
