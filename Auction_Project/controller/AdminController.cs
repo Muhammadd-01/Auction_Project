@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Auction_Project.models;
 using System.Linq;
+using Auction_Project;
+using Microsoft.EntityFrameworkCore;
 
 namespace Auction_Project.Controllers
 {
@@ -35,16 +37,16 @@ namespace Auction_Project.Controllers
             return RedirectToAction("ManageUsers"); // Redirect back to the user management page after deletion
         }
 
-        public IActionResult AddUsers()
-        {
-            return View();
-        }
-        public IActionResult Category()
+        public IActionResult AddCategories()
         {
             return View();
         }
 
         public IActionResult ManageItems()
+        {
+            return View();
+        }
+        public IActionResult Category()
         {
             return View();
         }
@@ -98,5 +100,13 @@ namespace Auction_Project.Controllers
         {
             return View();
         }
+
+        public IActionResult UserToSeller()
+        {
+            var seller = _context.tbl_Seller.Include(p => p.Users).ToList();
+
+            return View(seller);
+        }
+
     }
 }

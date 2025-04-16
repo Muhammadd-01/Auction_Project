@@ -1,0 +1,45 @@
+﻿@model List<Auction_Project.models.Seller>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>User To Seller</h2>
+    </div>
+
+    <!-- Users Table -->
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Bio</th> <!-- Bio column added here -->
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var seller in Model)
+                        {
+                            <tr>
+                                <td>@(seller.SellerName ?? "N/A")</td>
+                                <td>@(seller.SellerEmail ?? "N/A")</td>
+                                <td>@(seller.SellerBio ?? "No bio provided")</td>
+                                <td>
+                                    <form method="post" action="@Url.Action("DeleteUser", "Admin")" onsubmit="return confirm('Are you sure you want to delete this user?')">
+                                        <button class="btn btn-danger btn-sm">
+                                            <i class="bi bi-trash"></i> Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

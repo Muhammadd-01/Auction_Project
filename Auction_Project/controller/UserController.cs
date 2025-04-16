@@ -38,9 +38,29 @@ namespace Auction_Project.controller
         {
             return View();
         }
-        public IActionResult Sell()
+        public IActionResult AddSeller()
         {
-            return View();
+            var login = HttpContext.Session.GetString("userSession");
+            if (login != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
+        }
+        [HttpPost]
+        public IActionResult AddSeller(Seller _seller)
+        {
+            var login = HttpContext.Session.GetString("userSession");
+
+            _seller.UserId = int.Parse(login);
+
+            _context.tbl_Seller.Add(_seller);
+            _context.SaveChanges();
+            return RedirectToAction("Profile");
         }
         public IActionResult About()
         {
@@ -169,19 +189,15 @@ namespace Auction_Project.controller
         [HttpPost]
         public IActionResult Register(Users user)
         {
-            if (ModelState.IsValid)
-            {
-                // Add the user to the database
-                _context.tbl_Users.Add(user);
-                _context.SaveChanges();
 
-                // After successfully registering, redirect to the Login page
-                return RedirectToAction("Login", "User");
-            }
+            // Add the user to the database
+            _context.tbl_Users.Add(user);
+            _context.SaveChanges();
 
-            // If there are validation errors, return to the same Register page with the model data
-            return View(user);
+            // After successfully registering, redirect to the Login page
+            return RedirectToAction("Login", "User");
+
+
         }
-
     }
 }
