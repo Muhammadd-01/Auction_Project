@@ -173,24 +173,23 @@ namespace Auction_Project.controller
             _context.SaveChanges();
             return RedirectToAction("Login", "User");
         }
-
-        // Add a new book listing
         [HttpPost]
-        public IActionResult AddBook(Books book, string Subcategory)
+        [ValidateAntiForgeryToken]
+        public IActionResult AddBook(Books book)
         {
             var login = HttpContext.Session.GetString("userSession");
 
             if (string.IsNullOrEmpty(login))
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "User");
 
             book.SellerID = int.Parse(login);
-            book.SubCategory = Subcategory;
 
             _context.tbl_Books.Add(book);
             _context.SaveChanges();
 
             return RedirectToAction("Index", "User");
         }
+
 
     }
 }
