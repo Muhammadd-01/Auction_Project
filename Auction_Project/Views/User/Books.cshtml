@@ -69,9 +69,11 @@
                     </select>
                     <label for="priceRange">Price Range</label>
                 </div>
-                <button class="btn btn-dark rounded-pill px-4 py-2 shadow-sm text-white transition-all ease-in-out duration-300 hover:bg-primary hover:shadow-lg" type="button" data-bs-toggle="modal" data-bs-target="#addBookModal">
-                    <i class="fas fa-plus me-2"></i> Add Book
-                </button>
+
+                <a href="@Url.Action("AddBook","User")">add book</a>
+                @* <button class="btn btn-dark rounded-pill px-4 py-2 shadow-sm text-white transition-all ease-in-out duration-300 hover:bg-primary hover:shadow-lg" type="button" data-bs-toggle="modal" data-bs-target="#addBookModal"> *@
+                @*     <i class="fas fa-plus me-2"></i> Add Book *@
+                @* </button> *@
 
             </div>
         </div>
@@ -87,19 +89,20 @@
             </div>
             <div class="modal-body">
                 <!-- FORM START: Posting to BookController -> AddBook -->
-                <form asp-controller="User" asp-action="AddBook" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                <form asp-action="AddBook" asp-controller="User" method="post" enctype="multipart/form-data"
+                 >
                     <div class="row mb-3">
                         <!-- Book Title -->
                         <div class="mb-3">
-                            <label for="ItemTitle" class="form-label">Book Title</label>
-                            <input type="text" class="form-control" id="ItemTitle" name="ItemTitle" required>
+                            <label name="ItemTitle" class="form-label">Book Title</label>
+                            <input type="text" class="form-control" name="ItemTitle" required>
                             <div class="invalid-feedback">Please provide a title.</div>
                         </div>
 
                         <!-- Subcategory -->
                         <div class="mb-3">
-                            <label for="SubCategory" class="form-label">Subcategory</label>
-                            <select class="form-select" id="SubCategory" name="SubCategory" required>
+                            <label name="SubCategory" class="form-label">Subcategory</label>
+                            <select class="form-select" name="SubCategory" required>
                                 <option value="">Select subcategory</option>
                                 <option value="fiction">Fiction</option>
                                 <option value="non-fiction">Non-fiction</option>
@@ -111,22 +114,22 @@
 
                         <!-- Description -->
                         <div class="mb-3">
-                            <label for="ItemDescription" class="form-label">Description</label>
-                            <textarea class="form-control" id="ItemDescription" name="ItemDescription" rows="3" required></textarea>
+                            <label name="ItemDescription" class="form-label">Description</label>
+                            <textarea class="form-control" name="ItemDescription" rows="3" required></textarea>
                             <div class="invalid-feedback">Please provide a description.</div>
                         </div>
 
                         <!-- Minimum Bid -->
                         <div class="mb-3">
-                            <label for="MinimumBid" class="form-label">Minimum Bid ($)</label>
-                            <input type="number" class="form-control" id="MinimumBid" name="MinimumBid" min="0" step="0.01" required>
+                            <label name="MinimumBid" class="form-label">Minimum Bid ($)</label>
+                            <input type="number" class="form-control" name="MinimumBid" min="0" step="0.01" required>
                             <div class="invalid-feedback">Please provide a valid starting bid.</div>
                         </div>
 
                         <!-- Bid Status -->
                         <div class="mb-3">
-                            <label for="BidStatus" class="form-label">Bid Status</label>
-                            <select class="form-select" id="BidStatus" name="BidStatus" required>
+                            <label name="BidStatus" class="form-label">Bid Status</label>
+                            <select class="form-select" name="BidStatus" required>
                                 <option value="">Select status</option>
                                 <option value="A">Active</option>
                                 <option value="I">Inactive</option>
@@ -137,30 +140,30 @@
                         <!-- Auction Dates -->
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label for="BidStartDate" class="form-label">Auction Start Date</label>
-                                <input type="datetime-local" class="form-control" id="BidStartDate" name="BidStartDate" required>
+                                <label name="BidStartDate" class="form-label">Auction Start Date</label>
+                                <input type="datetime-local" class="form-control" name="BidStartDate" required>
                                 <div class="invalid-feedback">Please provide a start date.</div>
                             </div>
                             <div class="col-md-6">
-                                <label for="BidEndDate" class="form-label">Auction End Date</label>
-                                <input type="datetime-local" class="form-control" id="BidEndDate" name="BidEndDate" required>
+                                <label name="BidEndDate" class="form-label">Auction End Date</label>
+                                <input type="datetime-local" class="form-control" name="BidEndDate" required>
                                 <div class="invalid-feedback">Please provide an end date.</div>
                             </div>
                         </div>
 
                         <!-- Bid Increment -->
                         <div class="mb-3">
-                            <label for="BidIncrement" class="form-label">Bid Increment ($)</label>
-                            <input type="number" class="form-control" id="BidIncrement" name="BidIncrement" min="0.01" step="0.01" value="1.00" required>
+                            <label name="BidIncrement" class="form-label">Bid Increment ($)</label>
+                            <input type="number" class="form-control" name="BidIncrement" min="0.01" step="0.01" value="1.00" required>
                             <div class="invalid-feedback">Please provide a bid increment.</div>
                         </div>
 
                         <!-- Image -->
-                        @* <div class="mb-3"> *@
-                        @*     <label for="Image" class="form-label">Book Image</label> *@
-                        @*     <input class="form-control" type="file" id="Image" name="Image" accept="image/*"> *@
-                        @*     <div class="form-text">Upload a book image (optional).</div> *@
-                        @* </div> *@
+                        @* <div class="mb-3">
+            <label name="Image" class="form-label">Book Image</label>
+            <input class="form-control" type="file" name="Image" accept="image/*">
+            <div class="form-text">Upload a book image (optional).</div>
+        </div> *@
 
                         <!-- Submit -->
                         <div class="text-center mt-3">
@@ -170,8 +173,8 @@
                         </div>
                     </div>
                 </form>
-
                 <!-- FORM END -->
+
             </div>
         </div>
     </div>

@@ -1,0 +1,98 @@
+﻿
+
+
+<h1>AddBook</h1>
+<form asp-action="AddBook" asp-controller="User" method="post">
+    <div class="row mb-3">
+        <!-- Book Title -->
+        <div class="mb-3">
+            <label name="ItemTitle" class="form-label">Book Title</label>
+            <input type="text" class="form-control" name="ItemTitle" required>
+            <div class="invalid-feedback">Please provide a title.</div>
+        </div>
+
+        <!-- Subcategory -->
+        <div class="mb-3">
+            <label name="SubCategory" class="form-label">Subcategory</label>
+            <select class="form-select" name="SubCategory" required>
+                <option value="">Select subcategory</option>
+                <option value="fiction">Fiction</option>
+                <option value="non-fiction">Non-fiction</option>
+                <option value="religion">Religion</option>
+                <option value="business">Business</option>
+            </select>
+            <div class="invalid-feedback">Please select a subcategory.</div>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+            <label name="ItemDescription" class="form-label">Description</label>
+            <textarea class="form-control" name="ItemDescription" rows="3" required></textarea>
+            <div class="invalid-feedback">Please provide a description.</div>
+        </div>
+
+        <!-- Minimum Bid -->
+        <div class="mb-3">
+            <label name="MinimumBid" class="form-label">Minimum Bid ($)</label>
+            <input type="number" class="form-control" name="MinimumBid" min="0" step="0.01" required>
+            <div class="invalid-feedback">Please provide a valid starting bid.</div>
+        </div>
+
+        <!-- Bid Status -->
+        <div class="mb-3">
+            <label name="BidStatus" class="form-label">Bid Status</label>
+            <select class="form-select" name="BidStatus" required>
+                <option value="">Select status</option>
+                <option value="A">Active</option>
+                <option value="I">Inactive</option>
+            </select>
+            <div class="invalid-feedback">Please select a status.</div>
+        </div>
+
+        <!-- Auction Dates -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label name="BidStartDate" class="form-label">Auction Start Date</label>
+                <input type="datetime-local" class="form-control" name="BidStartDate" required>
+                <div class="invalid-feedback">Please provide a start date.</div>
+            </div>
+            <div class="col-md-6">
+                <label name="BidEndDate" class="form-label">Auction End Date</label>
+                <input type="datetime-local" class="form-control" name="BidEndDate" required>
+                <div class="invalid-feedback">Please provide an end date.</div>
+            </div>
+        </div>
+
+        <!-- Bid Increment -->
+        <div class="mb-3">
+            <label name="BidIncrement" class="form-label">Bid Increment ($)</label>
+            <input type="number" class="form-control" name="BidIncrement" min="0.01" step="0.01" value="1.00" required>
+            <div class="invalid-feedback">Please provide a bid increment.</div>
+        </div>
+
+        <!-- SellerId (Hidden or Selected based on your app) -->
+        <div class="mb-3">
+            <input type="hidden" name="SellerId" value="@Model.SellerId" />
+            <!-- Alternatively, if you want to provide a dropdown of sellers -->
+            <!--
+            <label name="SellerId" class="form-label">Select Seller</label>
+            <select class="form-select" name="SellerId" required>
+                <option value="">Select Seller</option>
+            @foreach (var seller in Model.Sellers)
+            {
+                        <option value="@seller.SellerId">@seller.SellerName</option>
+            }
+            </select>
+            -->
+        </div>
+
+        <!-- Submit -->
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-success px-4 py-2">
+                <i class="fas fa-save me-2"></i>Submit Book
+            </button>
+        </div>
+    </div>
+</form>
+
+
