@@ -176,22 +176,21 @@ namespace Auction_Project.controller
 
         // Add a new book listing
         [HttpPost]
-        public IActionResult AddBook(Books book, string selectedSubcategory)
+        public IActionResult AddBook(Books book, string Subcategory)
         {
             var login = HttpContext.Session.GetString("userSession");
 
             if (string.IsNullOrEmpty(login))
                 return RedirectToAction("Login");
 
-            // Set the Seller ID based on session
             book.SellerID = int.Parse(login);
-            book.SubCategory = selectedSubcategory;
+            book.SubCategory = Subcategory;
 
-            // Add the book to the DB
             _context.tbl_Books.Add(book);
             _context.SaveChanges();
 
-            return RedirectToAction("Books");
+            return RedirectToAction("Index", "User");
         }
+
     }
 }

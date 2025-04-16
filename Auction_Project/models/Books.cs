@@ -18,24 +18,25 @@ namespace Auction_Project.models
         [MaxLength(4000)]
         public string ItemDescription { get; set; }
 
-        [Column(TypeName = "char(1)")]
+        //[Column(TypeName = "char(1)")]
         [Required]
         public char BidStatus { get; set; } = 'A'; // Default value
 
         [Required]
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
         public DateTime BidStartDate { get; set; }
 
         [Required]
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
         public DateTime BidEndDate { get; set; }
 
-        [Column(TypeName = "decimal(10,2)")]
-        public decimal? BidIncrement { get; set; }
+        //[Column(TypeName = "decimal(10,2)")]
+        public decimal BidIncrement { get; set; }
 
-        [Column(TypeName = "decimal(10,2)")]
-        public decimal? MinimumBid { get; set; }
+        //[Column(TypeName = "decimal(10,2)")]
+        public decimal MinimumBid { get; set; }
 
+        [Required]
         [MaxLength(100)]
         public string SubCategory { get; set; } // <-- ADD THIS LINE
 

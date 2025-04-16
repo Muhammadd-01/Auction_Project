@@ -4,6 +4,7 @@ using Auction_Project;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Auction_Project.Migrations
 {
     [DbContext(typeof(AuctionClass))]
-    partial class AuctionClassModelSnapshot : ModelSnapshot
+    [Migration("20250416072750_n")]
+    partial class n
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,7 +76,7 @@ namespace Auction_Project.Migrations
                     b.Property<DateTime>("BidEndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("BidIncrement")
+                    b.Property<decimal?>("BidIncrement")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("BidStartDate")
@@ -97,7 +100,7 @@ namespace Auction_Project.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<decimal>("MinimumBid")
+                    b.Property<decimal?>("MinimumBid")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("SellerID")
