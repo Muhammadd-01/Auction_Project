@@ -9,7 +9,7 @@ namespace Auction_Project.models
 
 
             [MaxLength(255)]
-            public string Image { get; set; } = "/images/default-item.jpg"; // default image path
+            public string? Image { get; set; } = "/images/default-item.jpg"; // default image path
 
             [Required]
             [MaxLength(100)]
@@ -41,7 +41,7 @@ namespace Auction_Project.models
         public int SellerID { get; set; }
         public Seller Seller { get; set; }
 
-        public int CategoryID { get; set; }
-             public BookCategories BookCategories { get; set; }
+        //public int CategoryID { get; set; }
+        //     public BookCategories BookCategories { get; set; }
         }
 }

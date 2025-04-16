@@ -42,8 +42,8 @@ namespace Auction_Project.models
         public int SellerID { get; set; }
         public Seller Seller { get; set; }
 
-        public int CategoryID { get; set; }
-        public FurnitureCategories FurnitureCategories { get; set; }
+        //public int CategoryID { get; set; }
+        //public FurnitureCategories FurnitureCategories { get; set; }
 
 
     }

@@ -41,8 +41,8 @@ namespace Auction_Project.models
         public int SellerID { get; set; }
         public Seller Seller { get; set; }
 
-        public int CategoryID { get; set; }
-        public ElectronicCategories ElectronicCategories { get; set; }
+        //public int CategoryID { get; set; }
+        //public ElectronicCategories ElectronicCategories { get; set; }
 
     }
 }

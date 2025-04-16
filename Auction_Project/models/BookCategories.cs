@@ -7,6 +7,8 @@ namespace Auction_Project.models
         [Key]
         public int Id { get; set; }
        public string CategoryName { get; set; }
+       public string SubCategories { get; set; }
+
 
         public int BookId { get; set; }
         public List<Books> Books { get; set; }

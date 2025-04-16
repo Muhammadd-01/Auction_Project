@@ -21,9 +21,9 @@ namespace Auction_Project
 
 
         public DbSet<Auctions> tbl_Auctions { get; set; }
-        public DbSet<BookCategories> tbl_BookCategories { get; set; }
-        public DbSet<ElectronicCategories> tbl_ElectronicCategories { get; set; }
-        public DbSet<FurnitureCategories> tbl_FurnitureCategories { get; set; }
+        //public DbSet<BookCategories> tbl_BookCategories { get; set; }
+        //public DbSet<ElectronicCategories> tbl_ElectronicCategories { get; set; }
+        //public DbSet<FurnitureCategories> tbl_FurnitureCategories { get; set; }
 
         public DbSet<Electronics> tbl_Electronics { get; set; }
 
@@ -35,11 +35,11 @@ namespace Auction_Project
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Books>().HasOne(b=>b.Seller).WithMany(u=>u.Books).HasForeignKey(b=>b.SellerID);
-            modelBuilder.Entity<Books>().HasOne(b=>b.BookCategories).WithMany(u=>u.Books).HasForeignKey(b=>b.CategoryID);
+            //modelBuilder.Entity<Books>().HasOne(b=>b.BookCategories).WithMany(u=>u.Books).HasForeignKey(b=>b.CategoryID);
             modelBuilder.Entity<Electronics>().HasOne(e => e.Seller).WithMany(s => s.Electronics).HasForeignKey(e => e.SellerID);
-            modelBuilder.Entity<Electronics>().HasOne(e => e.ElectronicCategories).WithMany(u => u.Electronics).HasForeignKey(e => e.CategoryID);
+            //modelBuilder.Entity<Electronics>().HasOne(e => e.ElectronicCategories).WithMany(u => u.Electronics).HasForeignKey(e => e.CategoryID);
             modelBuilder.Entity<Furnitures>().HasOne(f => f.Seller).WithMany(u => u.Furnitures).HasForeignKey(f => f.SellerID);
-            modelBuilder.Entity<Furnitures>().HasOne(f => f.FurnitureCategories).WithMany(u => u.Furnitures).HasForeignKey(b => b.CategoryID);
+            //modelBuilder.Entity<Furnitures>().HasOne(f => f.FurnitureCategories).WithMany(u => u.Furnitures).HasForeignKey(b => b.CategoryID);
             modelBuilder.Entity<Seller>().HasOne(s => s.Users).WithMany(u => u.Seller).HasForeignKey(s => s.UserId);
         }
 
