@@ -1,43 +1,66 @@
 ﻿using Auction_Project;
 using Microsoft.AspNetCore.Mvc;
 using Auction_Project.models;
+
 namespace Auction_Project.controller
 {
     public class UserController : Controller
     {
+        private readonly AuctionClass _context;
+
+        // Constructor to inject context
+        public UserController(AuctionClass context)
+        {
+            _context = context;
+        }
+
+        // Home page (index)
         public IActionResult Index()
         {
             return View();
         }
+
+        // Search results page
         public IActionResult Searchresult()
         {
             return View();
         }
+
+        // All Items page
         public IActionResult Items()
         {
             return View();
         }
 
+        // Bidding page
         public IActionResult Bidding()
         {
             return View();
         }
+
+        // Bidder page
         public IActionResult Bidder()
         {
             return View();
         }
+
+        // Category Pages for Furniture, Electronics, Books, etc.
         public IActionResult Furnitures()
         {
             return View();
         }
+
         public IActionResult Electronics()
         {
             return View();
         }
+
         public IActionResult Books()
         {
             return View();
         }
+
+        // Add Seller page (requires login)
         public IActionResult AddSeller()
         {
             var login = HttpContext.Session.GetString("userSession");
@@ -49,37 +72,37 @@ namespace Auction_Project.controller
             {
                 return RedirectToAction("Login");
             }
-
         }
+
+        // POST: AddSeller (to save seller info)
         [HttpPost]
         public IActionResult AddSeller(Seller _seller)
         {
             var login = HttpContext.Session.GetString("userSession");
 
-            _seller.UserId = int.Parse(login);
-            _context.tbl_Seller.Add(_seller);
-            _context.SaveChanges();
-            return RedirectToAction("Profile");
+            if (login != null)
+            {
+                _seller.UserId = int.Parse(login);
+                _context.tbl_Seller.Add(_seller);
+                _context.SaveChanges();
+                return RedirectToAction("Profile");
+            }
+
+            return RedirectToAction("Login");
         }
-        public IActionResult About()
-        {
-            return View();
-        }
-        public IActionResult Notifications()
-        {
-            return View();
-        }
+
+        // Profile page (User info page)
         public IActionResult Profile()
         {
             var userIdString = HttpContext.Session.GetString("userSession");
 
             if (string.IsNullOrEmpty(userIdString))
-                return RedirectToAction("Login", "User"); // Not logged in
+                return RedirectToAction("Login", "User");
 
             // Check if the session value is "admin"
             if (userIdString == "admin")
             {
-                // If it's "admin", just redirect to the admin dashboard
+                // If it's "admin", redirect to the admin dashboard
                 return RedirectToAction("Dashboard", "Admin");
             }
 
@@ -93,26 +116,25 @@ namespace Auction_Project.controller
             var user = _context.tbl_Users.FirstOrDefault(u => u.id == userId);
 
             if (user == null)
-                return RedirectToAction("Login", "User"); // Safety check
+                return RedirectToAction("Login", "User");
 
-            return View(user); // Pass user data to the view
+            return View(user);
         }
 
-        // Logout action to explicitly clear session for both admin and user
+        // Logout action to clear session data
         public IActionResult Logout()
         {
-            // Clear session data
-            HttpContext.Session.Clear(); // Clear all session data
-
-            // Redirect to login page
+            HttpContext.Session.Clear();
             return RedirectToAction("Login", "User");
         }
 
-
+        // Login GET action
         public IActionResult Login()
         {
-            return View(); // Pass an empty Users model to the view
+            return View();
         }
+
+        // Login POST action
         [HttpPost]
         public IActionResult Login(string email, string password)
         {
@@ -128,75 +150,48 @@ namespace Auction_Project.controller
 
             if (user != null)
             {
-                // Store user ID or Name in session
                 HttpContext.Session.SetString("userSession", user.id.ToString());
-                HttpContext.Session.SetString("userName", user.username); // optional
-
-                return RedirectToAction("Index", "User"); // or wherever your homepage is
+                HttpContext.Session.SetString("userName", user.username);
+                return RedirectToAction("Index", "User");
             }
 
             ViewBag.Message = "Invalid credentials";
             return View();
         }
 
-
-
-        // POST: Login
-        //[HttpPost]
-        //public IActionResult Login(string email, string password)
-        //{
-        //    // Check for Admin login first
-        //    if (email == "admin@gmail.com" && password == "admin123")
-        //    {
-        //        // Set admin session here if admin logs in
-        //        HttpContext.Session.SetString("userSession", "admin");
-        //        return RedirectToAction("Dashboard", "Admin");
-        //    }
-
-        //    // Check for normal user in DB
-        //    var user = _context.tbl_Users.FirstOrDefault(u => u.email == email && u.password == password);
-
-        //    if (user != null)
-        //    {
-        //        // Set user session for a normal user
-        //        HttpContext.Session.SetString("userSession", user.id.ToString());
-        //        return RedirectToAction("Index", "User");
-        //    }
-
-        //    // Invalid credentials
-        //    ViewBag.Message = "Invalid Credentials";
-        //    return View();
-        //}
-
-
-
-        private readonly AuctionClass _context;
-
-        // Constructor
-        public UserController(AuctionClass context)
-        {
-            _context = context;
-        }
-
-        // GET: User/Register
+        // Register GET action
         public IActionResult Register()
         {
             return View();
         }
 
-        // POST: User/Register
+        // Register POST action
         [HttpPost]
         public IActionResult Register(Users user)
         {
-
-            // Add the user to the database
             _context.tbl_Users.Add(user);
             _context.SaveChanges();
-
-            // After successfully registering, redirect to the Login page
             return RedirectToAction("Login", "User");
+        }
 
+        // Add a new book listing
+        [HttpPost]
+        public IActionResult AddBook(Books book, string selectedSubcategory)
+        {
+            var login = HttpContext.Session.GetString("userSession");
 
+            if (string.IsNullOrEmpty(login))
+                return RedirectToAction("Login");
+
+            // Set the Seller ID based on session
+            book.SellerID = int.Parse(login);
+            book.SubCategory = selectedSubcategory;
+
+            // Add the book to the DB
+            _context.tbl_Books.Add(book);
+            _context.SaveChanges();
+
+            return RedirectToAction("Books");
         }
     }
 }

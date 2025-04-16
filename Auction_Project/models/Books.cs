@@ -36,9 +36,8 @@ namespace Auction_Project.models
         [Column(TypeName = "decimal(10,2)")]
         public decimal? MinimumBid { get; set; }
 
-        [Required]
         [MaxLength(100)]
-        public string Subcategory { get; set; } // <-- ADD THIS LINE
+        public string SubCategory { get; set; } // <-- ADD THIS LINE
 
         // Foreign key to User
         public int SellerID { get; set; }
