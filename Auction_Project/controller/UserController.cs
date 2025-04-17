@@ -33,12 +33,19 @@ namespace Auction_Project.controller
         }
 
         // All Items page
-        public IActionResult BookItems()
+        // Action to display the book item details
+        public IActionResult BookItems(int id)
         {
+            var book = _context.tbl_Books.FirstOrDefault(b => b.ItemID == id);
 
-            return View();
+            if (book == null)
+            {
+                return NotFound(); // Item not found
+            }
+
+            // Pass the book details to the view
+            return View(book);
         }
-
         // Bidding page
         public IActionResult Bidding()
         {
