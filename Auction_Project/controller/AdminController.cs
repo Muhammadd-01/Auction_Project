@@ -106,6 +106,30 @@ namespace Auction_Project.Controllers
             // Return the list of furniture to the view
             return View(furnitureList);
         }
+        // Method to delete a furniture item by its ItemID
+        public IActionResult DeleteFurniture(int id)
+        {
+            // Find the furniture item by its ItemID
+            var furnitureToDelete = _context.tbl_Furnitures.FirstOrDefault(f => f.ItemID == id);
+
+            if (furnitureToDelete != null)
+            {
+                // If the furniture item exists, remove it from the database
+                _context.tbl_Furnitures.Remove(furnitureToDelete);
+                _context.SaveChanges(); // Commit the changes to the database
+
+                // Optionally, display a success message (TempData can be used for this purpose)
+                TempData["msg"] = "Furniture item deleted successfully!";
+            }
+            else
+            {
+                // If the furniture item does not exist, you might want to show an error message
+                TempData["msg"] = "Furniture item not found!";
+            }
+
+            // Redirect back to the Furniture list
+            return RedirectToAction("Furniture");
+        }
 
 
         public IActionResult Electronics()
@@ -119,6 +143,31 @@ namespace Auction_Project.Controllers
             // Return the list of electronics to the view
             return View(electronicsList);
         }
+        // Method to delete an electronic item by its ItemID
+        public IActionResult DeleteElectronics(int id)
+        {
+            // Find the electronic item by its ItemID
+            var electronicsToDelete = _context.tbl_Electronics.FirstOrDefault(e => e.ItemID == id);
+
+            if (electronicsToDelete != null)
+            {
+                // If the electronic item exists, remove it from the database
+                _context.tbl_Electronics.Remove(electronicsToDelete);
+                _context.SaveChanges(); // Commit the changes to the database
+
+                // Optionally, display a success message (TempData can be used for this purpose)
+                TempData["msg"] = "Electronics item deleted successfully!";
+            }
+            else
+            {
+                // If the electronic item does not exist, you might want to show an error message
+                TempData["msg"] = "Electronics item not found!";
+            }
+
+            // Redirect back to the Electronics list
+            return RedirectToAction("Electronics");
+        }
+
 
 
         public IActionResult Page404()
