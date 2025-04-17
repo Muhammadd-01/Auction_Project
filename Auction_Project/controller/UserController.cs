@@ -265,7 +265,133 @@ namespace Auction_Project.controller
 
 
 
+        public IActionResult Add_Electronic()
+        {
+            var login = HttpContext.Session.GetString("userSession");
+            if (login != null)
+            {
+                var sellers = _context.tbl_Seller.FirstOrDefault(p => p.SellerId == int.Parse(login));
+                if (sellers != null)
+                {
+                    return View();
+                }
+                else
+                {
+                    TempData["msg"] = "please add yourself as seller first";
+                    return RedirectToAction("AddSeller", "User");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "User");
+            }
+        }
 
+        [HttpPost]
+        public IActionResult Add_Electronic(Electronics electronic, IFormFile ItemImage)
+        {
+            var login = HttpContext.Session.GetString("userSession");
+
+            if (login != null)
+            {
+                string extension = Path.GetExtension(ItemImage.FileName).ToLower();
+                if (extension == ".jpg" || extension == ".png" || extension == ".jpeg")
+                {
+                    Random rnd = new Random();
+                    string randomNum = rnd.Next(1000, 9999).ToString();
+                    string fileName = "electronic_" + randomNum + extension;
+
+                    string folderPath = Path.Combine(_webHostEnvironment.WebRootPath, "electronics_covers");
+                    string filePath = Path.Combine(folderPath, fileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        ItemImage.CopyTo(stream);
+                    }
+
+                    var seller = _context.tbl_Seller.FirstOrDefault(p => p.SellerId == int.Parse(login));
+                    electronic.SellerID = seller.SellerId;
+                    electronic.Electronic_cover = fileName; // Save only file name
+                    _context.tbl_Electronics.Add(electronic);
+                    _context.SaveChanges();
+
+                    TempData["msg"] = "Electronic item added successfully!";
+                    return RedirectToAction("Electronics", "User");
+                }
+                else
+                {
+                    TempData["msg"] = "Only JPG, PNG, and JPEG files are allowed.";
+                    return RedirectToAction("Electronics", "User");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "User");
+            }
+        }
+
+        public IActionResult Add_Furniture()
+        {
+            var login = HttpContext.Session.GetString("userSession");
+            if (login != null)
+            {
+                var sellers = _context.tbl_Seller.FirstOrDefault(p => p.SellerId == int.Parse(login));
+                if (sellers != null)
+                {
+                    return View();
+                }
+                else
+                {
+                    TempData["msg"] = "please add yourself as seller first";
+                    return RedirectToAction("AddSeller", "User");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "User");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Add_Furniture(Furnitures furniture, IFormFile ItemImage)
+        {
+            var login = HttpContext.Session.GetString("userSession");
+
+            if (login != null)
+            {
+                string extension = Path.GetExtension(ItemImage.FileName).ToLower();
+                if (extension == ".jpg" || extension == ".png" || extension == ".jpeg")
+                {
+                    Random rnd = new Random();
+                    string randomNum = rnd.Next(1000, 9999).ToString();
+                    string fileName = "furniture_" + randomNum + extension;
+
+                    string folderPath = Path.Combine(_webHostEnvironment.WebRootPath, "furnitures_covers");
+                    string filePath = Path.Combine(folderPath, fileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        ItemImage.CopyTo(stream);
+                    }
+
+                    var seller = _context.tbl_Seller.FirstOrDefault(p => p.SellerId == int.Parse(login));
+                    furniture.SellerID = seller.SellerId;
+                    furniture.Furniture_cover = fileName;
+                    _context.tbl_Furnitures.Add(furniture);
+                    _context.SaveChanges();
+
+                    TempData["msg"] = "Furniture item added successfully!";
+                    return RedirectToAction("Furnitures", "User");
+                }
+                else
+                {
+                    TempData["msg"] = "Only JPG, PNG, and JPEG files are allowed.";
+                    return RedirectToAction("Furnitures", "User");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "User");
+            }
+        }
 
 
 

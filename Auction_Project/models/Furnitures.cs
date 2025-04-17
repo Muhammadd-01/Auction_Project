@@ -7,44 +7,16 @@ namespace Auction_Project.models
     {
         [Key]
         public int ItemID { get; set; }
-
-        [MaxLength(255)]
-        public string? Image { get; set; } = "/images/default-item.jpg"; // default image path
-
-        [Required]
-        [MaxLength(100)]
         public string ItemTitle { get; set; }
-
-        [MaxLength(4000)]
+        public string Furniture_cover { get; set; }
+        public string SubCategory { get; set; }
         public string ItemDescription { get; set; }
-
-        [Column(TypeName = "char(1)")]
-        [Required]
-        public char BidStatus { get; set; } = 'A'; // Default value
-
-        [Required]
-        [DataType(DataType.Date)]
+        public decimal MinimumBid { get; set; }
+        public string BidStatus { get; set; }
         public DateTime BidStartDate { get; set; }
-
-        [Required]
-        [DataType(DataType.Date)]
         public DateTime BidEndDate { get; set; }
-
-        [Column(TypeName = "decimal(10,2)")]
-        public decimal? BidIncrement { get; set; }
-
-        [Column(TypeName = "decimal(10,2)")]
-        public decimal? MinimumBid { get; set; }
-
-        [Required]
-        [MaxLength(100)]
-        public string Subcategory { get; set; } // <-- ADD THIS LINE
-
-        // Foreign key to User
+        public decimal BidIncrement { get; set; }
         public int SellerID { get; set; }
         public Seller Seller { get; set; }
-
-        //public int CategoryID { get; set; }
-        //public BookCategories BookCategories { get; set; }
     }
 }
