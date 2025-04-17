@@ -35,6 +35,10 @@ namespace Auction_Project.controller
         // All Items page
         public IActionResult Items()
         {
+            //// Fetch books from the database
+            //var booksList = _context.tbl_Books.ToList();
+
+            //// Pass the list to the view
             return View();
         }
 
@@ -63,7 +67,8 @@ namespace Auction_Project.controller
 
         public IActionResult Books()
         {
-            return View();
+            var books = _context.tbl_Books.ToList(); // get all books from DB
+            return View(books); // send to view
         }
 
         // Add Seller page (requires login)
@@ -237,13 +242,13 @@ namespace Auction_Project.controller
                     _context.SaveChanges();
 
                     TempData["msg"] = "Book added successfully!";
-                    return RedirectToAction("Index", "User");
+                    return RedirectToAction("Books", "User");
                 }
 
                 else
                 {
                     TempData["msg"] = "Only JPG, PNG, and JPEG files are allowed.";
-                    return RedirectToAction("Index", "User");
+                    return RedirectToAction("Books", "User");
                 }
             }
             else
@@ -251,6 +256,7 @@ namespace Auction_Project.controller
                 return RedirectToAction("Login", "User");
             }
         }
+
 
 
 
