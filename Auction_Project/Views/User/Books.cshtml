@@ -331,7 +331,9 @@
                                         <span class="current-bid" style="font-weight: bold; color: #000;">Rs. @book.MinimumBid</span>
                                         <small class="text-muted" style="font-size: 0.8rem;">Minimum Bid</small>
                                     </div>
-                                    <a href="@Url.Action("Items", "User", new { id = book.ItemID })" class="btn btn-primary" style="background-color: #007bff; border-color: #007bff; padding: 8px 16px; font-size: 0.9rem; border-radius: 5px;">Bid Now</a>
+                                    <a href="@Url.Action("BookItems", "User", new { id = book.ItemID })" class="btn btn-primary" style="background-color: #007bff; border-color: #007bff; padding: 8px 16px; font-size: 0.9rem; border-radius: 5px;">
+                                        Bid Now
+                                    </a>
                                 </div>
                             </div>
                         </div>
