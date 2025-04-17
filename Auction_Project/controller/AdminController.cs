@@ -95,7 +95,7 @@ namespace Auction_Project.Controllers
             return RedirectToAction("Books"); // or RedirectToAction("AllBooks");
         }
 
-        public IActionResult Furniture()
+        public IActionResult Furnitures()
         {
             // Fetch the list of furniture from the database
             var furnitureList = _context.tbl_Furnitures.ToList();
