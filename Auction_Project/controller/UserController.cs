@@ -1,6 +1,8 @@
 ﻿using Auction_Project;
 using Microsoft.AspNetCore.Mvc;
 using Auction_Project.models;
+using Microsoft.AspNetCore.Hosting;
+//using Microsoft_ebHostEnvironment;
 
 namespace Auction_Project.controller
 {
@@ -8,9 +10,13 @@ namespace Auction_Project.controller
     {
         private readonly AuctionClass _context;
 
-        // Constructor to inject context
-        public UserController(AuctionClass context)
+
+        private readonly IWebHostEnvironment _webHostEnvironment;
+
+
+        public UserController(AuctionClass context, IWebHostEnvironment webHostEnvironment)
         {
+            _webHostEnvironment = webHostEnvironment;
             _context = context;
         }
 
@@ -173,21 +179,83 @@ namespace Auction_Project.controller
             _context.SaveChanges();
             return RedirectToAction("Login", "User");
         }
-        public IActionResult AddBook()
+        public IActionResult Add_Book()
         {
-            var sellers = _context.tbl_Seller.ToList(); // Fetch sellers from your database
+            var login = HttpContext.Session.GetString("userSession");
+            if (login != null)
+            {
+                var sellers = _context.tbl_Seller.FirstOrDefault(p => p.SellerId == int.Parse(login));
+                if (sellers != null)
+                {
 
-            return View(sellers);
+                    return View();
+                }
+                else
+                {
+                    TempData["msg"] = "please add  yourself as seller first";
+                    return RedirectToAction("AddSeller", "User");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "User");
+
+            }
+
         }
+
 
 
         [HttpPost]
-        public IActionResult AddBook(Books book)
+
+        public IActionResult Add_Book(Books book, IFormFile ItemImage)
         {
-            _context.tbl_Books.Add(book);
-            _context.SaveChanges();
-            return RedirectToAction("Index","User");
+            var login = HttpContext.Session.GetString("userSession");
+
+            if (login != null)
+            {
+
+                string extension = Path.GetExtension(ItemImage.FileName).ToLower();
+                if (extension == ".jpg" || extension == ".png" || extension == ".jpeg")
+                {
+                    Random rnd = new Random();
+                    string randomNum = rnd.Next(1000, 9999).ToString();
+                    string fileName = "book_" + randomNum + extension;
+
+                    string folderPath = Path.Combine(_webHostEnvironment.WebRootPath, "books_covers");
+
+
+                    string filePath = Path.Combine(folderPath, fileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        ItemImage.CopyTo(stream);
+                    }
+                    var seller = _context.tbl_Seller.FirstOrDefault(p => p.SellerId == int.Parse(login));
+                    book.SellerID = seller.SellerId;
+                    book.book_cover = fileName; // Save only file name in DB
+                    _context.tbl_Books.Add(book);
+                    _context.SaveChanges();
+
+                    TempData["msg"] = "Book added successfully!";
+                    return RedirectToAction("Index", "User");
+                }
+
+                else
+                {
+                    TempData["msg"] = "Only JPG, PNG, and JPEG files are allowed.";
+                    return RedirectToAction("Index", "User");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "User");
+            }
         }
+
+
+
+
+
 
 
 

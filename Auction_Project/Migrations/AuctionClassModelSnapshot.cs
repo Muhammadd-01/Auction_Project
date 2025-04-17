@@ -101,6 +101,10 @@ namespace Auction_Project.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("book_cover")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ItemID");
 
                     b.HasIndex("SellerID");

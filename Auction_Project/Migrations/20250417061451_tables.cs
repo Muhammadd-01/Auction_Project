@@ -1,0 +1,216 @@
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace Auction_Project.Migrations
+{
+    /// <inheritdoc />
+    public partial class tables : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "tbl_Auctions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CurrentHighestBid = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbl_Auctions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tbl_Ratings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Score = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbl_Ratings", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tbl_Users",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    firstname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    lastname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbl_Users", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tbl_Seller",
+                columns: table => new
+                {
+                    SellerId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SellerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SellerEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SellerBio = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbl_Seller", x => x.SellerId);
+                    table.ForeignKey(
+                        name: "FK_tbl_Seller_tbl_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "tbl_Users",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tbl_Books",
+                columns: table => new
+                {
+                    ItemID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ItemTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    book_cover = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SubCategory = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ItemDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MinimumBid = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    BidStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BidStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BidEndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BidIncrement = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SellerID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbl_Books", x => x.ItemID);
+                    table.ForeignKey(
+                        name: "FK_tbl_Books_tbl_Seller_SellerID",
+                        column: x => x.SellerID,
+                        principalTable: "tbl_Seller",
+                        principalColumn: "SellerId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tbl_Electronics",
+                columns: table => new
+                {
+                    ItemID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Image = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    ItemTitle = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ItemDescription = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
+                    BidStatus = table.Column<string>(type: "char(1)", nullable: false),
+                    BidStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BidEndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BidIncrement = table.Column<decimal>(type: "decimal(10,2)", nullable: true),
+                    MinimumBid = table.Column<decimal>(type: "decimal(10,2)", nullable: true),
+                    Subcategory = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    SellerID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbl_Electronics", x => x.ItemID);
+                    table.ForeignKey(
+                        name: "FK_tbl_Electronics_tbl_Seller_SellerID",
+                        column: x => x.SellerID,
+                        principalTable: "tbl_Seller",
+                        principalColumn: "SellerId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tbl_Furnitures",
+                columns: table => new
+                {
+                    ItemID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Image = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    ItemTitle = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ItemDescription = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
+                    BidStatus = table.Column<string>(type: "char(1)", nullable: false),
+                    BidStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BidEndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BidIncrement = table.Column<decimal>(type: "decimal(10,2)", nullable: true),
+                    MinimumBid = table.Column<decimal>(type: "decimal(10,2)", nullable: true),
+                    Subcategory = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    SellerID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbl_Furnitures", x => x.ItemID);
+                    table.ForeignKey(
+                        name: "FK_tbl_Furnitures_tbl_Seller_SellerID",
+                        column: x => x.SellerID,
+                        principalTable: "tbl_Seller",
+                        principalColumn: "SellerId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tbl_Books_SellerID",
+                table: "tbl_Books",
+                column: "SellerID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tbl_Electronics_SellerID",
+                table: "tbl_Electronics",
+                column: "SellerID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tbl_Furnitures_SellerID",
+                table: "tbl_Furnitures",
+                column: "SellerID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tbl_Seller_UserId",
+                table: "tbl_Seller",
+                column: "UserId");
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "tbl_Auctions");
+
+            migrationBuilder.DropTable(
+                name: "tbl_Books");
+
+            migrationBuilder.DropTable(
+                name: "tbl_Electronics");
+
+            migrationBuilder.DropTable(
+                name: "tbl_Furnitures");
+
+            migrationBuilder.DropTable(
+                name: "tbl_Ratings");
+
+            migrationBuilder.DropTable(
+                name: "tbl_Seller");
+
+            migrationBuilder.DropTable(
+                name: "tbl_Users");
+        }
+    }
+}

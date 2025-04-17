@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Auction_Project.models
 {
     public class Books
-{
+    {
         [Key]
         public int ItemID { get; set; }
         public string ItemTitle { get; set; }
+        public string book_cover { get; set; }
         public string SubCategory { get; set; }
         public string ItemDescription { get; set; }
         public decimal MinimumBid { get; set; }
@@ -17,6 +18,6 @@ namespace Auction_Project.models
         public decimal BidIncrement { get; set; }
         public int SellerID { get; set; }
         public Seller Seller { get; set; }
-}
+    }
 
 }

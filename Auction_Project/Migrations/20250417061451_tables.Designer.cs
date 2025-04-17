@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Auction_Project.Migrations
 {
     [DbContext(typeof(AuctionClass))]
-    [Migration("20250416062026_f")]
-    partial class f
+    [Migration("20250417061451_tables")]
+    partial class tables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,40 +76,37 @@ namespace Auction_Project.Migrations
                     b.Property<DateTime>("BidEndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal?>("BidIncrement")
-                        .HasColumnType("decimal(10,2)");
+                    b.Property<decimal>("BidIncrement")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("BidStartDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("BidStatus")
                         .IsRequired()
-                        .HasColumnType("char(1)");
-
-                    b.Property<string>("Image")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ItemDescription")
                         .IsRequired()
-                        .HasMaxLength(4000)
-                        .HasColumnType("nvarchar(4000)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ItemTitle")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("MinimumBid")
-                        .HasColumnType("decimal(10,2)");
+                    b.Property<decimal>("MinimumBid")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("SellerID")
                         .HasColumnType("int");
 
-                    b.Property<string>("Subcategory")
+                    b.Property<string>("SubCategory")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("book_cover")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ItemID");
 
