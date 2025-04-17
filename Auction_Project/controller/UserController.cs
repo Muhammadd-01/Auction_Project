@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Auction_Project.models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 //using Microsoft_ebHostEnvironment;
 
 namespace Auction_Project.controller
@@ -36,14 +37,15 @@ namespace Auction_Project.controller
         // Action to display the book item details
         public IActionResult BookItems(int id)
         {
-            var book = _context.tbl_Books.FirstOrDefault(b => b.ItemID == id);
+            var book = _context.tbl_Books
+                        .Include(b => b.Seller) // 👈 This will load the related Seller
+                        .FirstOrDefault(b => b.ItemID == id);
 
             if (book == null)
             {
                 return NotFound(); // Item not found
             }
 
-            // Pass the book details to the view
             return View(book);
         }
         // Bidding page
