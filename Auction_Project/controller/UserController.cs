@@ -33,12 +33,9 @@ namespace Auction_Project.controller
         }
 
         // All Items page
-        public IActionResult Items()
+        public IActionResult BookItems()
         {
-            //// Fetch books from the database
-            //var booksList = _context.tbl_Books.ToList();
 
-            //// Pass the list to the view
             return View();
         }
 
