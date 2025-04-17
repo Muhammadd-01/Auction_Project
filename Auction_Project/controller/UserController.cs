@@ -48,6 +48,35 @@ namespace Auction_Project.controller
 
             return View(book);
         }
+        // Action to display the electronic item details
+        public IActionResult ElectronicItems(int id)
+        {
+            var electronic = _context.tbl_Electronics
+                                .Include(e => e.Seller) // Load related Seller
+                                .FirstOrDefault(e => e.ItemID == id);
+
+            if (electronic == null)
+            {
+                return NotFound(); // Item not found
+            }
+
+            return View(electronic);
+        }
+        // Action to display the furniture item details
+        public IActionResult FurnitureItems(int id)
+        {
+            var furniture = _context.tbl_Furnitures
+                                .Include(f => f.Seller) // Load related Seller
+                                .FirstOrDefault(f => f.ItemID == id);
+
+            if (furniture == null)
+            {
+                return NotFound(); // Item not found
+            }
+
+            return View(furniture);
+        }
+
         // Bidding page
         public IActionResult Bidding()
         {

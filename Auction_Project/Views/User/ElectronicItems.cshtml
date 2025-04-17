@@ -1,0 +1,337 @@
+﻿@model Auction_Project.models.Electronics
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!-- Electronics Item Details Section -->
+<section class="item-details py-5" style="background: linear-gradient(to bottom, #f8f9fa, #ffffff);">
+    <div class="container">
+        <div class="row">
+            <!-- Item Images -->
+            <div class="col-lg-6 mb-4" data-aos="fade-up">
+                <div class="item-images-container" style="position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <div class="main-image-wrapper" style="position: relative; overflow: hidden; border-radius: 12px;">
+                        <img src="~/electronics_covers/@Model.Electronic_cover" alt="@Model.ItemTitle" class="img-fluid" style="width: 100%; height: auto; transition: transform 0.5s ease; object-fit: cover;" />
+                        <div class="image-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.01), rgba(0,0,0,0.3)); display: flex; align-items: flex-end; padding: 20px;">
+                            <span class="badge bg-primary" style="position: absolute; top: 20px; right: 20px; font-size: 14px; padding: 8px 15px; border-radius: 30px;">Featured</span>
+                        </div>
+                    </div>
+                    <div class="item-details-badge" style="position: absolute; bottom: 20px; left: 20px; background-color: rgba(255,255,255,0.9); padding: 10px 15px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <div style="font-weight: 600; color: #333;">@Model.SubCategory</div>
+                    </div>
+                </div>
+
+                <!-- Item Description -->
+                <div class="item-name-desc mt-4 p-4" style="background-color: #f8f9fa; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                    <h4 class="text-center fw-bold mb-2">Item Description</h4>
+                    <hr />
+                    <p class="text-muted" style="text-align: justify;">@Model.ItemDescription</p>
+                </div>
+            </div>
+
+            <!-- Item Info -->
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="item-info p-4" style="background-color: #ffffff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <h4 class="fw-bold" style="font-size: 2rem; color: #212529;">Item Title:-</h4>
+                            <h1 class="item-title" style="font-size: 2.5rem; font-weight: 700; color: #212529; margin-bottom: 5px;">@Model.ItemTitle</h1>
+                        </div>
+                        <button class="btn watch-btn" style="background-color: transparent; border: none; color: #dc3545; font-size: 1.5rem;">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+
+                    <div class="auction-info mb-4" style="background: linear-gradient(to right, #f8f9fa, #ffffff); border-radius: 10px; padding: 20px; border-left: 4px solid #0d6efd;">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <h5 class="text-secondary mb-2">Start Time</h5>
+                                <p class="fw-bold text-dark">@Model.BidStartDate.ToString("MMM dd, yyyy 'at' hh:mm tt")</p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <h5 class="text-secondary mb-2">End Time</h5>
+                                <p class="fw-bold text-danger">@Model.BidEndDate.ToString("MMM dd, yyyy 'at' hh:mm tt")</p>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <h5 class="text-secondary mb-2">Time Left</h5>
+                                <div id="auctionCountdown" class="fw-bold text-primary" style="font-size: 1.5rem;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bid-form mb-4" style="background-color: #f8f9fa; border-radius: 10px; padding: 20px;">
+                        <h5 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 15px; color: #212529;">Place Your Bid</h5>
+                        <form asp-action="PlaceBid" asp-controller="Auction" method="post">
+                            <input type="hidden" name="itemId" value="@Model.ItemID" />
+                            <div class="row g-2">
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-primary text-white border-0">$</span>
+                                        <input type="number" class="form-control" name="bidAmount" placeholder="Enter bid amount" min="@(Model.MinimumBid + 25)" step="25" required />
+                                    </div>
+                                    <div class="form-text mt-1 text-muted">Minimum bid: $@((Model.MinimumBid + 25.00M).ToString("F2"))</div>
+                                </div>
+                                <div class="col-md-5">
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        <i class="fas fa-gavel me-2"></i>Place Bid
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Seller Info Section -->
+                    <div class="seller-info mt-4" style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <h5 class="mb-3" style="font-weight: 600; color: #212529;">Seller Information</h5>
+                        <div class="d-flex justify-content-start align-items-center mb-3">
+                            <div class="seller-name" style="font-size: 1.2rem; font-weight: 600; color: #333;">@Model.Seller.SellerName</div>
+                        </div>
+                        <div class="seller-description" style="line-height: 1.7; color: #495057;">
+                            <h6 class="fw-semibold text-secondary mb-2">Seller Bio</h6>
+                            <p>@Model.Seller.SellerBio</p>
+                        </div>
+                    </div>
+
+                    <!-- Bidding History Button -->
+                    <div class="bidding-history mt-4">
+                        <a href="/Auction/History/@Model.ItemID" class="btn w-100" style="background-color: #800000; color: white;">
+                            <i class="fas fa-history me-2"></i> Bidding History
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Similar Items Section -->
+<section class="similar-items py-5" style="background-color: #f8f9fa;">
+    <div class="container">
+        <h2 class="section-title mb-4" data-aos="fade-up" style="font-weight: 700; color: #212529; position: relative; padding-bottom: 10px;">
+            Similar Items
+            <span style="position: absolute; bottom: 0; left: 0; width: 60px; height: 3px; background-color: #0d6efd;"></span>
+        </h2>
+        <div class="row">
+            <!-- Similar Item 1 -->
+            <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card h-100" style="border: none; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <div class="card-img-container" style="position: relative;">
+                        <img src="https://images.unsplash.com/photo-1512790182412-b19e6d62bc39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Vintage Nikon Camera" style="height: 200px; object-fit: cover;">
+                        <div class="time-left" style="position: absolute; bottom: 10px; left: 10px; background-color: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 20px; font-size: 0.8rem;">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown">5d 10h 15m</span>
+                        </div>
+                    </div>
+                    <div class="card-body" style="padding: 20px;">
+                        <h5 class="card-title" style="font-weight: 600; margin-bottom: 10px; color: #212529;">Vintage Nikon F2 Camera</h5>
+                        <p class="card-text" style="color: #6c757d; font-size: 0.9rem; height: 40px; overflow: hidden;">1975 Nikon F2 with 50mm lens and original case.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid" style="font-weight: 700; color: #0d6efd; font-size: 1.2rem;">$850</span>
+                                <small class="text-muted d-block" style="font-size: 0.8rem;">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items", "User")" class="btn btn-primary" style="border-radius: 20px; padding: 5px 15px; font-weight: 600; font-size: 0.9rem;">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Similar Item 2 -->
+            <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="card h-100" style="border: none; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <div class="card-img-container" style="position: relative;">
+                        <img src="https://images.unsplash.com/photo-1519638831568-d9897f54ed69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Vintage Lens" style="height: 200px; object-fit: cover;">
+                        <div class="time-left" style="position: absolute; bottom: 10px; left: 10px; background-color: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 20px; font-size: 0.8rem;">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown">3d 4h 45m</span>
+                        </div>
+                    </div>
+                    <div class="card-body" style="padding: 20px;">
+                        <h5 class="card-title" style="font-weight: 600; margin-bottom: 10px; color: #212529;">Leica Summilux Lens</h5>
+                        <p class="card-text" style="color: #6c757d; font-size: 0.9rem; height: 40px; overflow: hidden;">Rare Leica Summilux 50mm f/1.4 lens in excellent condition.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid" style="font-weight: 700; color: #0d6efd; font-size: 1.2rem;">$1,100</span>
+                                <small class="text-muted d-block" style="font-size: 0.8rem;">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items", "User")" class="btn btn-primary" style="border-radius: 20px; padding: 5px 15px; font-weight: 600; font-size: 0.9rem;">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Similar Item 3 -->
+            <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="card h-100" style="border: none; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <div class="card-img-container" style="position: relative;">
+                        <img src="https://images.unsplash.com/photo-1599912248916-89e2b8e0395a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Vintage Film" style="height: 200px; object-fit: cover;">
+                        <div class="time-left" style="position: absolute; bottom: 10px; left: 10px; background-color: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 20px; font-size: 0.8rem;">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown">2d 1h 30m</span>
+                        </div>
+                    </div>
+                    <div class="card-body" style="padding: 20px;">
+                        <h5 class="card-title" style="font-weight: 600; margin-bottom: 10px; color: #212529;">Vintage Film Collection</h5>
+                        <p class="card-text" style="color: #6c757d; font-size: 0.9rem; height: 40px; overflow: hidden;">Collection of 10 rolls of expired Kodak and Fuji film from the 1980s.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid" style="font-weight: 700; color: #0d6efd; font-size: 1.2rem;">$125</span>
+                                <small class="text-muted d-block" style="font-size: 0.8rem;">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items", "User")" class="btn btn-primary" style="border-radius: 20px; padding: 5px 15px; font-weight: 600; font-size: 0.9rem;">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Similar Item 4 -->
+            <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="card h-100" style="border: none; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <div class="card-img-container" style="position: relative;">
+                        <img src="https://images.unsplash.com/photo-1607462109225-6b64ae2dd3cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Camera Bag" style="height: 200px; object-fit: cover;">
+                        <div class="time-left" style="position: absolute; bottom: 10px; left: 10px; background-color: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 20px; font-size: 0.8rem;">
+                            <i class="fas fa-clock me-1"></i>
+                            <span class="countdown">4d 6h 15m</span>
+                        </div>
+                    </div>
+                    <div class="card-body" style="padding: 20px;">
+                        <h5 class="card-title" style="font-weight: 600; margin-bottom: 10px; color: #212529;">Vintage Leather Camera Bag</h5>
+                        <p class="card-text" style="color: #6c757d; font-size: 0.9rem; height: 40px; overflow: hidden;">1960s leather camera bag with original strap and compartments.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="bid-info">
+                                <span class="current-bid" style="font-weight: 700; color: #0d6efd; font-size: 1.2rem;">$95</span>
+                                <small class="text-muted d-block" style="font-size: 0.8rem;">Current Bid</small>
+                            </div>
+                            <a href="@Url.Action("Items", "User")" class="btn btn-primary" style="border-radius: 20px; padding: 5px 15px; font-weight: 600; font-size: 0.9rem;">Bid Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Bid History Modal -->
+<div class="modal fade" id="bidHistoryModal" tabindex="-1" aria-labelledby="bidHistoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border: none; border-radius: 15px; overflow: hidden;">
+            <div class="modal-header" style="background-color: #f8f9fa; border-bottom: 1px solid #e9ecef;">
+                <h5 class="modal-title" id="bidHistoryModalLabel" style="font-weight: 600; color: #212529;">Bid History</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table" style="margin-bottom: 0;">
+                        <thead>
+                            <tr style="background-color: #f8f9fa;">
+                                <th style="padding: 12px 15px; font-weight: 600; color: #495057; border-top: none;">Bidder</th>
+                                <th style="padding: 12px 15px; font-weight: 600; color: #495057; border-top: none;">Amount</th>
+                                <th style="padding: 12px 15px; font-weight: 600; color: #495057; border-top: none;">Date & Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 12px 15px; vertical-align: middle;">c***r</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; font-weight: 600; color: #0d6efd;">$1,250.00</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; color: #6c757d; font-size: 0.9rem;">Dec 29, 2023 14:32</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 15px; vertical-align: middle;">v***e</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; font-weight: 600; color: #0d6efd;">$1,225.00</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; color: #6c757d; font-size: 0.9rem;">Dec 29, 2023 10:15</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 15px; vertical-align: middle;">c***r</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; font-weight: 600; color: #0d6efd;">$1,200.00</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; color: #6c757d; font-size: 0.9rem;">Dec 28, 2023 22:47</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 15px; vertical-align: middle;">p***l</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; font-weight: 600; color: #0d6efd;">$1,175.00</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; color: #6c757d; font-size: 0.9rem;">Dec 28, 2023 18:03</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 15px; vertical-align: middle;">v***e</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; font-weight: 600; color: #0d6efd;">$1,150.00</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; color: #6c757d; font-size: 0.9rem;">Dec 28, 2023 15:22</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 15px; vertical-align: middle;">a***z</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; font-weight: 600; color: #0d6efd;">$1,125.00</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; color: #6c757d; font-size: 0.9rem;">Dec 27, 2023 09:11</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 15px; vertical-align: middle;">j***n</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; font-weight: 600; color: #0d6efd;">$1,100.00</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; color: #6c757d; font-size: 0.9rem;">Dec 26, 2023 20:45</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 15px; vertical-align: middle;">m***s</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; font-weight: 600; color: #0d6efd;">$1,075.00</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; color: #6c757d; font-size: 0.9rem;">Dec 26, 2023 14:30</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 15px; vertical-align: middle;">t***r</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; font-weight: 600; color: #0d6efd;">$1,050.00</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; color: #6c757d; font-size: 0.9rem;">Dec 25, 2023 11:18</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 15px; vertical-align: middle;">b***e</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; font-weight: 600; color: #0d6efd;">$1,025.00</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; color: #6c757d; font-size: 0.9rem;">Dec 25, 2023 08:05</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 15px; vertical-align: middle;">s***h</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; font-weight: 600; color: #0d6efd;">$1,000.00</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; color: #6c757d; font-size: 0.9rem;">Dec 24, 2023 16:42</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 15px; vertical-align: middle;">VintageCollector58</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; font-weight: 600; color: #0d6efd;">$975.00</td>
+                                <td style="padding: 12px 15px; vertical-align: middle; color: #6c757d; font-size: 0.9rem;">Dec 24, 2023 10:00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer" style="background-color: #f8f9fa; border-top: 1px solid #e9ecef;">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="border-radius: 8px; padding: 8px 16px; font-weight: 500;">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add custom JavaScript for countdown timer -->
+<script>
+    function startCountdown(endTime) {
+        const countdown = document.getElementById('auctionCountdown');
+        const end = new Date(endTime).getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = end - now;
+
+            if (diff <= 0) {
+                countdown.textContent = "Auction ended";
+                clearInterval(timer);
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            countdown.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        updateCountdown(); // Initial call
+        const timer = setInterval(updateCountdown, 1000);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        startCountdown("@Model.BidEndDate.ToString("yyyy-MM-ddTHH:mm:ss")");
+    });
+</script>
