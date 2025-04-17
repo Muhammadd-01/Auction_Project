@@ -176,3 +176,41 @@
         </div>
     </div>
 </div>
+<!-- Electronics Listings Section -->
+<section class="category-listings py-5">
+    <div class="container">
+        <div class="row" id="electronicsContainer">
+            <div class="row">
+                @foreach (var electronic in Model)
+                {
+                    <div class="col-md-4 col-lg-3 mb-4 item-card" data-aos="fade-up" data-aos-delay="200" style="display: flex; flex-wrap: wrap; padding: 10px;">
+                        <div class="card h-100" style="border: 1px solid #ddd; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                            <div class="card-img-container position-relative">
+                                <img src="~/electronics_covers/@electronic.Electronic_cover" class="card-img-top" alt="@electronic.ItemTitle" style="object-fit: cover; height: 250px; width: 100%;">
+                                <div class="time-left position-absolute top-0 end-0 m-2 bg-dark text-white px-2 py-1 rounded" style="background-color: rgba(0, 0, 0, 0.6);">
+                                    <i class="fas fa-clock me-1"></i>
+                                    <span class="countdown" data-time="@electronic.BidEndDate.ToString("yyyy-MM-ddTHH:mm:ss")">
+                                        @((electronic.BidEndDate - DateTime.Now).Days)d @((electronic.BidEndDate - DateTime.Now).Hours)h @((electronic.BidEndDate - DateTime.Now).Minutes)m
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-body" style="padding: 15px;">
+                                <h5 class="card-title" style="font-size: 1.1rem; font-weight: bold; color: #333;">@electronic.ItemTitle</h5>
+                                <p class="card-text" style="font-size: 0.9rem; color: #555;">@electronic.ItemDescription</p>
+                                <div class="d-flex justify-content-between align-items-center" style="margin-top: 10px;">
+                                    <div class="bid-info" style="font-size: 1rem;">
+                                        <span class="current-bid" style="font-weight: bold; color: #000;">Rs. @electronic.MinimumBid</span>
+                                        <small class="text-muted" style="font-size: 0.8rem;">Minimum Bid</small>
+                                    </div>
+                                    <a href="@Url.Action("ElectronicItems", "User", new { id = electronic.ItemID })" class="btn btn-primary" style="background-color: #007bff; border-color: #007bff; padding: 8px 16px; font-size: 0.9rem; border-radius: 5px;">
+                                        Bid Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

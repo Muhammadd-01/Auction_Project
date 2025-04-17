@@ -63,12 +63,14 @@ namespace Auction_Project.controller
         // Category Pages for Furniture, Electronics, Books, etc.
         public IActionResult Furnitures()
         {
-            return View();
+            var furnitures = _context.tbl_Furnitures.ToList(); // get all books from DB
+            return View(furnitures); // send to view
         }
 
         public IActionResult Electronics()
         {
-            return View();
+            var electronics = _context.tbl_Electronics.ToList(); // get all books from DB
+            return View(electronics); // send to view
         }
 
         public IActionResult Books()
