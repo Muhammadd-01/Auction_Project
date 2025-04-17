@@ -39,6 +39,6 @@ app.UseAuthorization();   // If using [Authorize] anywhere
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Admin}/{action=Dashboard}/{id?}"); // Default route
+    pattern: "{controller=User}/{action=Index}/{id?}"); // Default route
 
 app.Run();
