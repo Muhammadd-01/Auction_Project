@@ -63,7 +63,36 @@ namespace Auction_Project.Controllers
 
         public IActionResult Books()
         {
-            return View();
+            var booksList = _context.tbl_Books.ToList();
+
+            // Log to confirm if data is fetched properly
+            Console.WriteLine($"Fetched {booksList.Count} books.");
+
+            return View(booksList);
+        }
+        // Method to delete a book by its ItemID
+        public IActionResult DeleteBook(int id)
+        {
+            // Find the book by its ItemID
+            var bookToDelete = _context.tbl_Books.FirstOrDefault(b => b.ItemID == id);
+
+            if (bookToDelete != null)
+            {
+                // If the book exists, remove it from the database
+                _context.tbl_Books.Remove(bookToDelete);
+                _context.SaveChanges(); // Commit the changes to the database
+
+                // Optionally, display a success message (TempData can be used for this purpose)
+                TempData["msg"] = "Book deleted successfully!";
+            }
+            else
+            {
+                // If the book does not exist, you might want to show an error message
+                TempData["msg"] = "Book not found!";
+            }
+
+            // Redirect back to the Books list (or AllBooks)
+            return RedirectToAction("Books"); // or RedirectToAction("AllBooks");
         }
 
         public IActionResult Furnitures()
@@ -107,6 +136,10 @@ namespace Auction_Project.Controllers
 
             return View(seller);
         }
+
+
+
+
 
     }
 }
