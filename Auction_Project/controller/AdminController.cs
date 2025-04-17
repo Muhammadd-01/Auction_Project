@@ -95,15 +95,31 @@ namespace Auction_Project.Controllers
             return RedirectToAction("Books"); // or RedirectToAction("AllBooks");
         }
 
-        public IActionResult Furnitures()
+        public IActionResult Furniture()
         {
-            return View();
+            // Fetch the list of furniture from the database
+            var furnitureList = _context.tbl_Furnitures.ToList();
+
+            // Log to confirm if data is fetched properly
+            Console.WriteLine($"Fetched {furnitureList.Count} furniture items.");
+
+            // Return the list of furniture to the view
+            return View(furnitureList);
         }
+
 
         public IActionResult Electronics()
         {
-            return View();
+            // Fetch the list of electronics from the database
+            var electronicsList = _context.tbl_Electronics.ToList();
+
+            // Log to confirm if data is fetched properly
+            Console.WriteLine($"Fetched {electronicsList.Count} electronics.");
+
+            // Return the list of electronics to the view
+            return View(electronicsList);
         }
+
 
         public IActionResult Page404()
         {
