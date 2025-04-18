@@ -50,7 +50,8 @@ namespace Auction_Project.Controllers
         }
         public IActionResult Category()
         {
-            return View();
+            var categories = _context.tbl_Categories.ToList();
+            return View(categories);
         }
 
         public IActionResult AddItems()
@@ -231,7 +232,7 @@ namespace Auction_Project.Controllers
                 _context.SaveChanges();
 
                 TempData["Success"] = "Category added successfully!";
-                return RedirectToAction("Dashboard", "Admin");
+                return RedirectToAction("Category", "Admin");
             }
 
             return View(category);
@@ -239,6 +240,19 @@ namespace Auction_Project.Controllers
 
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteCategory(int id)
+        {
+            var category = _context.tbl_Categories.FirstOrDefault(c => c.Id == id);
+            if (category != null)
+            {
+                _context.tbl_Categories.Remove(category);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Category"); // or whatever view you're using
+        }
 
 
     }
