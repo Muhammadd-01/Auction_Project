@@ -107,7 +107,15 @@
                             <h6 class="fw-semibold text-secondary">Seller Bio</h6>
                             <p>@Model.Seller.SellerBio</p>
                         </div>
+
+                        <!-- Button to Visit Seller Profile -->
+                        <div class="text-end mt-3">
+                            <a href="@Url.Action("Profile", "User")" class="btn" style="background-color: #800000; color: white;">
+                                <i class="fas fa-user me-2"></i> Visit Seller Profile
+                            </a>
+                        </div>
                     </div>
+
 
                     <!-- Bidding History Button -->
                     <div class="mt-4">
