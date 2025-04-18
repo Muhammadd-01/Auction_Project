@@ -29,13 +29,19 @@
         //public string ImageUrl { get; set; }
 
         // Foreign keys to Book, Electronics, Furniture (nullable, since only one will be used)
-        public int BookId { get; set; }
+
+        public int SellerId { get; set; }
+
+        public Seller Seller { get; set; }
+        public int UserId { get; set; }
+        public Users Users { get; set; }
+        public int? BookId { get; set; }
         public Books Books { get; set; }
 
-        public int ElectronicsId { get; set; }
+        public int? ElectronicsId { get; set; }
         public Electronics Electronics { get; set; }
 
-        public int FurnitureId { get; set; }
+        public int? FurnitureId { get; set; }
         public Furnitures Furnitures { get; set; }
     }
 

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Auction_Project.models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
 //using Microsoft_ebHostEnvironment;
 
 namespace Auction_Project.controller
@@ -19,6 +20,7 @@ namespace Auction_Project.controller
         {
             _webHostEnvironment = webHostEnvironment;
             _context = context;
+
         }
 
         // Home page (index)
@@ -423,39 +425,49 @@ namespace Auction_Project.controller
                 return RedirectToAction("Login", "User");
             }
         }
+        // Simple method to add data to tbl_Auctions
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult PlaceBid(Auction model)
+        public IActionResult PlaceBid(string Title, string Description, decimal StartingPrice, decimal CurrentHighestBid, DateTime StartTime, DateTime EndTime, int BookId, string UserId)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return View("ItemDetails", model); // Return the same view with error if validation fails
+                // Validate the bid: ensure CurrentHighestBid is greater than the StartingPrice
+                if (CurrentHighestBid < StartingPrice || CurrentHighestBid <= 0)
+                {
+                    ModelState.AddModelError("", "Bid amount must be greater than the starting price.");
+                    return View(); // Return the same view with an error message
+                }
+
+                // Create a new Auction object
+                var auction = new Auction
+                {
+                    Title = Title,
+                    Description = Description,
+                    StartingPrice = StartingPrice,
+                    CurrentHighestBid = CurrentHighestBid,
+                    StartTime = StartTime,
+                    EndTime = EndTime,
+                    BookId = BookId,
+                    UserId = int.Parse(UserId),
+                    IsActive = true // Assuming new auction is active by default
+                };
+
+                // Add the auction to the context (this adds a new bid entry to the database)
+                _context.tbl_Auctions.Add(auction);
+
+                // Save changes to the database
+                _context.SaveChanges();
+
+                // Redirect to the auction details page or another confirmation page
+                return RedirectToAction("AuctionDetails", new { id = auction.Id });
             }
-
-            // Assuming you're using Entity Framework to save the auction bid
-            var auction = new Auction
+            catch (Exception ex)
             {
-                BookId = model.BookId,
-                Title = model.Title,
-                Description = model.Description,
-                StartingPrice = model.StartingPrice,
-                CurrentHighestBid = model.CurrentHighestBid,
-                StartTime = model.StartTime,
-                EndTime = model.EndTime,
-                //SellerId = GetLoggedInUserId(), // Use a helper method to get the logged-in user ID
-                //BidTime = DateTime.Now
-            };
-
-            _context.tbl_Auctions.Add(auction); // Save the auction data to the database
-            _context.SaveChanges(); // Commit the changes to the database
-
-            TempData["Success"] = "Your bid has been placed successfully!";
-            return RedirectToAction("BookItems", new { id = model.BookId }); // Redirect to the ItemDetails page
+                // Log the error (optional)
+                Console.WriteLine(ex.Message); // You may want to use a logger here
+                return StatusCode(500, "Internal server error. Please try again later.");
+            }
         }
-
-
-
-
     }
 }

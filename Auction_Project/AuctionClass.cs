@@ -46,6 +46,8 @@ namespace Auction_Project
 
             modelBuilder.Entity<Auction>().HasOne(a => a.Electronics).WithMany().HasForeignKey(a => a.ElectronicsId).OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<Auction>().HasOne(a => a.Users).WithMany().HasForeignKey(a => a.UserId).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Auction>().HasOne(a => a.Seller).WithMany().HasForeignKey(a => a.SellerId).OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Auction>().HasOne(a => a.Furnitures).WithMany().HasForeignKey(a => a.FurnitureId).OnDelete(DeleteBehavior.Restrict);
 
