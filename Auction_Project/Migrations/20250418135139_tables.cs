@@ -6,11 +6,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Auction_Project.Migrations
 {
     /// <inheritdoc />
-    public partial class auction : Migration
+    public partial class tables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "tbl_Categories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbl_Categories", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "tbl_Users",
                 columns: table => new
@@ -248,6 +261,9 @@ namespace Auction_Project.Migrations
         {
             migrationBuilder.DropTable(
                 name: "tbl_Auctions");
+
+            migrationBuilder.DropTable(
+                name: "tbl_Categories");
 
             migrationBuilder.DropTable(
                 name: "tbl_Books");

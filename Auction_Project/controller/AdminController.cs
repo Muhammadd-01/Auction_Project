@@ -221,24 +221,8 @@ namespace Auction_Project.Controllers
         }
 
 
-        //    [HttpPost]
-        //    public IActionResult AddCategory(Category category)
-        //    {
-        //        if (ModelState.IsValid)
-        //        {
-        //            _context.tbl_Categories.Add(category);
-        //            _context.SaveChanges();
-        //            TempData["Success"] = "Category added successfully!";
-        //            return RedirectToAction("Dashboard", "Admin"); // Make sure "Dashboard" exists
-        //        }
-
-        //        return View(category);
-        //    }
-        //}
-
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult AddCategory(Category category)
         {
             if (ModelState.IsValid)

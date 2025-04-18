@@ -12,8 +12,8 @@
                 </div>
                 <div class="card-body">
                     <!-- Form using POST method -->
-                    <form asp-action="AddCategory" asp-controller="Admin" method="post"
-                    @Html.AntiForgeryToken()>
+                    <form action="@Url.Action("AddCategory", "Admin")" method="post">
+
                         <div class="mb-3">
                             <label for="categoryName" class="form-label">Category Name</label>
                             <input type="text" class="form-control" id="CategoryName" name="CategoryName" required />

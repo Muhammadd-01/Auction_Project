@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Auction_Project.Migrations
 {
     [DbContext(typeof(AuctionClass))]
-    [Migration("20250418061419_auction")]
-    partial class auction
+    [Migration("20250418135139_tables")]
+    partial class tables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -139,6 +139,23 @@ namespace Auction_Project.Migrations
                     b.HasIndex("SellerID");
 
                     b.ToTable("tbl_Books");
+                });
+
+            modelBuilder.Entity("Auction_Project.models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("tbl_Categories");
                 });
 
             modelBuilder.Entity("Auction_Project.models.Electronics", b =>
