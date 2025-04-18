@@ -2,28 +2,41 @@
 
     namespace Auction_Project.models
     {
-        public class Auctions
-        {
-            [Key]
-            public int Id { get; set; }
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
-            [Required]
-            public string Title { get; set; }
+    public class Auction
+    {
+        [Key]
+        public int Id { get; set; }
 
-            public string Description { get; set; } // Item details
+        [Required]
+        public string Title { get; set; }
 
-            [Required]
-            public decimal StartingPrice { get; set; } // Base bid
+        public string Description { get; set; } // Item details
 
-            public decimal? CurrentHighestBid { get; set; } // Gets updated as people bid
+        [Required]
+        public decimal StartingPrice { get; set; } // Base bid
 
-            public DateTime StartTime { get; set; }
+        public decimal CurrentHighestBid { get; set; } // Gets updated as people bid
 
-            public DateTime EndTime { get; set; }
+        public DateTime StartTime { get; set; }
 
-            public bool IsActive { get; set; } = true; // Auction still going on?
+        public DateTime EndTime { get; set; }
 
-            public string ImageUrl { get; set; } // Optional image
+        public bool IsActive { get; set; } = true; // Auction still going on?
 
-        }
+        //public string ImageUrl { get; set; }
+
+        // Foreign keys to Book, Electronics, Furniture (nullable, since only one will be used)
+        public int BookId { get; set; }
+        public Books Books { get; set; }
+
+        public int ElectronicsId { get; set; }
+        public Electronics Electronics { get; set; }
+
+        public int FurnitureId { get; set; }
+        public Furnitures Furnitures { get; set; }
     }
+
+}

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Auction_Project.models
@@ -18,5 +19,7 @@ namespace Auction_Project.models
         public decimal BidIncrement { get; set; }
         public int SellerID { get; set; }
         public Seller Seller { get; set; }
+        public List<Auction> Auctions { get; set; }
+
     }
 }

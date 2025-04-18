@@ -3,6 +3,7 @@ using Auction_Project.models;
 using System.Linq;
 using Auction_Project;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
 
 namespace Auction_Project.Controllers
 {
@@ -202,8 +203,20 @@ namespace Auction_Project.Controllers
             return View(seller);
         }
 
+        [HttpPost]
+        public IActionResult PlaceBid(Auction auction)
+        {
+            if (ModelState.IsValid)
+            {
+                auction.IsActive = true; // Set active flag
+                _context.tbl_Auctions.Add(auction);
+                _context.SaveChanges();
 
+                return RedirectToAction("Index", "User"); // 👈 redirect to user-facing list
+            }
 
+            return View();
+        }
 
 
     }

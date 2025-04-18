@@ -15,12 +15,12 @@ namespace Auction_Project
        public DbSet<Users> tbl_Users { get; set; }
 
 
-        public DbSet<Ratings> tbl_Ratings { get; set; }
+        //public DbSet<Ratings> tbl_Ratings { get; set; }
        public DbSet<Seller> tbl_Seller { get; set; }
 
 
 
-        public DbSet<Auctions> tbl_Auctions { get; set; }
+        public DbSet<Auction> tbl_Auctions { get; set; }
         //public DbSet<BookCategories> tbl_BookCategories { get; set; }
         //public DbSet<ElectronicCategories> tbl_ElectronicCategories { get; set; }
         //public DbSet<FurnitureCategories> tbl_FurnitureCategories { get; set; }
@@ -41,6 +41,13 @@ namespace Auction_Project
             modelBuilder.Entity<Furnitures>().HasOne(f => f.Seller).WithMany(u => u.Furnitures).HasForeignKey(f => f.SellerID);
             //modelBuilder.Entity<Furnitures>().HasOne(f => f.FurnitureCategories).WithMany(u => u.Furnitures).HasForeignKey(b => b.CategoryID);
             modelBuilder.Entity<Seller>().HasOne(s => s.Users).WithMany(u => u.Seller).HasForeignKey(s => s.UserId);
+            modelBuilder.Entity<Auction>().HasOne(a => a.Books).WithMany().HasForeignKey(a => a.BookId).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Auction>().HasOne(a => a.Electronics).WithMany().HasForeignKey(a => a.ElectronicsId).OnDelete(DeleteBehavior.Restrict);
+
+
+            modelBuilder.Entity<Auction>().HasOne(a => a.Furnitures).WithMany().HasForeignKey(a => a.FurnitureId).OnDelete(DeleteBehavior.Restrict);
+
         }
 
 

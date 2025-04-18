@@ -18,6 +18,10 @@ namespace Auction_Project.models
         public decimal BidIncrement { get; set; }
         public int SellerID { get; set; }
         public Seller Seller { get; set; }
+
+        public List<Auction> Auctions { get; set; }
+
+
     }
 
 }
