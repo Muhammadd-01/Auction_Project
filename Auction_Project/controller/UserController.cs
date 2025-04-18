@@ -424,6 +424,35 @@ namespace Auction_Project.controller
             }
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult PlaceBid(Auction model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("ItemDetails", model); // Return the same view with error if validation fails
+            }
+
+            // Assuming you're using Entity Framework to save the auction bid
+            var auction = new Auction
+            {
+                BookId = model.BookId,
+                Title = model.Title,
+                Description = model.Description,
+                StartingPrice = model.StartingPrice,
+                CurrentHighestBid = model.CurrentHighestBid,
+                StartTime = model.StartTime,
+                EndTime = model.EndTime,
+                //SellerId = GetLoggedInUserId(), // Use a helper method to get the logged-in user ID
+                //BidTime = DateTime.Now
+            };
+
+            _context.tbl_Auctions.Add(auction); // Save the auction data to the database
+            _context.SaveChanges(); // Commit the changes to the database
+
+            TempData["Success"] = "Your bid has been placed successfully!";
+            return RedirectToAction("BookItems", new { id = model.BookId }); // Redirect to the ItemDetails page
+        }
 
 
 

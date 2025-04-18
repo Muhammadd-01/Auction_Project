@@ -71,7 +71,7 @@
                             </div>
                         }
 
-                        <form asp-action="PlaceBid" asp-controller="Admin" method="post">
+                        <form action="@Url.Action("PlaceBid", "User")" method="post">
                             <!-- Hidden Inputs -->
                             <input type="hidden" name="Title" value="@Model.ItemTitle" />
                             <input type="hidden" name="Description" value="@Model.ItemDescription" />
