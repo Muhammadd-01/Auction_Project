@@ -202,22 +202,39 @@ namespace Auction_Project.Controllers
 
             return View(seller);
         }
-
         [HttpPost]
         public IActionResult PlaceBid(Auction auction)
         {
             if (ModelState.IsValid)
             {
-                auction.IsActive = true; // Set active flag
+                auction.IsActive = true;
                 _context.tbl_Auctions.Add(auction);
                 _context.SaveChanges();
-
-                return RedirectToAction("Index", "User"); // 👈 redirect to user-facing list
+                return RedirectToAction("Index", "User");
             }
 
-            return View();
+            // 👇 Custom error message jab model invalid ho
+            ModelState.AddModelError(string.Empty, "Form submission failed. Please make sure all required fields are filled correctly.");
+
+            return View(auction); // View ko wapas bhejna zaroori hai taake error show ho
         }
 
+
+        [HttpPost]
+        public IActionResult AddCategory(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                // Saving data to tbl_Categories
+                _context.tbl_Categories.Add(category);
+                _context.SaveChanges();
+
+                TempData["Success"] = "Category added successfully!";
+                return RedirectToAction("Dashboard", "Admin"); // Or any other view to redirect after success
+            }
+
+            return View(category); // Return the same view in case of validation failure
+        }
 
     }
 }

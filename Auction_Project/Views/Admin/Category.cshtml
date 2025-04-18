@@ -1,5 +1,5 @@
 ﻿@{
-	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <!-- Main Content -->
@@ -11,35 +11,15 @@
                     <h4 id="form-title">Add New Category</h4>
                 </div>
                 <div class="card-body">
-                    <form id="categoryForm">
-                        <input type="hidden" id="categoryId" value="">
-
+                    <!-- Form using POST method -->
+                    <form asp-action="AddCategory" asp-controller="Admin" method="post">
                         <div class="mb-3">
                             <label for="categoryName" class="form-label">Category Name</label>
-                            <input type="text" class="form-control" id="categoryName" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="subcategory" class="form-label">Subcategories</label>
-                            <div class="form-control d-flex flex-wrap gap-2" id="subcategory-container" style="min-height: 58px;">
-                                <input type="text" class="border-0 flex-grow-1" id="subcategoryInput" placeholder="Type & press Enter" style="outline: none;" />
-                            </div>
-                            <input type="hidden" id="subcategories" name="subcategories">
-                        </div>
-
-
-                        <div class="mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="isActive" checked>
-                                <label class="form-check-label" for="isActive">
-                                    Active
-                                </label>
-                            </div>
+                            <input type="text" class="form-control" id="categoryName" name="CategoryName" required />
                         </div>
 
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary" id="submitBtn">Add Category</button>
-                            <button type="button" class="btn btn-secondary d-none" id="cancelBtn">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Add Category</button>
                         </div>
                     </form>
                 </div>
@@ -63,8 +43,6 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Subcategory</th>
-                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -107,7 +85,7 @@
             <div class="modal-body">
                 <p>Are you sure you want to delete the category "<span id="deleteCategoryName"></span>"?</p>
                 <div class="alert alert-warning">
-                    <i class="fas fa-exclamation-triangle"></i> This will also delete all subcategories and associated items.
+                    <i class="fas fa-exclamation-triangle"></i> This will also delete all associated items.
                 </div>
             </div>
             <div class="modal-footer">

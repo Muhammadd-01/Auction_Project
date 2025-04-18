@@ -59,19 +59,26 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Place Bid Form -->
                     <div class="bid-form mb-4 bg-light rounded p-3">
                         <h5 class="fw-bold mb-3">Place Your Bid</h5>
+
+                        <!-- Show error if data is invalid -->
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                @Html.ValidationSummary()
+                            </div>
+                        }
+
                         <form asp-action="PlaceBid" asp-controller="Admin" method="post">
-                            <!-- Match these with your Auction model -->
-                             <input type="hidden" name="Title" value="@Model.ItemTitle" />
+                            <!-- Hidden Inputs -->
+                            <input type="hidden" name="Title" value="@Model.ItemTitle" />
                             <input type="hidden" name="Description" value="@Model.ItemDescription" />
                             <input type="hidden" name="StartingPrice" value="@Model.MinimumBid" />
                             <input type="hidden" name="CurrentHighestBid" value="@Model.MinimumBid" />
                             <input type="hidden" name="StartTime" value="@Model.BidStartDate.ToString("s")" />
                             <input type="hidden" name="EndTime" value="@Model.BidEndDate.ToString("s")" />
-                            @* <input type="hidden" name="ImageUrl" value="@Model.book_cover" /> *@
                             <input type="hidden" name="BookId" value="@Model.ItemID" />
 
                             <!-- Bid Amount input -->
@@ -87,8 +94,8 @@
                                 </div>
                             </div>
                         </form>
-
                     </div>
+
 
                     <!-- Seller Info -->
                     <div class="seller-info mt-4 bg-light rounded p-3 shadow-sm">
