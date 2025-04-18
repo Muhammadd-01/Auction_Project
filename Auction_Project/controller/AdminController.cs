@@ -3,6 +3,7 @@ using Auction_Project.models;
 using System.Linq;
 using Auction_Project;
 using Microsoft.EntityFrameworkCore;
+
 using System.Security.Cryptography;
 
 namespace Auction_Project.Controllers
@@ -220,21 +221,41 @@ namespace Auction_Project.Controllers
         }
 
 
+        //    [HttpPost]
+        //    public IActionResult AddCategory(Category category)
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            _context.tbl_Categories.Add(category);
+        //            _context.SaveChanges();
+        //            TempData["Success"] = "Category added successfully!";
+        //            return RedirectToAction("Dashboard", "Admin"); // Make sure "Dashboard" exists
+        //        }
+
+        //        return View(category);
+        //    }
+        //}
+
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult AddCategory(Category category)
         {
             if (ModelState.IsValid)
             {
-                // Saving data to tbl_Categories
                 _context.tbl_Categories.Add(category);
                 _context.SaveChanges();
 
                 TempData["Success"] = "Category added successfully!";
-                return RedirectToAction("Dashboard", "Admin"); // Or any other view to redirect after success
+                return RedirectToAction("Dashboard", "Admin");
             }
 
-            return View(category); // Return the same view in case of validation failure
+            return View(category);
         }
+
+
+
+
 
     }
 }

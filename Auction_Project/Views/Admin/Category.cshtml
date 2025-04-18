@@ -12,10 +12,11 @@
                 </div>
                 <div class="card-body">
                     <!-- Form using POST method -->
-                    <form asp-action="AddCategory" asp-controller="Admin" method="post">
+                    <form asp-action="AddCategory" asp-controller="Admin" method="post"
+                    @Html.AntiForgeryToken()>
                         <div class="mb-3">
                             <label for="categoryName" class="form-label">Category Name</label>
-                            <input type="text" class="form-control" id="categoryName" name="CategoryName" required />
+                            <input type="text" class="form-control" id="CategoryName" name="CategoryName" required />
                         </div>
 
                         <div class="d-grid gap-2">

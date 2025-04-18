@@ -8,6 +8,7 @@ namespace Auction_Project.models
     {
         [Key]
         public int Id { get; set; }
+        [Required]
         public string CategoryName { get; set; }
     }
 }
