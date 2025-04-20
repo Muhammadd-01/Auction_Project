@@ -271,7 +271,7 @@ namespace Auction_Project.controller
 
                     string filePath = Path.Combine(folderPath, fileName);
                     using (var stream = new FileStream(filePath, FileMode.Create))
-                    {   
+                    {
                         ItemImage.CopyTo(stream);
                     }
                     var seller = _context.tbl_Seller.FirstOrDefault(p => p.SellerId == int.Parse(login));
