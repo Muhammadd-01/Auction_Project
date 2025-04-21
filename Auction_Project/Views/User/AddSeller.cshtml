@@ -10,7 +10,7 @@
                 <div class="card sell-card">
                     <div class="card-body">
                         <h2 class="card-title text-center mb-4">Seller Profile Form</h2>
-                        <form id="sellerForm" method="post" asp-action="AddSeller">
+                        <form id="sellerForm" @Url.Action("AddSeller", "User") method="post" >
 
                             <div class="form-floating mb-3">
                                 <input type="text" name="SellerName" class="form-control" id="sellerUsername" placeholder="Username" value="@ViewBag.Username" readonly>
