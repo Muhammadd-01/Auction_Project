@@ -111,18 +111,28 @@ namespace Auction_Project.controller
         }
 
         // Add Seller page (requires login)
+
+        [HttpGet]
         public IActionResult AddSeller()
         {
             var login = HttpContext.Session.GetString("userSession");
+
             if (login != null)
             {
-                return View();
+                int userId = int.Parse(login);
+                var user = _context.tbl_Users.FirstOrDefault(u => u.id == userId);
+
+                if (user != null)
+                {
+                    ViewBag.Username = user.username;
+                    ViewBag.Email = user.email;
+                    return View(); // This loads your seller form
+                }
             }
-            else
-            {
-                return RedirectToAction("Login");
-            }
+
+            return RedirectToAction("Login");
         }
+
 
         // POST: AddSeller (to save seller info)
         [HttpPost]

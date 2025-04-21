@@ -1,8 +1,7 @@
 ﻿@{
-
     Layout = "~/Views/Shared/_UserLayout.cshtml";
-
 }
+
 <!-- Sell Item Section -->
 <section class="sell-section py-5 mt-5">
     <div class="container">
@@ -11,21 +10,21 @@
                 <div class="card sell-card">
                     <div class="card-body">
                         <h2 class="card-title text-center mb-4">Seller Profile Form</h2>
-                        <form id="sellerForm" method="post">
+                        <form id="sellerForm" method="post" asp-action="AddSeller">
 
                             <div class="form-floating mb-3">
-                                <input type="text" name="SellerName" class="form-control" id="sellerUsername" placeholder="Username" required>
+                                <input type="text" name="SellerName" class="form-control" id="sellerUsername" placeholder="Username" value="@ViewBag.Username" readonly>
                                 <label for="sellerUsername">Username</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="email" name="SellerEmail" class="form-control" id="sellerEmail" placeholder="name@example.com" required>
+                                <input type="email" name="SellerEmail" class="form-control" id="sellerEmail" placeholder="name@example.com" value="@ViewBag.Email" readonly>
                                 <label for="sellerEmail">Email Address</label>
                             </div>
 
                             <div class="form-group mb-3">
-                                <label  for="SellerBio">Seller Bio</label>
-                                <textarea name="SellerBio" asp-for="SellerBio" class="form-control" required></textarea>
+                                <label for="SellerBio">Seller Bio</label>
+                                <textarea name="SellerBio" class="form-control" required></textarea>
                             </div>
 
                             <div class="d-grid">
