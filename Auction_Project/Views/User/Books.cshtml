@@ -185,6 +185,7 @@
     </div>
 </section>
 <!-- Add/Edit Item Modal -->
+
 <div class="modal fade" id="addBookModal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -194,7 +195,7 @@
             </div>
             <div class="modal-body">
                 <!-- FORM START: Posting to BookController -> AddBook -->
-                <form asp-action="AddBook" asp-controller="User" method="post" enctype="multipart/form-data">
+                <form @Url.Action("Add_Book", "User") method="post" enctype="multipart/form-data">
                     <div class="row mb-3">
                         <!-- Book Title -->
                         <div class="mb-3">

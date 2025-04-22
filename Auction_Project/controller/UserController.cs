@@ -237,67 +237,61 @@ namespace Auction_Project.controller
             _context.SaveChanges();
             return RedirectToAction("Login", "User");
         }
+        [HttpGet]
         public IActionResult Add_Book()
         {
             var login = HttpContext.Session.GetString("userSession");
+            ViewBag.IsSeller = false; // Default to false
+
             if (login != null)
             {
-                var sellers = _context.tbl_Seller.FirstOrDefault(p => p.SellerId == int.Parse(login));
-                if (sellers != null)
+                var seller = _context.tbl_Seller.FirstOrDefault(p => p.SellerId == int.Parse(login));
+                if (seller != null)
                 {
-
-                    return View();
-                }
-                else
-                {
-                    TempData["msg"] = "please add  yourself as seller first";
-                    return RedirectToAction("AddSeller", "User");
+                    ViewBag.IsSeller = true; // Set to true if seller is found
                 }
             }
-            else
-            {
-                return RedirectToAction("Login", "User");
 
-            }
-
+            return View(); // Proceed with the view
         }
 
 
-
         [HttpPost]
-
         public IActionResult Add_Book(Books book, IFormFile ItemImage)
         {
             var login = HttpContext.Session.GetString("userSession");
 
             if (login != null)
             {
+                var seller = _context.tbl_Seller.FirstOrDefault(p => p.SellerId == int.Parse(login));
+                if (seller == null)
+                {
+                    TempData["msg"] = "You need to become a seller before adding books.";
+                    return RedirectToAction("AddSeller", "User");
+                }
 
                 string extension = Path.GetExtension(ItemImage.FileName).ToLower();
                 if (extension == ".jpg" || extension == ".png" || extension == ".jpeg")
                 {
-                    Random rnd = new Random();
-                    string randomNum = rnd.Next(1000, 9999).ToString();
+                    string randomNum = new Random().Next(1000, 9999).ToString();
                     string fileName = "book_" + randomNum + extension;
 
                     string folderPath = Path.Combine(_webHostEnvironment.WebRootPath, "books_covers");
-
-
                     string filePath = Path.Combine(folderPath, fileName);
+
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         ItemImage.CopyTo(stream);
                     }
-                    var seller = _context.tbl_Seller.FirstOrDefault(p => p.SellerId == int.Parse(login));
+
                     book.SellerID = seller.SellerId;
-                    book.book_cover = fileName; // Save only file name in DB
+                    book.book_cover = fileName;
                     _context.tbl_Books.Add(book);
                     _context.SaveChanges();
 
                     TempData["msg"] = "Book added successfully!";
                     return RedirectToAction("Books", "User");
                 }
-
                 else
                 {
                     TempData["msg"] = "Only JPG, PNG, and JPEG files are allowed.";
