@@ -34,6 +34,10 @@ namespace Auction_Project.controller
         {
             return View();
         }
+        public IActionResult About()
+        {
+            return View();
+        }
 
         // All Items page
         // Action to display the book item details
