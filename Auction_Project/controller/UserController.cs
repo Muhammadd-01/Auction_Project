@@ -30,7 +30,7 @@ namespace Auction_Project.controller
         }
         public IActionResult Search(string query)
         {
-            var viewModel = new Search
+            var Search = new Search
             {
                 Query = query,
                 BooksResults = _context.tbl_Books
