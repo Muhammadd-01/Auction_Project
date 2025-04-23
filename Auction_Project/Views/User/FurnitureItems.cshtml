@@ -59,26 +59,67 @@
                         </div>
                     </div>
 
-                    <div class="bid-form mb-4" style="background-color: #f8f9fa; border-radius: 10px; padding: 20px;">
-                        <h5 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 15px; color: #212529;">Place Your Bid</h5>
-                        <form asp-action="PlaceBid" asp-controller="Auction" method="post">
-                            <input type="hidden" name="itemId" value="@Model.ItemID" />
+                    @* <div class="bid-form mb-4" style="background-color: #f8f9fa; border-radius: 10px; padding: 20px;"> *@
+                    @*     <h5 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 15px; color: #212529;">Place Your Bid</h5> *@
+                    @*     <form asp-action="PlaceBid" asp-controller="Auction" method="post"> *@
+                    @*         <input type="hidden" name="itemId" value="@Model.ItemID" /> *@
+                    @*         <div class="row g-2"> *@
+                    @*             <div class="col-md-7"> *@
+                    @*                 <div class="input-group"> *@
+                    @*                     <span class="input-group-text bg-primary text-white border-0">$</span> *@
+                    @*                     <input type="number" class="form-control" name="bidAmount" placeholder="Enter bid amount" min="@(Model.MinimumBid + 25)" step="25" required /> *@
+                    @*                 </div> *@
+                    @*                 <div class="form-text mt-1 text-muted">Minimum bid: $@((Model.MinimumBid + 25.00M).ToString("F2"))</div> *@
+                    @*             </div> *@
+                    @*             <div class="col-md-5"> *@
+                    @*                 <button type="submit" class="btn btn-primary w-100"> *@
+                    @*                     <i class="fas fa-gavel me-2"></i>Place Bid *@
+                    @*                 </button> *@
+                    @*             </div> *@
+                    @*         </div> *@
+                    @*     </form> *@
+                    @* </div> *@
+                    <!-- Place Bid Form -->
+                    <div class="bid-form mb-4 bg-light rounded p-3">
+                        <h5 class="fw-bold mb-3">Place Your Bid</h5>
+
+                        <!-- Show error if data is invalid -->
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                @Html.ValidationSummary()
+                            </div>
+                        }
+
+                        <form action="@Url.Action("PlaceBidForFurniture", "User")" method="post">
+                            <!-- Hidden Inputs -->
+                            <input type="hidden" name="Title" value="@Model.ItemTitle" />
+                            <input type="hidden" name="Description" value="@Model.ItemDescription" />
+                            <input type="hidden" name="StartingPrice" value="@Model.MinimumBid" />
+                            <input type="hidden" name="CurrentHighestBid" value="@Model.MinimumBid" />
+                            <input type="hidden" name="StartTime" value="@Model.BidStartDate.ToString("s")" />
+                            <input type="hidden" name="EndTime" value="@Model.BidEndDate.ToString("s")" />
+                            <input type="hidden" name="FurnitureId" value="@Model.ItemID" />
+                            <input type="hidden" name="UserId" value="@Context.Session.GetString("userSession")" />
+                            <input type="hidden" name="SellerID" value="@Model.SellerID" />
+
+
+                            <!-- Bid Amount input -->
                             <div class="row g-2">
                                 <div class="col-md-7">
                                     <div class="input-group">
                                         <span class="input-group-text bg-primary text-white border-0">$</span>
-                                        <input type="number" class="form-control" name="bidAmount" placeholder="Enter bid amount" min="@(Model.MinimumBid + 25)" step="25" required />
+                                        <input type="number" class="form-control" name="CurrentHighestBid" min="@(Model.MinimumBid + 25)" step="25" required />
                                     </div>
                                     <div class="form-text mt-1 text-muted">Minimum bid: $@((Model.MinimumBid + 25.00M).ToString("F2"))</div>
                                 </div>
                                 <div class="col-md-5">
-                                    <button type="submit" class="btn btn-primary w-100">
-                                        <i class="fas fa-gavel me-2"></i>Place Bid
-                                    </button>
+                                    <button type="submit" class="btn btn-primary w-100">Place Bid</button>
                                 </div>
                             </div>
                         </form>
                     </div>
+
 
                     <!-- Seller Info Section -->
                     <div class="seller-info mt-4" style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">

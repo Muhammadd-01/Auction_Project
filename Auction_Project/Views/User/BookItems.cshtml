@@ -91,6 +91,7 @@
                                         <span class="input-group-text bg-primary text-white border-0">$</span>
                                         <input type="number" class="form-control" name="CurrentHighestBid" min="@(Model.MinimumBid + 25)" step="25" required />
                                     </div>
+                                    <div class="form-text mt-1 text-muted">Minimum bid: $@((Model.MinimumBid + 25.00M).ToString("F2"))</div>
                                 </div>
                                 <div class="col-md-5">
                                     <button type="submit" class="btn btn-primary w-100">Place Bid</button>
