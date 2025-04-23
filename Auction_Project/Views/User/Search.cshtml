@@ -3,6 +3,12 @@
 @{
     ViewData["Title"] = "Search Results";
 }
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
 
 <div class="container mt-5">
     <h2 class="mb-4">Search Results for "@Model.Query"</h2>

@@ -30,24 +30,37 @@ namespace Auction_Project.controller
         }
         public IActionResult Search(string query)
         {
-            var Search = new Search
+            var books = _context.tbl_Books
+                .ToList()
+                .Where(b => b.ItemTitle.Contains(query, StringComparison.Ordinal))
+                .ToList();
+
+            var electronics = _context.tbl_Electronics
+                .ToList()
+                .Where(e => e.ItemTitle.Contains(query, StringComparison.Ordinal))
+                .ToList();
+
+            var furnitures = _context.tbl_Furnitures
+                .ToList()
+                .Where(f => f.ItemTitle.Contains(query, StringComparison.Ordinal))
+                .ToList();
+
+            if (!books.Any() && !electronics.Any() && !furnitures.Any())
+            {
+                ViewBag.ErrorMessage = "No results found for your search.";
+            }
+
+            var searchResult = new Search
             {
                 Query = query,
-                BooksResults = _context.tbl_Books
-                    .Where(b => b.ItemTitle.Contains(query) || b.ItemDescription.Contains(query) || b.SubCategory.Contains(query))
-                    .ToList(),
-
-                ElectronicsResults = _context.tbl_Electronics
-                    .Where(e => e.ItemTitle.Contains(query) || e.ItemDescription.Contains(query) || e.SubCategory.Contains(query))
-                    .ToList(),
-
-                FurnituresResults = _context.tbl_Furnitures
-                    .Where(f => f.ItemTitle.Contains(query) || f.ItemDescription.Contains(query) || f.SubCategory.Contains(query))
-                    .ToList()
+                BooksResults = books,
+                ElectronicsResults = electronics,
+                FurnituresResults = furnitures
             };
 
-            return View(Search);
+            return View(searchResult);
         }
+
 
 
         public IActionResult About()
