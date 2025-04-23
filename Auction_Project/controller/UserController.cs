@@ -28,12 +28,28 @@ namespace Auction_Project.controller
         {
             return View();
         }
-
-        // Search results page
-        public IActionResult Searchresult()
+        public IActionResult Search(string query)
         {
-            return View();
+            var viewModel = new Search
+            {
+                Query = query,
+                BooksResults = _context.tbl_Books
+                    .Where(b => b.ItemTitle.Contains(query) || b.ItemDescription.Contains(query) || b.SubCategory.Contains(query))
+                    .ToList(),
+
+                ElectronicsResults = _context.tbl_Electronics
+                    .Where(e => e.ItemTitle.Contains(query) || e.ItemDescription.Contains(query) || e.SubCategory.Contains(query))
+                    .ToList(),
+
+                FurnituresResults = _context.tbl_Furnitures
+                    .Where(f => f.ItemTitle.Contains(query) || f.ItemDescription.Contains(query) || f.SubCategory.Contains(query))
+                    .ToList()
+            };
+
+            return View(Search);
         }
+
+
         public IActionResult About()
         {
             return View();

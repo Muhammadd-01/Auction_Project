@@ -7,7 +7,7 @@ namespace Auction_Project.models
     public class Electronics
     {
         [Key]
-  
+
         public int ItemID { get; set; }
         public string ItemTitle { get; set; }
         public string Electronic_cover { get; set; }

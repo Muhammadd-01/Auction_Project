@@ -86,14 +86,12 @@
                         </a>
                     </li>
                 </ul>
-                <form class="d-flex me-3 search-form">
-                     <div class="input-group">
-                        <input class="form-control" type="search" id="globalSearch" placeholder="Search items...">
-                        <button class="btn" type="submit">
-                            <i class="fas fa-search"></i>
-                         </button>
-                    </div>
+                <form action="@Url.Action("Search", "User")" method="get" class="d-flex" style="gap: 10px;">
+                    <input type="text" name="query" class="form-control" placeholder="Search items..." />
+                    <button type="submit" class="btn btn-primary">Search</button>
                 </form>
+
+
                 <div class="d-flex align-items-center nav-right">
                     <a href="@Url.Action("notifications", "User")" class="nav-icon">
                         <i class="fas fa-bell"></i>
