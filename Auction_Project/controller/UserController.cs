@@ -29,37 +29,37 @@ namespace Auction_Project.controller
             return View();
         }
         public IActionResult Search(string query)
-        {
-            var books = _context.tbl_Books
-                .ToList()
-                .Where(b => b.ItemTitle.Contains(query, StringComparison.Ordinal))
-                .ToList();
+{
+    var books = _context.tbl_Books
+        .ToList()
+        .Where(b => b.ItemTitle.Contains(query, StringComparison.Ordinal))
+        .ToList();
 
-            var electronics = _context.tbl_Electronics
-                .ToList()
-                .Where(e => e.ItemTitle.Contains(query, StringComparison.Ordinal))
-                .ToList();
+    var electronics = _context.tbl_Electronics
+        .ToList()
+        .Where(e => e.ItemTitle.Contains(query, StringComparison.Ordinal))
+        .ToList();
 
-            var furnitures = _context.tbl_Furnitures
-                .ToList()
-                .Where(f => f.ItemTitle.Contains(query, StringComparison.Ordinal))
-                .ToList();
+    var furnitures = _context.tbl_Furnitures
+        .ToList()
+        .Where(f => f.ItemTitle.Contains(query, StringComparison.Ordinal))
+        .ToList();
 
-            if (!books.Any() && !electronics.Any() && !furnitures.Any())
-            {
-                ViewBag.ErrorMessage = "No results found for your search.";
-            }
+    if (!books.Any() && !electronics.Any() && !furnitures.Any())
+    {
+        ViewBag.ErrorMessage = "No results found for your search.";
+    }
 
-            var searchResult = new Search
-            {
-                Query = query,
-                BooksResults = books,
-                ElectronicsResults = electronics,
-                FurnituresResults = furnitures
-            };
+    var searchResult = new Search
+    {
+        Query = query,
+        BooksResults = books,
+        ElectronicsResults = electronics,
+        FurnituresResults = furnitures
+    };
 
-            return View(searchResult);
-        }
+    return View(searchResult);
+}
 
 
 
@@ -464,47 +464,86 @@ namespace Auction_Project.controller
         }
         // Simple method to add data to tbl_Auctions
 
+        // Simple method to add data to tbl_Auctions
+
         [HttpPost]
-        public IActionResult PlaceBid(string Title, string Description, decimal StartingPrice, decimal CurrentHighestBid, DateTime StartTime, DateTime EndTime, int BookId, string UserId)
+        public IActionResult PlaceBid(string Title, string Description, decimal StartingPrice, decimal CurrentHighestBid, DateTime StartTime, DateTime EndTime, int BookId, string UserId, string SellerId)
         {
-            try
+            // Directly parse UserId and SellerId (assuming they're always valid)
+            int userId = int.Parse(UserId);
+            int sellerId = int.Parse(SellerId);
+
+            var auction = new Auction
             {
-                // Validate the bid: ensure CurrentHighestBid is greater than the StartingPrice
-                if (CurrentHighestBid < StartingPrice || CurrentHighestBid <= 0)
-                {
-                    ModelState.AddModelError("", "Bid amount must be greater than the starting price.");
-                    return View(); // Return the same view with an error message
-                }
+                Title = Title,
+                Description = Description,
+                StartingPrice = StartingPrice,
+                CurrentHighestBid = CurrentHighestBid,
+                StartTime = StartTime,
+                EndTime = EndTime,
+                BookId = BookId,
+                UserId = userId,
+                SellerId = sellerId,
+                IsActive = true
+            };
 
-                // Create a new Auction object
-                var auction = new Auction
-                {
-                    Title = Title,
-                    Description = Description,
-                    StartingPrice = StartingPrice,
-                    CurrentHighestBid = CurrentHighestBid,
-                    StartTime = StartTime,
-                    EndTime = EndTime,
-                    BookId = BookId,
-                    UserId = int.Parse(UserId),
-                    IsActive = true // Assuming new auction is active by default
-                };
+            _context.tbl_Auctions.Add(auction);
+            _context.SaveChanges();
 
-                // Add the auction to the context (this adds a new bid entry to the database)
-                _context.tbl_Auctions.Add(auction);
+            return RedirectToAction("Books", "User");
+        }
+        //
+        [HttpPost]
+        public IActionResult PlaceBidForFurniture(string Title, string Description, decimal StartingPrice, decimal CurrentHighestBid, DateTime StartTime, DateTime EndTime, int FurnitureId, string UserId, string SellerId)
+        {
+            int userId = int.Parse(UserId);
+            int sellerId = int.Parse(SellerId);
 
-                // Save changes to the database
-                _context.SaveChanges();
-
-                // Redirect to the auction details page or another confirmation page
-                return RedirectToAction("AuctionDetails", new { id = auction.Id });
-            }
-            catch (Exception ex)
+            var auction = new Auction
             {
-                // Log the error (optional)
-                Console.WriteLine(ex.Message); // You may want to use a logger here
-                return StatusCode(500, "Internal server error. Please try again later.");
-            }
+                Title = Title,
+                Description = Description,
+                StartingPrice = StartingPrice,
+                CurrentHighestBid = CurrentHighestBid,
+                StartTime = StartTime,
+                EndTime = EndTime,
+                FurnitureId = FurnitureId,
+                UserId = userId,
+                SellerId = sellerId,
+                IsActive = true
+            };
+
+            _context.tbl_Auctions.Add(auction);
+            _context.SaveChanges();
+
+            return RedirectToAction("Furnitures", "User"); // Redirect to furniture list/view
+        }
+
+        //
+        [HttpPost]
+        public IActionResult PlaceBidForElectronics(string Title, string Description, decimal StartingPrice, decimal CurrentHighestBid, DateTime StartTime, DateTime EndTime, int ElectronicsId, string UserId, string SellerId)
+        {
+            int userId = int.Parse(UserId);
+            int sellerId = int.Parse(SellerId);
+
+            var auction = new Auction
+            {
+                Title = Title,
+                Description = Description,
+                StartingPrice = StartingPrice,
+                CurrentHighestBid = CurrentHighestBid,
+                StartTime = StartTime,
+                EndTime = EndTime,
+                ElectronicsId = ElectronicsId,
+                UserId = userId,
+                SellerId = sellerId,
+                IsActive = true
+            };
+
+            _context.tbl_Auctions.Add(auction);
+            _context.SaveChanges();
+
+            return RedirectToAction("Electronics", "User"); // Redirect to electronics list/view
         }
     }
 }
