@@ -1,88 +1,99 @@
 ﻿@model Auction_Project.models.Search
 
 @{
+	Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@{
     ViewData["Title"] = "Search Results";
 }
-@if (ViewBag.ErrorMessage != null)
-{
-    <div class="alert alert-danger">
-        @ViewBag.ErrorMessage
-    </div>
-}
+
+
 
 <div class="container mt-5">
-    <h2 class="mb-4">Search Results for "@Model.Query"</h2>
+    <div class="search-container">
+        <h2 class="search-title">Search Results for "@Model.Query"</h2>
 
-    @if (!Model.BooksResults.Any() && !Model.ElectronicsResults.Any() && !Model.FurnituresResults.Any())
-    {
-        <div class="alert alert-warning">
-            No items found matching "@Model.Query".
-        </div>
-    }
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.ErrorMessage
+            </div>
+        }
 
-    <!-- BOOKS RESULTS -->
-    @if (Model.BooksResults.Any())
-    {
-        <h4>Books</h4>
-        <div class="row mb-4">
-            @foreach (var book in Model.BooksResults)
-            {
-                <div class="col-md-4 mb-3">
-                    <div class="card h-100">
-                        <img src="@book.book_cover" class="card-img-top" alt="Book Image" style="height: 200px; object-fit: cover;" />
-                        <div class="card-body">
-                            <h5 class="card-title"><strong>Title:</strong> @book.ItemTitle</h5>
-                            <p class="card-text"><strong>Description:</strong> @book.ItemDescription</p>
-                            <p class="text-muted"><strong>SubCategory:</strong> @book.SubCategory</p>
+        @if (!Model.BooksResults.Any() && !Model.ElectronicsResults.Any() && !Model.FurnituresResults.Any())
+        {
+            <div class="alert alert-warning">
+                No items found matching "@Model.Query".
+            </div>
+        }
+
+        <!-- BOOKS RESULTS -->
+        @if (Model.BooksResults.Any())
+        {
+            <h4 class="category-heading">Books</h4>
+            <div class="row mb-4">
+                @foreach (var book in Model.BooksResults)
+                {
+                    <div class="col-md-4 mb-3">
+                        <div class="item-card">
+                            <div class="card-img-container">
+                                <img src="@book.book_cover" class="card-img-top" alt="Book Image" />
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">@book.ItemTitle</h5>
+                                <p class="card-text">@book.ItemDescription</p>
+                                <span class="subcategory-badge">@book.SubCategory</span>
+                            </div>
                         </div>
-
                     </div>
-                </div>
-            }
-        </div>
-    }
+                }
+            </div>
+        }
 
-    <!-- ELECTRONICS RESULTS -->
-    @if (Model.ElectronicsResults.Any())
-    {
-        <h4>Electronics</h4>
-        <div class="row mb-4">
-            @foreach (var elec in Model.ElectronicsResults)
-            {
-                <div class="col-md-4 mb-3">
-                    <div class="card h-100">
-                        <img src="@elec.Electronic_cover" class="card-img-top" alt="Electronics Image" style="height: 200px; object-fit: cover;" />
-                        <div class="card-body">
-                            <h5 class="card-title"><strong>Title:</strong> @elec.ItemTitle</h5>
-                            <p class="card-text"><strong>Description:</strong> @elec.ItemDescription</p>
-                            <p class="text-muted"><strong>SubCategory:</strong> @elec.SubCategory</p>
+        <!-- ELECTRONICS RESULTS -->
+        @if (Model.ElectronicsResults.Any())
+        {
+            <h4 class="category-heading">Electronics</h4>
+            <div class="row mb-4">
+                @foreach (var elec in Model.ElectronicsResults)
+                {
+                    <div class="col-md-4 mb-3">
+                        <div class="item-card">
+                            <div class="card-img-container">
+                                <img src="@elec.Electronic_cover" class="card-img-top" alt="Electronics Image" />
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">@elec.ItemTitle</h5>
+                                <p class="card-text">@elec.ItemDescription</p>
+                                <span class="subcategory-badge">@elec.SubCategory</span>
+                            </div>
                         </div>
-
                     </div>
-                </div>
-            }
-        </div>
-    }
+                }
+            </div>
+        }
 
-    <!-- FURNITURES RESULTS -->
-    @if (Model.FurnituresResults.Any())
-    {
-        <h4>Furnitures</h4>
-        <div class="row mb-4">
-            @foreach (var fur in Model.FurnituresResults)
-            {
-                <div class="col-md-4 mb-3">
-                    <div class="card h-100">
-                        <img src="@fur.Furniture_cover" class="card-img-top" alt="Furniture Image" style="height: 200px; object-fit: cover;" />
-                        <div class="card-body">
-                            <h5 class="card-title"><strong>Title:</strong> @fur.ItemTitle</h5>
-                            <p class="card-text"><strong>Description:</strong> @fur.ItemDescription</p>
-                            <p class="text-muted"><strong>SubCategory:</strong> @fur.SubCategory</p>
+        <!-- FURNITURES RESULTS -->
+        @if (Model.FurnituresResults.Any())
+        {
+            <h4 class="category-heading">Furniture</h4>
+            <div class="row mb-4">
+                @foreach (var fur in Model.FurnituresResults)
+                {
+                    <div class="col-md-4 mb-3">
+                        <div class="item-card">
+                            <div class="card-img-container">
+                                <img src="@fur.Furniture_cover" class="card-img-top" alt="Furniture Image" />
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">@fur.ItemTitle</h5>
+                                <p class="card-text">@fur.ItemDescription</p>
+                                <span class="subcategory-badge">@fur.SubCategory</span>
+                            </div>
                         </div>
-
                     </div>
-                </div>
-            }
-        </div>
-    }
+                }
+            </div>
+        }
+    </div>
 </div>
